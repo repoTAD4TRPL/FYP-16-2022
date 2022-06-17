@@ -1,0 +1,35 @@
+body{
+    background: #f3f8fd;
+    
+}
+.container{
+    padding-left:10px !important;
+    padding-right:10px !important;
+}
+
+a:hover{
+    text-decoration: none !important;
+}
+
+.active_navtrue{
+    border-bottom: 3px solid #4e4f50;
+}
+ 
+.navbar_custom {
+    background:#3be361 !important;
+} 
+
+.dropdown-toggle::after{
+    color:#ffffff !important;
+}
+
+footer {
+    width: 100%;
+    color: #fff;
+    font-size: 13px;
+    text-align: center;
+    padding:5px;
+    bottom:0;
+    background: #3be361;
+    font-weight: bold;
+}
