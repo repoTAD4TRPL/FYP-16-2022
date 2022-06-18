@@ -108,7 +108,7 @@ class Laporan extends Controller{
         
 
         //KEUANGAN
-        $Data['content']      = DB::table('keuangan')->rightJoin('unit_usaha','unit_usaha.id_unit','=','keuangan.id_unit')->orderBy('keuangan.date_created','desc')->whereBetween('keuangan.tanggal',[$from, $to])->where(['keuangan.status' => 1, 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'keuangan.approve_bendahara' => 1])->get();
+        $Data['content']      = DB::table('keuangan')->rightJoin('unit_usaha','unit_usaha.id_unit','=','keuangan.id_unit')->orderBy('keuangan.date_created','desc')->whereBetween('keuangan.tanggal',[$from, $to])->where(['keuangan.status' => 1])->get();
         $Data['pemasukan']    = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1 , 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'approve_bendahara' => 1])->sum('nilai');
         $Data['pengeluaran']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'approve_bendahara' => 1])->sum('nilai');
         $Data['pengeluaran_list']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'approve_bendahara' => 1])->get();
@@ -147,7 +147,18 @@ class Laporan extends Controller{
         $Data['barang_jasa_pemasukan_total']    = DB::table('barang_jasa')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
         $Data['logistik_pengeluaran_total']    = DB::table('logistik')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
 
-        $pdf = PDF::loadView('laporan_keuangan.laporan_print', $Data);
+        $temp = 0;
+        foreach($Data['content'] as $newdata){
+            if($newdata->approve_direktur == 0){
+                $temp += 1;
+            }
+        }
+        if($temp > 0){
+            $pdf = PDF::loadView('laporan_keuangan.laporan_unapproved_print', $Data);
+        }else{
+            $pdf = PDF::loadView('laporan_keuangan.laporan_print', $Data);
+            }
+        // $pdf = PDF::loadView('laporan_keuangan.laporan_print', $Data);
         return $pdf->download('laporan-keuangan-filter.pdf');
         //return view('laporan_keuangan.laporan_print', $Data);
 
@@ -168,14 +179,13 @@ class Laporan extends Controller{
         $Data['website']      = DB::table('website')->where(['id' => 1])->first();
 
         //KEUANGAN
-        $Data['content']      = DB::table('keuangan')->rightJoin('unit_usaha','unit_usaha.id_unit','=','keuangan.id_unit')->orderBy('keuangan.date_created','desc')->whereBetween('keuangan.tanggal',[$from, $to])->where(['keuangan.status' => 1, 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'keuangan.approve_bendahara' => 1])->get();
+        $Data['content']      = DB::table('keuangan')->rightJoin('unit_usaha','unit_usaha.id_unit','=','keuangan.id_unit')->orderBy('keuangan.date_created','desc')->whereBetween('keuangan.tanggal',[$from, $to])->where(['keuangan.status' => 1])->get();
         $Data['pemasukan']    = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1 , 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'approve_bendahara' => 1])->sum('nilai');
         $Data['pengeluaran']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'approve_bendahara' => 1])->sum('nilai');
         $Data['pengeluaran_list']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'approve_bendahara' => 1])->get();
         
         //$Data['pemasukan']    = DB::table('barang_jasa')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
         //$Data['pengeluaran']  = DB::table('logistik')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
-
 
         //LOGISTIK
         $Data['content_logistik']  = DB::table('logistik')->whereBetween('logistik.tanggal',[$from, $to])->rightJoin('unit_usaha','unit_usaha.id_unit','=','logistik.id_unit')->orderBy('logistik.date_created','desc')->where(['logistik.status' => 1])->get();
@@ -204,11 +214,25 @@ class Laporan extends Controller{
 
         $Data['barang_jasa_pemasukan_total']    = DB::table('barang_jasa')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
         $Data['logistik_pengeluaran_total']    = DB::table('logistik')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
-        //Mencari laba rugi
-        if($Data['content'] != [] && $Data['content_logistik'] != [] && $Data['content_barangjasa'] != [] && $Data['content_bagihasil'] != [] && $Data['content_asset'] != []) {
-            dd($Data['content_logistik']);
+        // // //Mencari laba rugi
+        // if(($Data['content'] == [] && $Data['content_logistik'] == [] && $Data['content_barangjasa'] == [] && $Data['content_bagihasil'] == [] && $Data['content_asset'] == []) || ($Data['content'] != [])) {
+        //     // dd($Data['content_logistik']);
+        //     $pdf = PDF::loadView('laporan_keuangan.laporan_unapproved_print', $Data);
+        // } else {
+        //     $pdf = PDF::loadView('laporan_keuangan.laporan_print', $Data);
+        // }
+        // dd($Data['content']);
+        $temp = 0;
+        foreach($Data['content'] as $newdata){
+            if($newdata->approve_direktur == 0){
+                $temp += 1;
+            }
         }
-        $pdf = PDF::loadView('laporan_keuangan.laporan_print', $Data);
+        if($temp > 0){
+            $pdf = PDF::loadView('laporan_keuangan.laporan_unapproved_print', $Data);
+        }else{
+            $pdf = PDF::loadView('laporan_keuangan.laporan_print', $Data);
+            }
         return $pdf->download('laporan-keuangan-filter.pdf');
         //return view('laporan_keuangan.laporan_print', $Data);
 
@@ -229,7 +253,7 @@ class Laporan extends Controller{
         
 
         //KEUANGAN
-        $Data['content']      = DB::table('keuangan')->rightJoin('unit_usaha','unit_usaha.id_unit','=','keuangan.id_unit')->orderBy('keuangan.date_created','desc')->whereBetween('keuangan.tanggal',[$from, $to])->where(['keuangan.status' => 1, 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'keuangan.approve_bendahara' => 1])->get();
+        $Data['content']      = DB::table('keuangan')->rightJoin('unit_usaha','unit_usaha.id_unit','=','keuangan.id_unit')->orderBy('keuangan.date_created','desc')->whereBetween('keuangan.tanggal',[$from, $to])->where(['keuangan.status' => 1])->get();
         $Data['pemasukan']    = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1 , 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'approve_bendahara' => 1])->sum('nilai');
         $Data['pengeluaran']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'approve_bendahara' => 1])->sum('nilai');
         $Data['pengeluaran_list']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'approve_bendahara' => 1])->get();
@@ -268,7 +292,19 @@ class Laporan extends Controller{
         $Data['barang_jasa_pemasukan_total']    = DB::table('barang_jasa')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
         $Data['logistik_pengeluaran_total']    = DB::table('logistik')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
 
-        $pdf = PDF::loadView('laporan_keuangan.laporan_print', $Data);
+
+        $temp = 0;
+        foreach($Data['content'] as $newdata){
+            if($newdata->approve_direktur == 0){
+                $temp += 1;
+            }
+        }
+        if($temp > 0){
+            $pdf = PDF::loadView('laporan_keuangan.laporan_unapproved_print', $Data);
+        }else{
+            $pdf = PDF::loadView('laporan_keuangan.laporan_print', $Data);
+            }
+        // $pdf = PDF::loadView('laporan_keuangan.laporan_print', $Data);
         return $pdf->download('laporan-keuangan-filter.pdf');
         //return view('laporan_keuangan.laporan_print', $Data);
 
