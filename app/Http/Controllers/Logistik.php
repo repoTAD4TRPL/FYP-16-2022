@@ -39,7 +39,7 @@ class Logistik extends Controller{
             $Data['title']      = "Ubah Logistik";
             $Data['page']       = "logistik";
             $Data['master']     = "logistik";
-            $Data['value']      = $check;   
+            $Data['value']      = $check;
             $Data['unit']       = DB::table('unit_usaha')->where(['status' => 1])->get();
 
 
@@ -51,14 +51,15 @@ class Logistik extends Controller{
 
     //ACTION
     function create_logistik(request $req){
-    
+
         $Data = array(
             'uuid_logistik'      => Uuid::generate(),
             'id_unit'            => $req->input('id_unit'),
             'tanggal'            => $req->input('tanggal'),
             'jumlah'             => $req->input('jumlah'),
             'keterangan'         => $req->input('keterangan'),
-            'harga'              => str_replace('.', '', $req->input('harga'))
+            'harga'              => str_replace('.', '', $req->input('harga')),
+            'upload_by'         => Session::get('username'),
         );
 
         $Database = DB::table('logistik')->insert($Data);
@@ -71,7 +72,8 @@ class Logistik extends Controller{
             'tanggal'            => $req->input('tanggal'),
             'jumlah'             => $req->input('jumlah'),
             'keterangan'         => $req->input('keterangan'),
-            'harga'              => str_replace(array('.',','), '', $req->input('harga'))
+            'harga'              => str_replace(array('.',','), '', $req->input('harga')),
+            'upload_by'         => Session::get('username')
         );
 
         $Database = DB::table('logistik')->where(['uuid_logistik' => $uuid])->update($Data);
@@ -87,5 +89,5 @@ class Logistik extends Controller{
         $Database = DB::table('logistik')->where(['uuid_logistik' => $uuid])->update($Data);
         return redirect('/administrator/logistik');
     }
-    
+
 }

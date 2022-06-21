@@ -16,7 +16,7 @@
                     <div class="form-grop">
                         <label>Ke Tanggal</label>
                         <input type="date" class="form-control" name="filter_from" id="max-date">
-                        
+
                     </div>
                 </div>
             </div>
@@ -47,23 +47,24 @@
             <br/>
             <br/>
             @endif
-            
-            
+
+
             <table class="table table-striped" id="logistik">
                 <thead>
-                    <tr>
-                        <td>NO</td>
-                        <td>UNIT</td>
-                        <td>JENIS</td>
-                        <td>NAMA</td>
-                        <td>JUMLAH</td>
-                        <td>TANGGAL</td>
-                        <td>HARGA</td>
-                        <td>AKSI</td>
+                    <tr class="font-weight-bold" style="text-align:center">
+                        <td>No</td>
+                        <td>Unit</td>
+                        <td>Jenis</td>
+                        <td>Nama</td>
+                        <td>Jumlah</td>
+                        <td>Tanggal</td>
+                        <td>Harga</td>
+                        <td>Diunggah Oleh</td>
+                        <td>Aksi</td>
                         <td style="display:none;">total_penyewaan</td>
                         <td style="display:none;">total_pembelian</td>
                         <td style="display:none;">total_pemasukan</td>
-                    
+
                     </tr>
                 </thead>
                 <tbody>
@@ -76,6 +77,7 @@
                         <td>{{ $value->jumlah }}</td>
                         <td>{{ $value->tanggal }}</td>
                         <td>Rp.{{ number_format($value->harga) }}</td>
+                        <td>{{ $value->upload_by }}</td>
                         <td>
                             @if(Session::get('jabatan') == '1' )
 
@@ -87,16 +89,16 @@
                         <td style="display:none;">{{ $value->jenis == 1 ? $value->harga  : 0  }}</td>
                         <td style="display:none;">{{ $value->jenis == 2 ? $value->harga  : 0  }}</td>
                         <td style="display:none;">{{ $total_penyewaan+$total_pembelian }}</td>
-           
-                       
+
+
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-    
-    
+
+
 </div>
 @endsection
 
@@ -104,10 +106,10 @@
 @section('javascript')
 <script src="//cdn.datatables.net/plug-ins/1.11.4/api/sum().js"></script>
 <script>
-    
+
     $(document).ready(function() {
         var table = $('#logistik').DataTable();
-       
+
 
         $.fn.dataTable.ext.search.push(
             function(settings, data, dataIndex) {
@@ -124,27 +126,27 @@
             }
             );
             // Re-draw the table when the a date range filter changes
-            
+
             $('#min-date,#max-date').change(function() {
                 table.draw();
             });
 
-            
-            
-             
+
+
+
             table.on('draw', function () {
-        
-                var total_penyewaan = table.column(8,{"filter": "applied"} ).data().sum(); 
-                var total_pembelian =  table.column(9,{"filter": "applied"} ).data().sum(); 
-                
+
+                var total_penyewaan = table.column(8,{"filter": "applied"} ).data().sum();
+                var total_pembelian =  table.column(9,{"filter": "applied"} ).data().sum();
+
 
                 $("#total_pemasukan").text("Rp. "+rupiahformat(parseInt(total_penyewaan)+parseInt(total_pembelian)))
                 $("#total_penyewaan").text("Rp. "+rupiahformat(total_penyewaan))
                 $("#total_pembelian").text("Rp. "+rupiahformat(total_pembelian))
             })
-            
-           
-        
+
+
+
 
     });
 
@@ -161,7 +163,7 @@
             cancelButtonText: 'No, cancel!',
             reverseButtons: true
         }).then(function(result){
-            if (result.value) { 
+            if (result.value) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -177,7 +179,7 @@
                         swal.fire("Error Delete!", "Please try again", "error");
                     }
                 });
-               
+
             } else if (result.dismiss === 'cancel') {
                 swal.fire(
                     'Cancelled',

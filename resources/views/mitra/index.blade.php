@@ -38,19 +38,19 @@
             <br/>
             <br/>
             @endif
-            
-            
+
+
             <table class="table table-striped" id="logistik">
                 <thead>
-                    <tr>
-                        <td>NO</td>
+                    <tr class="font-weight-bold">
+                        <td>No</td>
                         <td>Nama mitra</td>
                         <td>Bidang</td>
                         <td>Alamat</td>
                         <td>Tanggal Mulai</td>
                         <td>Tanggal Selesai</td>
                         <td>Status Mitra</td>
-                        <td>AKSI</td>
+                        <td>Aksi</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,17 +70,17 @@
                             <a href="{{ url('administrator/mitra/ubah/'.$value->uuid_mitra); }}" class="btn btn-warning text-white">Ubah</a>
                             <a href="#" data-id="{{ $value->uuid_mitra }}" class="btn btn-danger delete" >Hapus</a>
                             @endif
-                            
+
                         </td>
-                       
+
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-    
-    
+
+
 </div>
 @endsection
 
@@ -88,13 +88,13 @@
 @section('javascript')
 <script src="//cdn.datatables.net/plug-ins/1.11.4/api/sum().js"></script>
 <script>
-    
+
     $(document).ready(function() {
         var table = $('#logistik').DataTable({
-           
+
         });
-       
-      
+
+
         $.fn.dataTable.ext.search.push(
             function(settings, data, dataIndex) {
                 var min = $('#min-date').val();
@@ -110,17 +110,17 @@
             }
             );
             // Re-draw the table when the a date range filter changes
-            
+
             $('#min-date,#max-date').change(function() {
                 table.draw();
             });
             table.on( 'draw', function () {
-                var total_all = table.rows({"filter": "applied"} ).count(); 
+                var total_all = table.rows({"filter": "applied"} ).count();
                 $("#total_mitra").text(total_all);
             })
-            
-           
-        
+
+
+
 
     });
 
@@ -137,7 +137,7 @@
             cancelButtonText: 'No, cancel!',
             reverseButtons: true
         }).then(function(result){
-            if (result.value) { 
+            if (result.value) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -153,7 +153,7 @@
                         swal.fire("Error Delete!", "Please try again", "error");
                     }
                 });
-               
+
             } else if (result.dismiss === 'cancel') {
                 swal.fire(
                     'Cancelled',

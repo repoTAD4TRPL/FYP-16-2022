@@ -4,7 +4,7 @@
 <div class="p-4">
     <div class="row mt-4">
         <div class="col-lg-4">
-            <?php 
+            <?php
                 $pemasukan_all  = $pemasukan+$pemasukan_keuangan;
                 $pengeluaran_all= $pengeluaran+$pengeluaran_keuangan;
                 $total_saldo    = $pemasukan_all-$pengeluaran_all;
@@ -41,16 +41,16 @@
                     <div class="col-lg-2">
                         <label>Cetak</label>
                         <input type="submit" class="btn btn-info" value="Cetak Laporan Keuangan">
-                        
-                        
+
+
                     </div>
                 </div>
             </div>
             </form>
             @endif
-            
+
         </div>
-        
+
     </div>
 
     <div class="card mt-4">
@@ -67,11 +67,11 @@
             <br/>
             <br/>
             @endif
-            
+
             <table class="table table-striped" id="logistik">
                 <thead>
-                    <tr>
-                        <td>NO</td>
+                    <tr class="font-weight-bold" style="text-align:center">
+                        <td>No</td>
                         <td>Tanggal</td>
                         <td>Jenis</td>
                         <td>Unit</td>
@@ -110,14 +110,14 @@
                                 @if($value->approve_sekretaris == 0 && $value->approve_bendahara == 0)
 
                                 @else
-                                @endif    
+                                @endif
                             @else
                             <!-- <a href="{{ url('administrator/keuangan/ubah/'.$value->uuid_keuangan); }}" class="btn btn-warning text-white">Ubah</a>
                             <a href="#" data-id="{{ $value->uuid_keuangan }}" class="btn btn-danger delete" >Hapus</a> -->
                             @endif
                             <a href="{{ url('administrator/keuangan/detail/'.$value->uuid_keuangan); }}" class="btn btn-secondary text-white">Detail</a>
                             @if($value->approve_sekretaris == 1 && $value->approve_bendahara == 1 && $value->approve_direktur == 1)
-                                @if(Session::get('jabatan') == '1' || Session::get('jabatan') == '' || Session::get('jabatan') == '') 
+                                @if(Session::get('jabatan') == '1' || Session::get('jabatan') == '' || Session::get('jabatan') == '')
                                 @else
                                 <a href="{{ url('administrator/keuangan/print/'.$value->uuid_keuangan); }}" class="btn btn-info text-white">Cetak</a>
                                 @endif
@@ -135,8 +135,8 @@
             </table>
         </div>
     </div>
-    
-    
+
+
 </div>
 @endsection
 
@@ -170,13 +170,13 @@
 
 <script src="//cdn.datatables.net/plug-ins/1.11.4/api/sum().js"></script>
 <script>
-    
+
     $(document).ready(function() {
         var table = $('#logistik').DataTable({
-           
+
         });
-       
-      
+
+
         $.fn.dataTable.ext.search.push(
             function(settings, data, dataIndex) {
                 var min = $('#min-date').val();
@@ -192,20 +192,20 @@
             }
             );
             // Re-draw the table when the a date range filter changes
-            
+
             $('#min-date,#max-date').change(function() {
                 table.draw();
             });
             table.on( 'draw', function () {
-                var pemasukan   = table.column(8,{"filter": "applied"} ).data().sum(); 
-                var pengeluaran   = table.column(9,{"filter": "applied"} ).data().sum(); 
-                // var  = table.rows({"filter": "applied"} ).count(); 
+                var pemasukan   = table.column(8,{"filter": "applied"} ).data().sum();
+                var pengeluaran   = table.column(9,{"filter": "applied"} ).data().sum();
+                // var  = table.rows({"filter": "applied"} ).count();
 
                 $("#total_saldo").text("Rp. "+rupiahformat(parseInt(pemasukan)-parseInt(pengeluaran)));
             })
-            
-           
-        
+
+
+
 
     });
 
@@ -222,7 +222,7 @@
             cancelButtonText: 'No, cancel!',
             reverseButtons: true
         }).then(function(result){
-            if (result.value) { 
+            if (result.value) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -238,7 +238,7 @@
                         swal.fire("Error Delete!", "Please try again", "error");
                     }
                 });
-               
+
             } else if (result.dismiss === 'cancel') {
                 swal.fire(
                     'Cancelled',

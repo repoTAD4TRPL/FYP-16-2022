@@ -34,16 +34,16 @@
             @if(Session::get('jabatan') == '4')
             <a href="{{ url('administrator/bagi-hasil-usaha/tambah') }}" data-id="" class="btn btn-primary float-right" >Tambah</a>
             @else
-            
+
             <br/>
             <br/>
             @endif
-            
-            
+
+
             <table class="table table-striped" id="logistik">
                 <thead>
-                    <tr>
-                        <td>NO</td>
+                    <tr class="font-weight-bold" style="text-align:center">
+                        <td>No</td>
                         <td>Jenis Subsidi</td>
                         <td>Nama</td>
                         <td>Mitra</td>
@@ -51,7 +51,8 @@
                         <td>Tanggal</td>
                         <td>Nilai</td>
                         <td>Status</td>
-                        <td>AKSI</td>
+                        <td>Diunggah Oleh</td>
+                        <td>Aksi</td>
                         <td style="display:none;">total_pemasukan</td>
                     </tr>
                 </thead>
@@ -65,6 +66,7 @@
                         <td>{{ $value->jumlah }}</td>
                         <td>{{ $value->tanggal }}</td>
                         <td>Rp. {{ number_format($value->nilai) }}</td>
+                        <td>{{ $value->upload_by }}</td>
                         <td>
                             @if($value->status_hasil == 1)
                                 Success
@@ -80,20 +82,20 @@
                                 <a href="{{ url('administrator/bagi-hasil-usaha/ubah/'.$value->uuid_bagi_hasil); }}" class="btn btn-warning text-white">Ubah</a>
                                 <a href="#" data-id="{{ $value->uuid_bagi_hasil }}" class="btn btn-danger delete" >Hapus</a>
                             @else
-                            
+
                             @endif
                         </td>
                         <td style="display:none;">{{ $value->status_hasil == 1 ? $value->nilai : 0 }}</td>
 
-                       
+
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-    
-    
+
+
 </div>
 @endsection
 
@@ -101,13 +103,13 @@
 @section('javascript')
 <script src="//cdn.datatables.net/plug-ins/1.11.4/api/sum().js"></script>
 <script>
-    
+
     $(document).ready(function() {
         var table = $('#logistik').DataTable({
-           
+
         });
-       
-      
+
+
         $.fn.dataTable.ext.search.push(
             function(settings, data, dataIndex) {
                 var min = $('#min-date').val();
@@ -123,17 +125,17 @@
             }
             );
             // Re-draw the table when the a date range filter changes
-            
+
             $('#min-date,#max-date').change(function() {
                 table.draw();
             });
             table.on( 'draw', function () {
-                var total_all = table.column(9,{"filter": "applied"} ).data().sum(); 
+                var total_all = table.column(9,{"filter": "applied"} ).data().sum();
                 $("#total_pemasukan").text("Rp. "+rupiahformat(total_all));
             })
-            
-           
-        
+
+
+
 
     });
 
@@ -150,7 +152,7 @@
             cancelButtonText: 'No, cancel!',
             reverseButtons: true
         }).then(function(result){
-            if (result.value) { 
+            if (result.value) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -166,7 +168,7 @@
                         swal.fire("Error Delete!", "Please try again", "error");
                     }
                 });
-               
+
             } else if (result.dismiss === 'cancel') {
                 swal.fire(
                     'Cancelled',

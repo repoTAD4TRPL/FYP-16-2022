@@ -42,7 +42,7 @@ class Bagi_hasil_usaha extends Controller{
             $Data['title']      = "Ubah Bagi hasil usaha";
             $Data['page']       = "bagi_hasil_usaha";
             $Data['master']     = "bagi_hasil_usaha";
-            $Data['value']      = $check;   
+            $Data['value']      = $check;
             $Data['mitra']      = DB::table('mitra')->orderBy('date_created','desc')->where(['status' => 1, 'status_mitra' => 1])->get();
 
 
@@ -77,7 +77,7 @@ class Bagi_hasil_usaha extends Controller{
             $Data['title']      = "Ubah Mitra";
             $Data['page']       = "bagi_hasil_usaha_mitra";
             $Data['master']     = "bagi_hasil_usaha";
-            $Data['value']      = $check;   
+            $Data['value']      = $check;
 
             return view('mitra.update', $Data);
         } else{
@@ -141,7 +141,8 @@ class Bagi_hasil_usaha extends Controller{
             'bidang'              => $req->input('bidang'),
             'tanggal_mulai'       => $req->input('tanggal_mulai'),
             'tanggal_selesai'     => $req->input('tanggal_selesai'),
-            'status_mitra'        => $req->input('status_mitra')
+            'status_mitra'        => $req->input('status_mitra'),
+            'upload_by'         => Session::get('username')
         );
 
         $Database = DB::table('mitra')->insert($Data);
@@ -155,7 +156,8 @@ class Bagi_hasil_usaha extends Controller{
             'bidang'              => $req->input('bidang'),
             'tanggal_mulai'       => $req->input('tanggal_mulai'),
             'tanggal_selesai'     => $req->input('tanggal_selesai'),
-            'status_mitra'        => $req->input('status_mitra')
+            'status_mitra'        => $req->input('status_mitra'),
+            'upload_by'         => Session::get('username')
         );
 
         $Database = DB::table('mitra')->where(['uuid_mitra' => $uuid])->update($Data);
@@ -171,5 +173,5 @@ class Bagi_hasil_usaha extends Controller{
         $Database = DB::table('mitra')->where(['uuid_mitra' => $uuid])->update($Data);
         return redirect('/administrator/mitra');
     }
-    
+
 }

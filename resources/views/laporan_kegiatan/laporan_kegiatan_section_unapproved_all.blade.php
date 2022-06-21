@@ -1,6 +1,8 @@
 <html>
     <head>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.4.1/paper.css"> -->
     <style>
+        @page { size: A4 }
 
         h1 {
             font-weight: bold;
@@ -15,17 +17,23 @@
 
         .table th {
             padding: 8px 8px;
-
+            border:1px solid #000000;
             text-align: center;
         }
 
         .table td {
             padding: 3px 3px;
-
+            border:1px solid #000000;
         }
 
         .text-center {
             text-align: center;
+        }
+
+        table#mytable,
+        table#mytable td
+        {
+            border: none !important;
         }
     </style>
     </head>
@@ -39,7 +47,6 @@
         <h1>LAPORAN KEGIATAN</h1>
         <br/>
         <br/>
-
         <table class="table" id="mytable">
             <tr>
                 <td>Kepada Yth.
@@ -55,38 +62,39 @@
                 Dengan Hormat,
                 <br />
                 <br />
-                Berdasarkan pelaksanaan kegiatan yang telah dilaksanakan oleh BUMDes Marsingati Lumban Gaol berikut laporan kegiatan BUMDes Marsingati Lumban Gaol: </td>
+                Berdasarkan pelaksanaan kegiatan yang telah dilaksanakan oleh BUMDes Marsingati Lumban Gaol berikut laporan kegiatan BUMDes Marsingati Lumban Gaol terhitung dari tanggal {{ $from }} - {{ $to }}</td>
             </tr>
         </table>
-        <br/>
-        <br/>
+        <br />
         <table class="table">
+            <thead>
+                <tr style="text-align:center">
+                    <td><h3>No</h3></td>
+                    <td><h3>Tanggal</h3></td>
+                    <td><h3>Lokasi</h3></td>
+                    <td><h3>Unit</h3></td>
+                    <td><h3>Keterangan</h3></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($content as $index => $value)
+                <tr>
+                    <td>{{ $index+1 }}</td>
+                    <td>{{ $value->tanggal }}</td>
+                    <td>{{ $value->lokasi }}</td>
+                    <td>{{ $value->nama_unit }}</td>
+                    <td>{{ $value->keterangan }}</td>
+                </tr>
+                @endforeach
 
-            <tr>
-                <td >Tanggal</td>
-                <td>: {{ $content->tanggal }} </td>
-            </tr>
-
-            <tr>
-                <td>Lokasi</td>
-                <td>:{{ $content->lokasi }} </td>
-            </tr>
-
-            <tr>
-                <td>Unit</td>
-                <td>: {{ $unit->nama_unit }}</td>
-            </tr>
-            <tr>
-                <td >Keterangan</td>
-                <td>: {{ $content->keterangan }}</td>
-            </tr>
-
+            </tbody>
         </table>
+
+
         <br/>
         <br/>
         <br/>
-        <br/>
-        <table class="table" >
+        <table class="table" id="mytable">
             <tr>
                 <td style="width:290px;" colspan="10"></td>
                 <td>Mengetahui,</td>
@@ -100,7 +108,7 @@
                 <td style="width:290px;" colspan="10"></td>
 
                 <td>
-                <img  src="{{ public_path('assets/images/ttd/'.$admin->file_ttd) }}"  width="75" height="75" alt="">
+                <img  src="{{ public_path('assets/images/ttd/white.png') }}"  width="75" height="75" alt="">
                 </td>
             </tr>
             <tr>

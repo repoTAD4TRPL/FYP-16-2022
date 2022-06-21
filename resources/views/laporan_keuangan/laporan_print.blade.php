@@ -3,29 +3,29 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.4.1/paper.css"> -->
     <style>
         @page { size: A4 }
-    
+
         h1 {
             font-weight: bold;
             font-size: 20pt;
             text-align: center;
         }
-    
+
         table {
             border-collapse: collapse;
             width: 100%;
         }
-     
+
         .table th {
             padding: 8px 8px;
             border:1px solid #000000;
             text-align: center;
         }
-    
+
         .table td {
             padding: 3px 3px;
             border:1px solid #000000;
         }
-    
+
         .text-center {
             text-align: center;
         }
@@ -45,7 +45,7 @@
         </center>
         <br/>
         <h1>LAPORAN KEUANGAN</h1>
-       
+
         <br/>
         <!-- <h4>Tanggal {{ $from }} - {{ $to }}</h4> -->
         <table class="table" id="mytable">
@@ -72,14 +72,14 @@
 
         <table class="table">
             <thead>
-                <tr>
-                    <td>NO</td>
-                    <td>Tanggal</td>
-                    <td>Jenis</td>
-                    <td>Unit</td>
-                    <td>Keterangan</td>
-                    <td>Nilai</td>
-                </tr> 
+                <tr class="font-weight-bold" style="text-align:center">
+                    <td><b>No</b></td>
+                    <td><b>Tanggal</b></td>
+                    <td><b>Jenis</b></td>
+                    <td><b>Unit</b></td>
+                    <td><b>Keterangan</b></td>
+                    <td><b>Nilai</b></td>
+                </tr>
             </thead>
             <tbody>
                 @foreach($content as $index => $value)
@@ -93,14 +93,14 @@
                 </tr>
                 @endforeach
                 <tr>
-                   <td colspan="5">Pemasukan</td>
+                   <td colspan="5"><b>Pemasukan</b></td>
                    <td>: Rp. {{ number_format($pemasukan) }}</td>
                </tr>
                <tr>
-                   <td colspan="5">Pengeluaran</td>
+                   <td colspan="5"><b>Pengeluaran</b></td>
                    <td>: Rp. {{ number_format($pengeluaran) }}</td>
                </tr>
-              
+
             </tbody>
         </table>
         <br/>
@@ -108,14 +108,14 @@
         <h4>Total Keuangan Logistik</h4>
         <table class="table">
             <thead>
-                <tr>
-                    <td>NO</td>
-                    <td>Unit</td>
-                    <td>Tanggal</td>
-                    <td>Jumlah</td>
-                    <td>Keterangan</td>
-                    <td>Harga</td>
-                </tr> 
+                <tr class="font-weight-bold" style="text-align:center">
+                    <td><b>No</b></td>
+                    <td><b>Unit</b></td>
+                    <td><b>Tanggal</b></td>
+                    <td><b>Jumlah</b></td>
+                    <td><b>Keterangan</b></td>
+                    <td><b>Harga</b></td>
+                </tr>
             </thead>
             <tbody>
                 @foreach($content_logistik as $index => $value)
@@ -129,26 +129,26 @@
                 </tr>
                 @endforeach
                 <tr>
-                   <td colspan="5">Total Belanja Logistik</td>
+                   <td colspan="5"><b>Total Belanja Logistik</b></td>
                    <td>: Rp. {{ number_format($total_logistik) }}</td>
                </tr>
-               
+
             </tbody>
         </table>
         <br/>
 
-        <h4>Total Keuangan Barang Jasa</h4>
+        <h4>Total Transaksi Barang Jasa</h4>
         <table class="table">
             <thead>
-                <tr>
-                    <td>NO</td>
-                    <td>Unit</td>
-                    <td>Jenis</td>
-                    <td>Nama</td>
-                    <td>Jumlah</td>
-                    <td>Tanggal</td>
-                    <td>Harga</td>
-                </tr> 
+                <tr class="font-weight-bold" style="text-align:center">
+                    <td><b>No</b></td>
+                    <td><b>Unit</b></td>
+                    <td><b>Jenis</b></td>
+                    <td><b>Nama</b></td>
+                    <td><b>Jumlah</b></td>
+                    <td><b>Tanggal</b></td>
+                    <td><b>Harga</b></td>
+                </tr>
             </thead>
             <tbody>
                 @foreach($content_barangjasa as $index => $value)
@@ -162,20 +162,20 @@
                     <td>Rp. {{ number_format($value->harga) }}</td>
                 </tr>
                 @endforeach
-                
+
                 <tr>
-                   <td colspan="6">Total Penyewaan</td>
+                   <td colspan="6"><b>Total Penyewaan</b></td>
                    <td>: Rp. {{ number_format($total_penyewaan_barangjasa) }}</td>
                 </tr>
                 <tr>
-                   <td colspan="6">Total Pembelian</td>
+                   <td colspan="6"><b>Total Pembelian</b></td>
                    <td>: Rp. {{ number_format($total_pembelian_barangjasa) }}</td>
                 </tr>
                 <tr>
-                   <td colspan="6">Total Pemasukan</td>
+                   <td colspan="6"><b>Total Pemasukan</b></td>
                    <td>: Rp. {{ number_format($total_pemasukan_barangjasa) }}</td>
                 </tr>
-               
+
             </tbody>
         </table>
 
@@ -183,14 +183,14 @@
         <h4>Total Subsidi Mitra</h4>
         <table class="table">
             <thead>
-                <tr>
-                    <td>NO</td>
-                    <td>Nama</td>
-                    <td>Mitra</td>
-                    <td>Jumlah</td>
-                    <td>Tanggal</td>
-                    <td>Nilai</td>
-                </tr> 
+                <tr class="font-weight-bold" style="text-align:center">
+                    <td><b>No</b></td>
+                    <td><b>Nama</b></td>
+                    <td><b>Mitra</b></td>
+                    <td><b>Jumlah</b></td>
+                    <td><b>Tanggal</b></td>
+                    <td><b>Nilai</b></td>
+                </tr>
             </thead>
             <tbody>
                 @foreach($content_bagihasil as $index => $value)
@@ -203,13 +203,13 @@
                     <td>Rp. {{ number_format($value->nilai) }}</td>
                 </tr>
                 @endforeach
-                
+
                 <tr>
-                   <td colspan="5">Total Pemasukan Bumdes</td>
+                   <td colspan="5"><b>Total Subsidi Mitra</b></td>
                    <td>: Rp. {{ number_format($total_pemasukan_bagihasil) }}</td>
                 </tr>
-               
-               
+
+
             </tbody>
         </table>
 
@@ -217,14 +217,14 @@
         <h4>Sumber Daya Barang</h4>
         <table class="table">
             <thead>
-                <tr>
-                    <td>NO</td>
-                    <td>Nama Barang</td>
-                    <td>Nomor Barang</td>
-                    <td>Keterangan</td>
-                    <td>Tanggal Pembelian</td>
-                    <td>Harga Barang</td>
-                </tr> 
+                <tr class="font-weight-bold" style="text-align:center">
+                    <td><b>No</td>
+                    <td><b>Nama Barang</b></td>
+                    <td><b>Nomor Barang</b></td>
+                    <td><b>Keterangan</b></td>
+                    <td><b>Tanggal Pembelian</b></td>
+                    <td><b>Harga Barang</b></td>
+                </tr>
             </thead>
             <tbody>
                 @foreach($content_asset as $index => $value)
@@ -238,15 +238,15 @@
                 </tr>
                 @endforeach
                 <tr>
-                   <td colspan="5">Total Nilai Asset</td>
+                   <td colspan="5"><b>Total Nilai Barang</b></td>
                    <td>: Rp. {{ number_format($total_asset) }}</td>
                 </tr>
-               
-               
+
+
             </tbody>
         </table>
 
-        
+
         <!-- newtab -->
         <!-- BARANG JASA = PEMASUKAN  $barang_jasa_pemasukan-->
         <!-- LOGISTIK PENGELUARAN $logistik_pengeluaran -->
@@ -254,14 +254,14 @@
         <h4>Laporan Laba/Rugi</h4>
         <table class="table">
             <thead>
-                <tr>
-                    <td>NO</td>
-                    <td>Keterangan</td>
-                    <td>Nilai</td>
-                </tr> 
+                <tr class="font-weight-bold" style="text-align:center">
+                    <td><b>No</b></td>
+                    <td><b>Keterangan Pengeluaran</b></td>
+                    <td><b>Nilai</b></td>
+                </tr>
             </thead>
             <tbody>
-                <?php 
+                <?php
                     $pemasukan_all  = $pemasukan+$barang_jasa_pemasukan_total;
                     $pengeluaran_all= $pengeluaran+$logistik_pengeluaran_total;
                     $total_saldo    = $pemasukan_all-$pengeluaran_all;
@@ -296,20 +296,20 @@
                 </tr>
                 @endforeach
 
-        
+
                 <tr>
-                   <td colspan="2">Total Pemasukan</td>
+                   <td colspan="2"><b>Total Pemasukan</b></td>
                    <td>: Rp. {{ number_format($pemasukan_all) }}</td>
                </tr>
                 <tr>
-                   <td colspan="2">Total Pengeluaran</td>
+                   <td colspan="2"><b>Total Pengeluaran</b></td>
                    <td>: Rp. {{ number_format($pengeluaran_all) }}</td>
                 </tr>
                 <tr>
-                   <td colspan="2">Laba bersih</td>
+                   <td colspan="2"><b>Laba bersih</b></td>
                    <td>: Rp. {{ number_format($total_saldo); }}</td>
                 </tr>
-                <!--                 
+                <!--
                 <tr>
                    <td colspan="5">Pemasukan</td>
                    <td>: Rp. {{ number_format($pemasukan) }}</td>
@@ -322,7 +322,7 @@
                    <td colspan="5">Saldo Bumdes</td>
                    <td>: Rp. {{ number_format($pemasukan-$pengeluaran) }}</td>
                </tr> -->
-               
+
             </tbody>
         </table>
         <!-- endnewtab -->
@@ -334,7 +334,7 @@
             <tr>
                 <td style="width:290px;" colspan="10"></td>
                 <td>Mengetahui,</td>
-             
+
             </tr>
             <tr>
                 <td  style="width:290px;" colspan="10"></td>
@@ -346,7 +346,7 @@
                 <td>
                 <img  src="{{ public_path('assets/images/ttd/'.$admin->file_ttd) }}"  width="75" height="75" alt="">
                 </td>
-            </tr>   
+            </tr>
             <tr>
                 <td style="width:290px;" colspan="10"></td>
 

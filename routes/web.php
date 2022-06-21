@@ -2,18 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
-use App\Http\Controllers\Authentication; 
-use App\Http\Controllers\Dashboard; 
-use App\Http\Controllers\Unit_usaha; 
-use App\Http\Controllers\Logistik; 
-use App\Http\Controllers\Barang_jasa; 
-use App\Http\Controllers\Bagi_hasil_usaha; 
-use App\Http\Controllers\Asset_keuangan; 
-use App\Http\Controllers\Laporan; 
-use App\Http\Controllers\Pegawai; 
-use App\Http\Controllers\Artefak; 
+use App\Http\Controllers\Authentication;
+use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\Unit_usaha;
+use App\Http\Controllers\Logistik;
+use App\Http\Controllers\Barang_jasa;
+use App\Http\Controllers\Bagi_hasil_usaha;
+use App\Http\Controllers\Asset_keuangan;
+use App\Http\Controllers\Laporan;
+use App\Http\Controllers\Pegawai;
+use App\Http\Controllers\Artefak;
 
- 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,7 +28,7 @@ Route::middleware(['CheckSign'])->group(function () {
     Route::get('/administrator/dashboard',[Dashboard::class, 'dashboard'])->name('administrator/dashboard');
     Route::get('/administrator/pengaturan',[Dashboard::class, 'pengaturan'])->name('administrator/pengaturan');
     Route::post('/administrator/pengaturan/update',[Dashboard::class, 'pengaturan_update'])->name('administrator/pengaturan/update');
-    
+
     //PROGRAM KERJA
     Route::get('administrator/programkerja/tambah',[Dashboard::class, 'add_programkerja'])->name('administrator/programkerja/tambah');
     Route::get('/administrator/programkerja/ubah/{uuid}',[Dashboard::class, 'update_programkerja'])->name('administrator/programkerja/ubah/{uuid}');
@@ -46,7 +46,7 @@ Route::middleware(['CheckSign'])->group(function () {
     Route::post('/administrator/unit-usaha/create',[Unit_usaha::class, 'create_unit'])->name('administrator/unit-usaha/create');
     Route::post('/administrator/unit-usaha/update-data/{uuid}',[Unit_usaha::class, 'update_data_unit'])->name('administrator/unit-usaha/update-data/{uuid}');
     Route::post('/administrator/unit-usaha/delete',[Unit_usaha::class, 'delete_data_unit'])->name('administrator/unit-usaha/delete');
-    
+
     // ARTEFAK
     Route::get('/administrator/artefak',[Artefak::class, 'index'])->name('administrator/artefak');
     Route::get('/administrator/artefak/tambah',[Artefak::class, 'add_artefak'])->name('administrator/artefak/tambah');
@@ -62,7 +62,7 @@ Route::middleware(['CheckSign'])->group(function () {
     Route::post('/administrator/logistik/create',[Logistik::class, 'create_logistik'])->name('administrator/logistik/create');
     Route::post('/administrator/logistik/update-data/{uuid}',[Logistik::class, 'update_data_logistik'])->name('administrator/logistik/update-data/{uuid}');
     Route::post('/administrator/logistik/delete',[Logistik::class, 'delete_data_logistik'])->name('administrator/logistik/delete');
-    
+
     //BARANG & JASA
     Route::get('/administrator/barang-jasa',[Barang_jasa::class, 'index'])->name('administrator/barang-jasa');
     Route::get('/administrator/barang-jasa/tambah',[Barang_jasa::class, 'add_barangjasa'])->name('administrator/barang-jasa/tambah');
@@ -78,7 +78,7 @@ Route::middleware(['CheckSign'])->group(function () {
     Route::post('/administrator/bagi-hasil-usaha/create',[Bagi_hasil_usaha::class, 'create_bagi_hasil_usaha'])->name('administrator/bagi-hasil-usaha/create');
     Route::post('/administrator/bagi-hasil-usaha/update-data/{uuid}',[Bagi_hasil_usaha::class, 'update_data_bagi_hasil_usaha'])->name('administrator/bagi-hasil-usaha/update-data/{uuid}');
     Route::post('/administrator/bagi-hasil-usaha/delete',[Bagi_hasil_usaha::class, 'delete_data_bagi_hasil_usaha'])->name('administrator/bagi-hasil-usaha/delete');
-    
+
     //MITRA
     Route::get('/administrator/mitra',[Bagi_hasil_usaha::class, 'index_mitra'])->name('administrator/mitra');
     Route::get('/administrator/mitra/tambah',[Bagi_hasil_usaha::class, 'add_mitra'])->name('administrator/mitra/tambah');
@@ -112,13 +112,13 @@ Route::middleware(['CheckSign'])->group(function () {
     Route::get('/administrator/keuangan/tambah',[Asset_keuangan::class, 'add_keuangan'])->name('administrator/keuangan/tambah');
     Route::get('/administrator/keuangan/ubah/{uuid}',[Asset_keuangan::class, 'update_keuangan'])->name('administrator/keuangan/ubah/{uuid}');
     Route::get('/administrator/keuangan/detail/{uuid}',[Asset_keuangan::class, 'detail_keuangan'])->name('administrator/keuangan/detail/{uuid}');
-    
+
 
 
     Route::post('/administrator/keuangan/create',[Asset_keuangan::class, 'create_keuangan'])->name('administrator/keuangan/create');
     Route::post('/administrator/keuangan/update-data/{uuid}',[Asset_keuangan::class, 'update_data_keuangan'])->name('administrator/keuangan/update-data/{uuid}');
     Route::post('/administrator/keuangan/delete',[Asset_keuangan::class, 'delete_data_keuangan'])->name('administrator/keuangan/delete');
-    
+
     Route::get('/administrator/keuangan/sekretaris/{status}/{uuid}',[Asset_keuangan::class, 'sekretaris_approved'])->name('administrator/keuangan/sekretaris/{status}/{uuid}');
     Route::get('/administrator/keuangan/bendahara/{status}/{uuid}',[Asset_keuangan::class, 'bendahara_approved'])->name('administrator/keuangan/bendahara/{status}/{uuid}');
     Route::get('/administrator/keuangan/direktur/{status}/{uuid}',[Asset_keuangan::class, 'direktur_approved'])->name('administrator/keuangan/direktur/{status}/{uuid}');
@@ -128,12 +128,12 @@ Route::middleware(['CheckSign'])->group(function () {
     Route::post('/administrator/laporan-kegiatan/print',[Laporan::class, 'print_laporan_kegiatan_all'])->name('administrator/laporan-kegiatan/print');
     Route::get('/administrator/laporan-kegiatan/mingguan',[Laporan::class, 'print_laporan_kegiatan_mingguan'])->name('administrator/laporan-kegiatan/mingguan');
     Route::get('/administrator/laporan-kegiatan/bulanan',[Laporan::class, 'print_laporan_kegiatan_bulanan'])->name('administrator/laporan-kegiatan/bulanan');
-    
+
 
     Route::get('/administrator/laporan-kegiatan/tambah',[Laporan::class, 'add_laporan_kegiatan'])->name('administrator/laporan-kegiatan/tambah');
     Route::get('/administrator/laporan-kegiatan/ubah/{uuid}',[Laporan::class, 'update_laporan_kegiatan'])->name('administrator/laporan-kegiatan/ubah/{uuid}');
     Route::get('/administrator/laporan-kegiatan/detail/{uuid}',[Laporan::class, 'detail_laporan_kegiatan'])->name('administrator/laporan-kegiatan/detail/{uuid}');
-    
+
 
 
     Route::post('/administrator/laporan-kegiatan/create',[Laporan::class, 'create_laporan_kegiatan'])->name('administrator/laporan-kegiatan/create');
@@ -145,8 +145,8 @@ Route::middleware(['CheckSign'])->group(function () {
     Route::get('/administrator/laporan-kegiatan/bendahara/{status}/{uuid}',[Laporan::class, 'bendahara_approved'])->name('administrator/laporan-kegiatan/bendahara/{status}/{uuid}');
     Route::get('/administrator/laporan-kegiatan/direktur/{status}/{uuid}',[Laporan::class, 'direktur_approved'])->name('administrator/laporan-kegiatan/direktur/{status}/{uuid}');
     Route::get('/administrator/laporan-kegiatan/print/{uuid}',[Laporan::class, 'print_laporan_kegiatan'])->name('administrator/laporan-kegiatan/print/{uuid}');
+    Route::get('administrator/laporan-kegiatan/unapprovedprint/{uuid}',[Laporan::class, 'print_laporan_kegiatan_unapproved'])->name('administrator/laporan-kegiatan/unapprovedprint/{uuid}');
 
-    
 
     //LAPORAN KEUANGAN
     Route::get('/administrator/laporan-keuangan',[Laporan::class, 'index_laporan_keuangan'])->name('administrator/laporan-keuangan');
@@ -157,13 +157,13 @@ Route::middleware(['CheckSign'])->group(function () {
     Route::get('/administrator/keuangan/print/{uuid}',[Laporan::class, 'print_laporan_keuangan'])->name('administrator/keuangan/print/{uuid}');
     Route::get('/administrator/keuangan/unapprovedprint/{uuid}',[Laporan::class, 'print_laporan_keuangan_unapproved'])->name('administrator/keuangan/unapprovedprint/{uuid}');
 
-    
+
 
     //PEGAWAI
     Route::get('/administrator/pegawai',[Pegawai::class, 'index_pegawai'])->name('administrator/pegawai');
     Route::get('/administrator/pegawai/tambah',[Pegawai::class, 'add_pegawai'])->name('administrator/pegawai/tambah');
     Route::get('/administrator/pegawai/ubah/{uuid}',[Pegawai::class, 'update_pegawai'])->name('administrator/pegawai/ubah/{uuid}');
-   
+
     Route::post('/administrator/pegawai/create',[Pegawai::class, 'create_pegawai'])->name('administrator/pegawai/create');
     Route::post('/administrator/pegawai/update-data/{uuid}',[Pegawai::class, 'update_data_pegawai'])->name('administrator/pegawai/update-data/{uuid}');
     Route::post('/administrator/pegawai/delete',[Pegawai::class, 'delete_data_pegawai'])->name('administrator/pegawai/delete');
@@ -174,7 +174,7 @@ Route::middleware(['CheckSign'])->group(function () {
 
     //UPLOAD DOC
     Route::post('/uploadDoc',[Artefak::class, 'uploadDoc'])->name('/uploadDoc');
-    Route::get('/downloadDocument/{path}',[Artefak::class, 'downloadDocument'])->name('download.document');    
+    Route::get('/downloadDocument/{path}',[Artefak::class, 'downloadDocument'])->name('download.document');
 });
 
 

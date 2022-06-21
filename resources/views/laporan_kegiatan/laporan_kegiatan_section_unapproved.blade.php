@@ -39,7 +39,6 @@
         <h1>LAPORAN KEGIATAN</h1>
         <br/>
         <br/>
-
         <table class="table" id="mytable">
             <tr>
                 <td>Kepada Yth.
@@ -55,7 +54,7 @@
                 Dengan Hormat,
                 <br />
                 <br />
-                Berdasarkan pelaksanaan kegiatan yang telah dilaksanakan oleh BUMDes Marsingati Lumban Gaol berikut laporan kegiatan BUMDes Marsingati Lumban Gaol: </td>
+                Berdasarkan pelaksanaan kegiatan yang telah dilaksanakan oleh BUMDes Marsingati Lumban Gaol berikut laporan kegiatan BUMDes Marsingati Lumban Gaol:</td>
             </tr>
         </table>
         <br/>
@@ -69,7 +68,7 @@
 
             <tr>
                 <td>Lokasi</td>
-                <td>:{{ $content->lokasi }} </td>
+                <td>: {{ $content->lokasi }} </td>
             </tr>
 
             <tr>
@@ -100,7 +99,7 @@
                 <td style="width:290px;" colspan="10"></td>
 
                 <td>
-                <img  src="{{ public_path('assets/images/ttd/'.$admin->file_ttd) }}"  width="75" height="75" alt="">
+                <img  src="{{ public_path('assets/images/ttd/white.png') }}"  width="75" height="75" alt="">
                 </td>
             </tr>
             <tr>

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManagerStatic as Image;
 use Uuid;
 use Webp;
-use Session; 
+use Session;
 
 use Illuminate\Support\Str;
 
@@ -41,7 +41,7 @@ class Barang_jasa extends Controller{
             $Data['title']      = "Ubah Penyewaan / Pembelian";
             $Data['page']       = "barang_jasa";
             $Data['master']     = "barang_jasa";
-            $Data['value']      = $check;   
+            $Data['value']      = $check;
             $Data['unit']       = DB::table('unit_usaha')->where(['status' => 1])->get();
 
 
@@ -53,7 +53,7 @@ class Barang_jasa extends Controller{
 
     //ACTION
     function create_barangjasa(request $req){
-    
+
         $Data = array(
             'uuid_barang_jasa'  => Uuid::generate(),
             'jenis'             => $req->input('jenis'),
@@ -61,7 +61,8 @@ class Barang_jasa extends Controller{
             'tanggal'           => $req->input('tanggal'),
             'harga'             => str_replace('.', '', $req->input('harga')),
             'nama'              => $req->input('nama'),
-            'id_unit'           => $req->input('id_unit')
+            'id_unit'           => $req->input('id_unit'),
+            'upload_by'         => Session::get('username')
         );
 
         $Database = DB::table('barang_jasa')->insert($Data);
@@ -75,7 +76,8 @@ class Barang_jasa extends Controller{
             'tanggal'           => $req->input('tanggal'),
             'harga'             => str_replace(array('.',','), '', $req->input('harga')),
             'nama'              => $req->input('nama'),
-            'id_unit'           => $req->input('id_unit')
+            'id_unit'           => $req->input('id_unit'),
+            'upload_by'         => Session::get('username')
         );
 
         $Database = DB::table('barang_jasa')->where(['uuid_barang_jasa' => $uuid])->update($Data);
@@ -91,5 +93,5 @@ class Barang_jasa extends Controller{
         $Database = DB::table('barang_jasa')->where(['uuid_barang_jasa' => $uuid])->update($Data);
         return redirect('/administrator/barang-jasa');
     }
-    
+
 }

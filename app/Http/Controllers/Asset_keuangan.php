@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManagerStatic as Image;
 use Uuid;
 use Webp;
-use Session; 
+use Session;
 
 use Illuminate\Support\Str;
 
@@ -19,7 +19,7 @@ class Asset_keuangan extends Controller{
         $Data['page']       = "asset_keuangan_grafik";
         $Data['master']     = "asset_keuangan";
         $Data['content']    = DB::table('keuangan')->rightJoin('unit_usaha','unit_usaha.id_unit','=','keuangan.id_unit')->orderBy('keuangan.date_created','desc')->where(['keuangan.status' => 1])->get();
-        
+
 
         $Data['pemasukan']    = DB::table('keuangan')->orderBy('date_created','desc')->where(['status' => 1, 'jenis' => 1])->sum('nilai');
         $Data['pengeluaran']  = DB::table('keuangan')->orderBy('date_created','desc')->where(['status' => 1, 'jenis' => 2])->sum('nilai');
@@ -27,7 +27,7 @@ class Asset_keuangan extends Controller{
 
         return view('keuangan.grafik', $Data);
     }
- 
+
 
     //KEUANGAN
     public function index_keuangan(){
@@ -35,14 +35,14 @@ class Asset_keuangan extends Controller{
         $Data['page']       = "keuangan";
         $Data['master']     = "asset_keuangan";
         $Data['content']    = DB::table('keuangan')->rightJoin('unit_usaha','unit_usaha.id_unit','=','keuangan.id_unit')->orderBy('keuangan.date_created','desc')->where(['keuangan.status' => 1])->get();
-        
+
         $Data['pemasukan']    = DB::table('barang_jasa')->orderBy('date_created','desc')->where(['status' => 1])->sum('harga');
         $Data['pengeluaran']  = DB::table('logistik')->orderBy('date_created','desc')->where(['status' => 1])->sum('harga');
 
         $Data['pemasukan_keuangan']    = DB::table('keuangan')->orderBy('date_created','desc')->where(['status' => 1, 'jenis' => 1])->sum('nilai');
         $Data['pengeluaran_keuangan']  = DB::table('keuangan')->orderBy('date_created','desc')->where(['status' => 1 , 'jenis' => 2])->sum('nilai');
-        
-        
+
+
 
         return view('keuangan.index', $Data);
     }
@@ -53,7 +53,7 @@ class Asset_keuangan extends Controller{
             $Data['title']      = "Detail Laporan Keuangan";
             $Data['page']       = "keuangan";
             $Data['master']     = "asset_keuangan";
-            $Data['value']      = $check;   
+            $Data['value']      = $check;
             $Data['unit']       = DB::table('unit_usaha')->where(['status' => 1, 'id_unit' => $check->id_unit])->first();
 
 
@@ -68,7 +68,7 @@ class Asset_keuangan extends Controller{
         $Data['page']       = "keuangan";
         $Data['master']     = "asset_keuangan";
         $Data['unit']       = DB::table('unit_usaha')->where(['status' => 1])->get();
-        
+
 
         return view('keuangan.add', $Data);
     }
@@ -79,7 +79,7 @@ class Asset_keuangan extends Controller{
             $Data['title']      = "Ubah Keuangan";
             $Data['page']       = "keuangan";
             $Data['master']     = "asset_keuangan";
-            $Data['value']      = $check;   
+            $Data['value']      = $check;
             $Data['unit']       = DB::table('unit_usaha')->where(['status' => 1])->get();
 
 
@@ -97,11 +97,11 @@ class Asset_keuangan extends Controller{
         $Data['page']       = "asset";
         $Data['master']     = "asset_keuangan";
         $Data['content']    = DB::table('asset')->orderBy('date_created','desc')->where(['status' => 1])->get();
-        
+
         $Data['keuangan_pengeluaran']    = DB::table('keuangan')->where(['status' => 1, 'jenis' => 2])->sum('saldo_akhir');
         $Data['keuangan_pemasukan']      = DB::table('keuangan')->where(['status' => 1, 'jenis' => 1])->sum('saldo_akhir');
         $Data['total_asset']             = DB::table('asset')->where(['status' => 1])->sum('nilai_asset');
-        
+
 
         return view('asset.index', $Data);
     }
@@ -120,7 +120,7 @@ class Asset_keuangan extends Controller{
             $Data['title']      = "Ubah Barang";
             $Data['page']       = "asset";
             $Data['master']     = "asset_keuangan";
-            $Data['value']      = $check;   
+            $Data['value']      = $check;
             $Data['content']    = DB::table('asset')->orderBy('date_created','desc')->where(['status' => 1])->get();
             $Data['total_asset']= DB::table('asset')->where(['status' => 1])->sum('nilai_asset');
             return view('asset.update', $Data);
@@ -135,27 +135,27 @@ class Asset_keuangan extends Controller{
             $Data['page']       = "manusia";
             $Data['master']     = "asset_keuangan";
             $Data['content']    = DB::table('manusia')->orderBy('date_created','desc')->where(['status' => 1])->get();
-    
+
             return view('manusia.index', $Data);
         }
-    
+
         public function add_manusia(){
             $Data['title']      = "Tambah Manusia";
             $Data['page']       = "manusia";
             $Data['master']     = "asset_keuangan";
-    
+
             return view('manusia.add', $Data);
         }
-    
+
         public function update_manusia($uuid){
             $check  = DB::table('manusia')->where(['status' => 1, 'uuid_manusia' => $uuid])->first();
             if($check){
                 $Data['title']      = "Ubah Manusia";
                 $Data['page']       = "manusia";
                 $Data['master']     = "asset_keuangan";
-                $Data['value']      = $check;   
-    
-    
+                $Data['value']      = $check;
+
+
                 return view('manusia.update', $Data);
             } else{
                 return redirect('administrator/manusia');
@@ -167,14 +167,15 @@ class Asset_keuangan extends Controller{
 
     //KEUANGAN
     function create_keuangan(request $req){
-    
+
         $Data = array(
             'uuid_keuangan'     => Uuid::generate(),
             'tanggal'           => $req->input('tanggal'),
             'jenis'             => $req->input('jenis'),
             'keterangan'        => $req->input('keterangan'),
             'nilai'             => str_replace(array('.',','), '', $req->input('nilai')),
-            'id_unit'           => $req->id_unit
+            'id_unit'           => $req->id_unit,
+            'upload_by'         => Session::get('username')
         );
 
         $Database = DB::table('keuangan')->insert($Data);
@@ -187,7 +188,8 @@ class Asset_keuangan extends Controller{
             'jenis'             => $req->input('jenis'),
             'keterangan'        => $req->input('keterangan'),
             'nilai'             => str_replace(array('.',','), '', $req->input('nilai')),
-            'id_unit'           => $req->id_unit
+            'id_unit'           => $req->id_unit,
+            'upload_by'         => Session::get('username')
         );
 
         $Database = DB::table('keuangan')->where(['uuid_keuangan' => $uuid])->update($Data);
@@ -206,14 +208,15 @@ class Asset_keuangan extends Controller{
 
     //ASSET
     function create_asset(request $req){
-    
+
         $Data = array(
             'uuid_asset'             => Uuid::generate(),
             'nama_asset'             => $req->input('nama_asset'),
             'nomor_asset'            => $req->input('nomor_asset'),
             'keterangan'             => $req->input('keterangan'),
             'tanggal_terdaftar'      => $req->input('tanggal_terdaftar'),
-            'nilai_asset'            => str_replace(array('.',','), '', $req->input('nilai_asset'))
+            'nilai_asset'            => str_replace(array('.',','), '', $req->input('nilai_asset')),
+            'upload_by'         => Session::get('username')
         );
 
         $Database = DB::table('asset')->insert($Data);
@@ -226,7 +229,8 @@ class Asset_keuangan extends Controller{
             'nomor_asset'            => $req->input('nomor_asset'),
             'keterangan'             => $req->input('keterangan'),
             'tanggal_terdaftar'      => $req->input('tanggal_terdaftar'),
-            'nilai_asset'            => str_replace(array('.',','), '', $req->input('nilai_asset'))
+            'nilai_asset'            => str_replace(array('.',','), '', $req->input('nilai_asset')),
+            'upload_by'         => Session::get('username')
         );
 
         $Database = DB::table('asset')->where(['uuid_asset' => $uuid])->update($Data);
@@ -242,7 +246,7 @@ class Asset_keuangan extends Controller{
         $Database = DB::table('asset')->where(['uuid_asset' => $uuid])->update($Data);
         return redirect('/administrator/asset');
     }
-    
+
 
 //MANUSIA
     function create_manusia(request $req){
@@ -253,6 +257,7 @@ class Asset_keuangan extends Controller{
             'kelamin'               => $req->input('kelamin'),
             'tugas'                 => $req->input('tugas'),
             'is_active'             => $req->input('is_active'),
+            'upload_by'         => Session::get('username')
         );
 
         $Database = DB::table('manusia')->insert($Data);
@@ -264,7 +269,8 @@ class Asset_keuangan extends Controller{
             'nama'               => $req->input('nama'),
             'kelamin'            => $req->input('kelamin'),
             'tugas'              => $req->input('tugas'),
-            'is_active'          => $req->input('is_active')
+            'is_active'          => $req->input('is_active'),
+            'upload_by'         => Session::get('username')
         );
 
         $Database = DB::table('manusia')->where(['uuid_manusia' => $uuid])->update($Data);
@@ -279,7 +285,7 @@ class Asset_keuangan extends Controller{
 
         $Database = DB::table('manusia')->where(['uuid_manusia' => $uuid])->update($Data);
         return redirect('/administrator/manusia');
-    }  
+    }
 
     function sekretaris_approved($status, $uuid){
         if($status == "setuju"){
@@ -323,6 +329,6 @@ class Asset_keuangan extends Controller{
 
         $Database = DB::table('keuangan')->where(['uuid_keuangan' => $uuid])->update($Data);
         return redirect('/administrator/keuangan/detail/'.$uuid)->with('update_ok','Anda '.$status);
-        
+
     }
 }

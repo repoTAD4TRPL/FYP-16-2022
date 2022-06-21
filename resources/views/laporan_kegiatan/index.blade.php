@@ -15,14 +15,14 @@
                         <div class="form-grop">
                             <label>Dari Tanggal</label>
                             <input type="date" class="form-control" name="filter_from" id="min-date" required>
-                            
+
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="form-grop">
                             <label>Ke Tanggal</label>
                             <input type="date" class="form-control" name="filter_to" id="max-date" required>
-                           
+
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -43,7 +43,7 @@
             </form>
             @endif
         </div>
-      
+
     </div>
 
     <div class="card mt-4">
@@ -52,7 +52,7 @@
         </div>
         <div class="card-body">
             @if(Session::get('jabatan') == '1' )
-            
+
             @elseif(Session::get('jabatan') == '1' || Session::get('jabatan') == '' || Session::get('jabatan') == '')
             <a href="#import" data-toggle="modal" class="btn btn-success mr-2 float-right" >Import</a>
             @else
@@ -61,20 +61,22 @@
             <br/>
             <br/>
             @endif
-            
-            
+
+
             <table class="table table-striped" id="logistik">
                 <thead>
-                    <tr>
+                    <tr class="font-weight-bold" style="text-align:center">
                         <td>NO</td>
                         <td>Tanggal</td>
                         <td>Unit</td>
                         <td>Keterangan</td>
                         <td>Lokasi</td>
+                        <td>Diunggah Oleh</td>
                         <td>Status</td>
+
                         <td>Aksi</td>
-                  
-                    
+
+
                     </tr>
                 </thead>
                 <tbody>
@@ -85,6 +87,7 @@
                         <td>{{ $value->nama_unit }}</td>
                         <td>{{ $value->keterangan }}</td>
                         <td>{{ $value->lokasi }}</td>
+                        <td>{{ $value->upload_by }}</td>
                         <td>
                             @if($value->approve_sekretaris == 0 &&  $value->approve_direktur == 0)
                                 Menunggu
@@ -95,7 +98,7 @@
                             @else
                                 Menunggu
                             @endif
-                            
+
                         </td>
                         <td>
                             @if(Session::get('jabatan') == '1' || Session::get('jabatan') == '' || Session::get('jabatan') == '')
@@ -109,24 +112,24 @@
 
                                 @if($value->approve_sekretaris == 1 && $value->approve_direktur == 1)
                                 <a href="{{ url('administrator/laporan-kegiatan/print/'.$value->uuid_kegiatan); }}" class="btn btn-info text-white">Cetak</a>
-                                
+
                                 @else
-                                
+                                <a href="{{ url('administrator/laporan-kegiatan/unapprovedprint/'.$value->uuid_kegiatan); }}" class="btn btn-info text-white">Cetak</a>
                              @endif
-                                
+
                             @endif
                         </td>
-       
-           
-                       
+
+
+
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-    
-    
+
+
 </div>
 @endsection
 
@@ -160,10 +163,10 @@
 
 <script src="//cdn.datatables.net/plug-ins/1.11.4/api/sum().js"></script>
 <script>
-    
+
     $(document).ready(function() {
         var table = $('#logistik').DataTable();
-       
+
 
         $.fn.dataTable.ext.search.push(
             function(settings, data, dataIndex) {
@@ -180,7 +183,7 @@
             }
             );
             // Re-draw the table when the a date range filter changes
-            
+
             $('#min-date,#max-date').change(function() {
                 table.draw();
             });
@@ -201,7 +204,7 @@
             cancelButtonText: 'No, cancel!',
             reverseButtons: true
         }).then(function(result){
-            if (result.value) { 
+            if (result.value) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -217,7 +220,7 @@
                         swal.fire("Error Delete!", "Please try again", "error");
                     }
                 });
-               
+
             } else if (result.dismiss === 'cancel') {
                 swal.fire(
                     'Cancelled',

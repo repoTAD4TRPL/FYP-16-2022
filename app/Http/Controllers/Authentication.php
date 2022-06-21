@@ -13,23 +13,23 @@ class Authentication extends Controller{
     }
 
     public function authentication_sign(Request $request){
-        
+
         $this->validate($request, ['nip'=>'required'], ['password'=>'required']);
         $nip = $request->input('nip');
-        $pass = $request->input('password');        
+        $pass = $request->input('password');
 
         $users = DB::table('administrator')->where(['nip'=> $nip, 'is_active' => 1])->first();
 
         if($users == ""){
             return redirect('/')->with('failed','Login gagal');
         } else{
-            if($users->nip == $nip AND Hash::check($pass, $users->password) ){ 
-                Session::put(['status' => 'is_admin', 'id' => $users->id, 'jabatan' => $users->id_jabatan]);
+            if($users->nip == $nip AND Hash::check($pass, $users->password) ){
+                Session::put(['status' => 'is_admin', 'id' => $users->id, 'jabatan' => $users->id_jabatan, 'username' => $users->nama]);
                 return redirect('/administrator/dashboard');
-            } else {  
+            } else {
                return redirect('/')->with('failed','Login gagal');
             }
         }
     }
-    
+
 }
