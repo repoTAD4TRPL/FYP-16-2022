@@ -27,7 +27,7 @@ class Barang_jasa extends Controller{
     }
 
     public function add_barangjasa(){
-        $Data['title']      = "Tambah Penyewaan / Pembelian";
+        $Data['title']      = "Tambah Transaksi";
         $Data['page']       = "barang_jasa";
         $Data['master']     = "barang_jasa";
         $Data['unit']       = DB::table('unit_usaha')->where(['status' => 1])->get();
@@ -38,7 +38,7 @@ class Barang_jasa extends Controller{
     public function update_barangjasa($uuid){
         $check  = DB::table('barang_jasa')->where(['status' => 1, 'uuid_barang_jasa' => $uuid])->first();
         if($check){
-            $Data['title']      = "Ubah Penyewaan / Pembelian";
+            $Data['title']      = "Ubah Transaksi";
             $Data['page']       = "barang_jasa";
             $Data['master']     = "barang_jasa";
             $Data['value']      = $check;

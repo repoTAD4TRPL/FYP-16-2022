@@ -53,7 +53,7 @@
                         <td>Keterangan</td>
                         <td>Tanggal Pembelian</td>
                         <td>Harga Barang</td>
-                        <td>Diunggah Oleh</td>
+                        {{-- <td>Diunggah Oleh</td> --}}
                         <td>Aksi</td>
                         <td style="display:none;">total_pemasukan</td>
                     </tr>
@@ -67,7 +67,7 @@
                         <td>{{ $value->keterangan }}</td>
                         <td>{{ $value->tanggal_terdaftar }}</td>
                         <td>Rp. {{ number_format($value->nilai_asset) }}</td>
-                        <td>{{ $value->upload_by }}</td>
+                        {{-- <td>{{ $value->upload_by }}</td> --}}
 
                         <td>
                             @if(Session::get('jabatan') == '1' || Session::get('jabatan') == '5'  || Session::get('jabatan') == '3' || Session::get('jabatan') == '2')

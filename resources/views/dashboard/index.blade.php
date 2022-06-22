@@ -8,7 +8,7 @@
             <h5 class="bg-white float-right p-4" id="total_pemasukan" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($barang_jasa) }}</h5>
         </div>
         <div class="col-lg-4 text-right">
-            <h6 class="mb-2">Total Asset {{ $year }}</h6>
+            <h6 class="mb-2">Total Sumber Daya {{ $year }}</h6>
             <h5 class="bg-white float-right p-4" id="total_pengeluaran" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($asset) }}</h5>
         </div>
         <div class="col-lg-4 text-right">
@@ -28,8 +28,8 @@
             <br/>
             <br/>
             @endif
-            
-            
+
+
             <table class="table table-striped" id="dashboard">
                 <thead>
                     <tr>
@@ -50,25 +50,25 @@
                         <td>{{ $index+1 }}</td>
                         <td>{{ $value->program }}</td>
                         <td>Rp. {{ number_format($value->anggaran) }}</td>
-                        <td>{{ $value->sumber}}</td>    
+                        <td>{{ $value->sumber}}</td>
                         <td>{{ $value->output }}</td>
                         <td style="text-align:justify">{!! nl2br(e($value->indikator)) !!}</td>
                         <td>{{ $value->waktu }}</td>
-                    
+
                         <td>
                             @if(Session::get('jabatan') == '1' || Session::get('jabatan') == '5'  || Session::get('jabatan') == '3' || Session::get('jabatan') == '2')
 
                             @else
                             <a href="{{ url('administrator/programkerja/ubah/'.$value->uuid_pk); }}" class="btn btn-warning text-white">Ubah</a>
                             <a href="#" data-id="{{ $value->uuid_pk }}" class="btn btn-danger delete" >Hapus</a>
-                            @endif  
-                         
+                            @endif
+
                         </td>
                         <td style="display:none;">{{ $value->anggaran }}</td>
 
                     </tr>
                     @endforeach
-                    
+
                 </tbody>
             </table>
         </div>
@@ -99,14 +99,14 @@
                 </div>
             </div>
             </form>
-            
+
         </div>
         <div class="card-body">
             <canvas id="myChart"></canvas>
         </div>
     </div>
-    
-    
+
+
 </div>
 @endsection
 
@@ -117,10 +117,10 @@
 <script>
    $(document).ready(function() {
         var table = $('#dashboard').DataTable({
-           
+
         });
-       
-      
+
+
         $.fn.dataTable.ext.search.push(
             function(settings, data, dataIndex) {
                 var min = $('#min-date').val();
@@ -136,7 +136,7 @@
             }
             );
             // Re-draw the table when the a date range filter changes
-            
+
 
 
     });
@@ -154,7 +154,7 @@
             cancelButtonText: 'Tidak, Cancel!',
             reverseButtons: true
         }).then(function(result){
-            if (result.value) { 
+            if (result.value) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -170,7 +170,7 @@
                         swal.fire("Error!", "Silahkan coba lagi", "error");
                     }
                 });
-               
+
             } else if (result.dismiss === 'cancel') {
                 swal.fire(
                     'Cancelled',
@@ -190,7 +190,7 @@
                 {
 					label: "Total Pemasukan Barang & Jasa {{ $year }}",
 					data: [
-                        <?php 
+                        <?php
                             for ($month = 1; $month <= 12; $month++) {
                                 $barangjasa = DB::table('barang_jasa')->whereYear('tanggal','=',$year)->whereMonth('tanggal','=',$month)->where(['status' => 1])->get();
                                 $ttl_data = 0;
@@ -212,7 +212,7 @@
                 {
 					label: "Total Asset {{ $year }}",
 					data: [
-                        <?php 
+                        <?php
                             for ($month = 1; $month <= 12; $month++) {
                                 $asset = DB::table('asset')->whereYear('tanggal_terdaftar','=',$year)->whereMonth('tanggal_terdaftar','=',$month)->where(['status' => 1])->get();
                                 $ttl_data = 0;
@@ -230,11 +230,11 @@
                         'rgba(54, 162, 235, 0.2)'
 					],
 					borderWidth: 1
-				}, 
+				},
                 {
 					label: "Subdisi Mitra {{ $year }}",
 					data: [
-                        <?php 
+                        <?php
                             for ($month = 1; $month <= 12; $month++) {
                                 $bagihasilush = DB::table('bagi_hasil_usaha')->whereYear('tanggal','=',$year)->whereMonth('tanggal','=',$month)->where(['status' => 1, 'status_hasil' => 1])->get();
                                 $ttl_data = 0;

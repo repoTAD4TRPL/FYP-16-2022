@@ -108,7 +108,7 @@
                             <a href="#" data-id="{{ $value->uuid_kegiatan }}" class="btn btn-danger delete" >Hapus</a>
                             @endif
                             <a href="{{ url('administrator/laporan-kegiatan/detail/'.$value->uuid_kegiatan); }}" class="btn btn-secondary text-white">Detail</a>
-                            @if(Session::get('jabatan') == '1' || Session::get('jabatan') == '5' || Session::get('jabatan') == '3' || Session::get('jabatan') == '2')
+                            @if(Session::get('jabatan') == '1' || Session::get('jabatan') == '5' || Session::get('jabatan') == '3' || Session::get('jabatan') == '2' || Session::get('jabatan') == '4')
 
                                 @if($value->approve_sekretaris == 1 && $value->approve_direktur == 1)
                                 <a href="{{ url('administrator/laporan-kegiatan/print/'.$value->uuid_kegiatan); }}" class="btn btn-info text-white">Cetak</a>

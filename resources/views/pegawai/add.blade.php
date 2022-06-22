@@ -9,7 +9,7 @@
         <div class="col-lg-6">
         </div>
     </div>
- 
+
     <div class="card p-4" style="width:100%;">
         <div class="card-body">
             <form onsubmit="checkFunction()" action="{{ url('administrator/pegawai/create') }}" enctype="multipart/form-data"   method="POST" >
@@ -47,7 +47,7 @@
                         <div class="form-group row">
                             <label for="staticEmail" class="col-sm-2 col-form-label">Nama Unit</label>
                             <div class="col-sm-10">
-                                <select name="id_unit" class="form-control" id="" required>
+                                <select name="id_unit" class="form-control" id="" >
                                     <option value="">Select Unit</option>
                                     @foreach($unit as $v_unit)
                                         <option value="{{ $v_unit->id_unit }}">{{ $v_unit->nama_unit }}</option>
@@ -79,7 +79,7 @@
                                 <span id="message"></span>
                                 <span id="statue" style="display:none;"></span>
                             </div>
-                            
+
                         </div>
                         <div class="form-group row">
                             <label for="staticEmail" class="col-sm-2 col-form-label">Status</label>
@@ -104,23 +104,23 @@
 
                     </div>
                 </div>
-                
-                
-                
+
+
+
 
            </form>
         </div>
     </div>
-    
+
 </div>
 @endsection
 
 
 @section('javascript')
 <script>
-    var image = document.getElementById("image");   
+    var image = document.getElementById("image");
     image.onchange = function() {
-       
+
         if(this.files[0].size > 3072000){
            alert("File is too big!");
            this.value = "";
@@ -141,7 +141,7 @@
     if ($('#password').val() == $('#confirm_password').val()) {
         $('#message').html('Matching').css('color', 'green');
         $("#statue").text('1');
-    } else 
+    } else
         $('#message').html('Not Matching').css('color', 'red');
         $("#statue").text('0');
     });

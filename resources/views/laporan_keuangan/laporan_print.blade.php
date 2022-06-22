@@ -306,7 +306,7 @@
                    <td>: Rp. {{ number_format($pengeluaran_all) }}</td>
                 </tr>
                 <tr>
-                   <td colspan="2"><b>Laba bersih</b></td>
+                   <td colspan="2"><b>Total Laba</b></td>
                    <td>: Rp. {{ number_format($total_saldo); }}</td>
                 </tr>
                 <!--
@@ -325,6 +325,44 @@
 
             </tbody>
         </table>
+
+        <br/>
+        <h4>Pembagian Hasil Usaha</h4>
+        <table class="table">
+
+                <tr>
+                   <td colspan="2"><b>Modal Usaha 25%</b></td>
+                   <td>: Rp. {{ number_format($total_saldo*25/100)}}</td>
+               </tr>
+                <tr>
+                   <td colspan="2"><b>Untuk Desa 40%</b></td>
+                   <td>: Rp. {{ number_format($total_saldo*40/100)}}</td>
+                </tr>
+                <tr>
+                   <td colspan="2"><b>Kapasitas 10%</b></td>
+                   <td>: Rp. {{ number_format($total_saldo*10/100)}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><b>Gaji Pegawai 25%</b></td>
+                    <td>: Rp. {{ number_format($total_saldo*25/100)}}</td>
+                 </tr>
+                <!--
+                <tr>
+                   <td colspan="5">Pemasukan</td>
+                   <td>: Rp. {{ number_format($pemasukan) }}</td>
+               </tr>
+               <tr>
+                   <td colspan="5">Pengeluaran</td>
+                   <td>: Rp. {{ number_format($pengeluaran) }}</td>
+               </tr>
+               <tr>
+                   <td colspan="5">Saldo Bumdes</td>
+                   <td>: Rp. {{ number_format($pemasukan-$pengeluaran) }}</td>
+               </tr> -->
+
+            </tbody>
+        </table>
+
         <!-- endnewtab -->
 
         <br/>

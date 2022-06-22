@@ -328,6 +328,27 @@
 
             </tbody>
         </table>
+
+        <br/>
+        <h4>Pembagian Hasil Usaha</h4>
+        <table class="table">
+
+                <tr>
+                   <td colspan="2"><b>Modal Usaha 25%</b></td>
+                   <td>: Rp. {{ number_format($total_saldo*25/100)}}</td>
+               </tr>
+                <tr>
+                   <td colspan="2"><b>Untuk Desa 40%</b></td>
+                   <td>: Rp. {{ number_format($total_saldo*40/100)}}</td>
+                </tr>
+                <tr>
+                   <td colspan="2"><b>Kapasitas 10%</b></td>
+                   <td>: Rp. {{ number_format($total_saldo*10/100)}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><b>Gaji Pegawai 25%</b></td>
+                    <td>: Rp. {{ number_format($total_saldo*25/100)}}</td>
+                 </tr>
         <!-- endnewtab -->
 
         <br/>

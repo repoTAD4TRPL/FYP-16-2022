@@ -52,7 +52,7 @@
                         <td>Jenis Kelamin</td>
                         <td>Tugas</td>
                         <td>Status</td>
-                        <td>Diunggah Oleh</td>
+                        {{-- <td>Diunggah Oleh</td> --}}
                         <td>Aksi</td>
                         <td style="display:none;">total_pemasukan</td>
                     </tr>
@@ -65,7 +65,7 @@
                         <td>{{  $value->kelamin == 1 ? 'Laki-laki' : 'Perempuan' }}</td>
                         <td style="text-align:justify">{!! nl2br(e($value->tugas)) !!}</td>
                         <td>{{ $value->is_active == 1 ? 'Active' : 'inactive' }}</td>
-                        <td>{{ $value->upload_by }}</td>
+                        {{-- <td>{{ $value->upload_by }}</td> --}}
 
                         <td>
                             @if(Session::get('jabatan') == '1' || Session::get('jabatan') == '5'  || Session::get('jabatan') == '3' || Session::get('jabatan') == '2')

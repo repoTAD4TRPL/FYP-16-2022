@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container p-4">
-    
+
 
     <div class="card mt-4">
         <div class="card-header bg-white">
@@ -14,8 +14,8 @@
             <br/>
             <br/>
             @endif
-            
-            
+
+
             <table class="table table-striped" id="logistik">
                 <thead>
                     <tr>
@@ -40,19 +40,19 @@
                         <td>
                             @if(Session::get('jabatan') == '1')
                             <a href="{{ url('administrator/pegawai/ubah/'.$value->uuid); }}" class="btn btn-warning text-white">Ubah</a>
-                            <a href="#" data-id="{{ $value->uuid }}" class="btn btn-danger delete" >Hapus</a>
+                            {{-- <a href="#" data-id="{{ $value->uuid }}" class="btn btn-danger delete" >Hapus</a> --}}
                             @endif
-                            
+
                         </td>
-                       
+
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-    
-    
+
+
 </div>
 @endsection
 
@@ -75,7 +75,7 @@
             cancelButtonText: 'No, cancel!',
             reverseButtons: true
         }).then(function(result){
-            if (result.value) { 
+            if (result.value) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -91,7 +91,7 @@
                         swal.fire("Error Delete!", "Please try again", "error");
                     }
                 });
-               
+
             } else if (result.dismiss === 'cancel') {
                 swal.fire(
                     'Cancelled',
