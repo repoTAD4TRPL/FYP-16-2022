@@ -9,12 +9,12 @@
         <div class="col-lg-6">
         </div>
     </div>
- 
+
     <div class="card p-4" style="width:100%;">
         <div class="card-body">
             <form action="{{ url('administrator/keuangan/update-data/'.$value->uuid_keuangan) }}"  method="POST" >
                 @csrf
-               
+
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Tanggal</label>
                     <div class="col-sm-10">
@@ -39,7 +39,7 @@
                         Rp. {{ number_format($value->nilai) }}
                     </div>
                 </div>
-                
+
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Keterangan</label>
                     <div class="col-sm-10">
@@ -51,26 +51,23 @@
                     {{  Session::get('update_ok') }}
                 </div>
                 @endif
-               
+
                 <br/>
 
-                @if(Session::get('jabatan') == '2')
+                @if(Session::get('jabatan') == '3')
                 <!-- SEKRETARIS -->
-                    @if($value->approve_sekretaris == 0)
-                    <a href="{{ url('administrator/keuangan/sekretaris/setuju/'.$value->uuid_keuangan) }}" class="btn btn-info float-right mr-2">Setuju</a>
-                    <a href="{{ url('administrator/keuangan/sekretaris/tolak/'.$value->uuid_keuangan) }}" class="btn btn-danger float-right mr-2">Tolak</a>
-                    @endif    
-                @elseif(Session::get('jabatan') == '3')
-                <!-- BENDAHARA -->
-                    @if($value->approve_sekretaris == 1)
-                        @if($value->approve_bendahara == 0)
-                        <a href="{{ url('administrator/keuangan/bendahara/setuju/'.$value->uuid_keuangan) }}" class="btn btn-info float-right mr-2">Setuju</a>
-                        <a href="{{ url('administrator/keuangan/bendahara/tolak/'.$value->uuid_keuangan) }}" class="btn btn-danger float-right mr-2">Tolak</a>
-                        @endif
-                    @endif
+                @if($value->approve_bendahara == 0)
+                <a href="{{ url('administrator/keuangan/bendahara/setuju/'.$value->uuid_keuangan) }}" class="btn btn-info float-right mr-2">Setuju</a>
+                <a href="{{ url('administrator/keuangan/bendahara/tolak/'.$value->uuid_keuangan) }}" class="btn btn-danger float-right mr-2">Tolak</a>
+                @endif
+            @elseif(Session::get('jabatan') == '2')
+            <!-- BENDAHARA -->
+                @if($value->approve_bendahara == 1)
+
+                @endif
                 @elseif(Session::get('jabatan') == '4')
                 <!-- DIREKTUR -->
-                    @if($value->approve_sekretaris == 1 && $value->approve_bendahara == 1) 
+                    @if($value->approve_bendahara == 1)
                         @if($value->approve_direktur == 0)
                         <a href="{{ url('administrator/keuangan/direktur/setuju/'.$value->uuid_keuangan) }}" class="btn btn-info float-right mr-2">Setuju</a>
                         <a href="{{ url('administrator/keuangan/direktur/tolak/'.$value->uuid_keuangan) }}" class="btn btn-danger float-right mr-2">Tolak</a>
@@ -84,6 +81,6 @@
            </form>
         </div>
     </div>
-    
+
 </div>
 @endsection

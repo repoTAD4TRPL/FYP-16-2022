@@ -109,9 +109,9 @@ class Laporan extends Controller{
 
         //KEUANGAN
         $Data['content']      = DB::table('keuangan')->rightJoin('unit_usaha','unit_usaha.id_unit','=','keuangan.id_unit')->orderBy('keuangan.date_created','desc')->whereBetween('keuangan.tanggal',[$from, $to])->where(['keuangan.status' => 1])->get();
-        $Data['pemasukan']    = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1 , 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'approve_bendahara' => 1])->sum('nilai');
-        $Data['pengeluaran']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'approve_bendahara' => 1])->sum('nilai');
-        $Data['pengeluaran_list']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'approve_bendahara' => 1])->get();
+        $Data['pemasukan']    = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->sum('nilai');
+        $Data['pengeluaran']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->sum('nilai');
+        $Data['pengeluaran_list']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->get();
 
         //$Data['pemasukan']    = DB::table('barang_jasa')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
         //$Data['pengeluaran']  = DB::table('logistik')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
@@ -135,8 +135,8 @@ class Laporan extends Controller{
         //ASSET
         $Data['content_asset']          = DB::table('asset')->whereBetween('tanggal_terdaftar',[$from, $to])->orderBy('date_created','desc')->where(['status' => 1])->get();
 
-        $Data['keuangan_pengeluaran']    = DB::table('keuangan')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'approve_sekretaris' => 1,'approve_bendahara' => 1])->sum('nilai');
-        $Data['keuangan_pemasukan']      = DB::table('keuangan')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1 , 'keuangan.approve_direktur' => 1,'approve_sekretaris' => 1,'approve_bendahara' => 1])->sum('nilai');
+        $Data['keuangan_pengeluaran']    = DB::table('keuangan')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->sum('nilai');
+        $Data['keuangan_pemasukan']      = DB::table('keuangan')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->sum('nilai');
         $Data['total_asset']             = DB::table('asset')->whereBetween('tanggal_terdaftar',[$from, $to])->where(['status' => 1])->sum('nilai_asset');
         $Data['admin']        = DB::table('administrator')->where(['status' => 1, 'id_jabatan' => 4])->first();
 
@@ -180,9 +180,9 @@ class Laporan extends Controller{
 
         //KEUANGAN
         $Data['content']      = DB::table('keuangan')->rightJoin('unit_usaha','unit_usaha.id_unit','=','keuangan.id_unit')->orderBy('keuangan.date_created','desc')->whereBetween('keuangan.tanggal',[$from, $to])->where(['keuangan.status' => 1])->get();
-        $Data['pemasukan']    = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1 , 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'approve_bendahara' => 1])->sum('nilai');
-        $Data['pengeluaran']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'approve_bendahara' => 1])->sum('nilai');
-        $Data['pengeluaran_list']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'approve_bendahara' => 1])->get();
+        $Data['pemasukan']    = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->sum('nilai');
+        $Data['pengeluaran']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->sum('nilai');
+        $Data['pengeluaran_list']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->get();
 
         //$Data['pemasukan']    = DB::table('barang_jasa')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
         //$Data['pengeluaran']  = DB::table('logistik')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
@@ -203,8 +203,8 @@ class Laporan extends Controller{
 
         //ASSET
         $Data['content_asset']          = DB::table('asset')->whereBetween('tanggal_terdaftar',[$from, $to])->orderBy('date_created','desc')->where(['status' => 1])->get();
-        $Data['keuangan_pengeluaran']   = DB::table('keuangan')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'approve_sekretaris' => 1,'approve_bendahara' => 1])->sum('nilai');
-        $Data['keuangan_pemasukan']     = DB::table('keuangan')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1 , 'keuangan.approve_direktur' => 1,'approve_sekretaris' => 1,'approve_bendahara' => 1])->sum('nilai');
+        $Data['keuangan_pengeluaran']   = DB::table('keuangan')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->sum('nilai');
+        $Data['keuangan_pemasukan']     = DB::table('keuangan')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->sum('nilai');
         $Data['total_asset']            = DB::table('asset')->whereBetween('tanggal_terdaftar',[$from, $to])->where(['status' => 1])->sum('nilai_asset');
         $Data['admin']                  = DB::table('administrator')->where(['status' => 1, 'id_jabatan' => 4])->first();
 
@@ -254,9 +254,9 @@ class Laporan extends Controller{
 
         //KEUANGAN
         $Data['content']      = DB::table('keuangan')->rightJoin('unit_usaha','unit_usaha.id_unit','=','keuangan.id_unit')->orderBy('keuangan.date_created','desc')->whereBetween('keuangan.tanggal',[$from, $to])->where(['keuangan.status' => 1])->get();
-        $Data['pemasukan']    = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1 , 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'approve_bendahara' => 1])->sum('nilai');
-        $Data['pengeluaran']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'approve_bendahara' => 1])->sum('nilai');
-        $Data['pengeluaran_list']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'keuangan.approve_sekretaris' => 1,'approve_bendahara' => 1])->get();
+        $Data['pemasukan']    = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->sum('nilai');
+        $Data['pengeluaran']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->sum('nilai');
+        $Data['pengeluaran_list']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->get();
 
         //$Data['pemasukan']    = DB::table('barang_jasa')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
         //$Data['pengeluaran']  = DB::table('logistik')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
@@ -280,8 +280,8 @@ class Laporan extends Controller{
         //ASSET
         $Data['content_asset']          = DB::table('asset')->whereBetween('tanggal_terdaftar',[$from, $to])->orderBy('date_created','desc')->where(['status' => 1])->get();
 
-        $Data['keuangan_pengeluaran']    = DB::table('keuangan')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'approve_sekretaris' => 1,'approve_bendahara' => 1])->sum('nilai');
-        $Data['keuangan_pemasukan']      = DB::table('keuangan')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1 , 'keuangan.approve_direktur' => 1,'approve_sekretaris' => 1,'approve_bendahara' => 1])->sum('nilai');
+        $Data['keuangan_pengeluaran']    = DB::table('keuangan')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->sum('nilai');
+        $Data['keuangan_pemasukan']      = DB::table('keuangan')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->sum('nilai');
         $Data['total_asset']             = DB::table('asset')->whereBetween('tanggal_terdaftar',[$from, $to])->where(['status' => 1])->sum('nilai_asset');
         $Data['admin']        = DB::table('administrator')->where(['status' => 1, 'id_jabatan' => 4])->first();
 

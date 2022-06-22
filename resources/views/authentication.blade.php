@@ -9,7 +9,7 @@
 
     </head>
     <body>
-    
+
     <!------ Include the above in your HEAD tag ---------->
 
     <div class="wrapper ">
@@ -21,16 +21,16 @@
             <div class="fadeIn first">
                 <img src="{{ $website_component !='' ?  URL::asset('assets/images/'.$website_component->logo) :  URL::asset('assets/images/logo.png'); }}" id="" alt="User Icon" width ="150px"; height= "150px"; />
             </div>
-            
-           
+
+            <br/>
             <center>
                 <h5>{{ $website_component !='' ? $website_component->name : 'Default'; }}</h5>
-                
+
                 <b>Silahkan Masuk</b>
             </center>
             <!-- Login Form -->
             <br/>
-            <br/>
+
             <form action="{{ url('authentication/sign') }}" method="post">
                 @csrf
                 <div class="container">
@@ -54,12 +54,12 @@
                         </div>
                     </div>
 
-                   
-                   
+
+
                 </div>
             </form>
 
-         
+
         </div>
     </div>
     <script src="{{ URL::asset('assets/js/bootstrap.min.js') }}"></script>

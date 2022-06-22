@@ -287,20 +287,20 @@ class Asset_keuangan extends Controller{
         return redirect('/administrator/manusia');
     }
 
-    function sekretaris_approved($status, $uuid){
-        if($status == "setuju"){
-            $code  = 1;
-        } else{
-            $code  = 2;
-        }
+    // function sekretaris_approved($status, $uuid){
+    //     if($status == "setuju"){
+    //         $code  = 1;
+    //     } else{
+    //         $code  = 2;
+    //     }
 
-        $Data = array(
-            'approve_sekretaris' =>  $code
-        );
+    //     $Data = array(
+    //         'approve_sekretaris' =>  $code
+    //     );
 
-        $Database = DB::table('keuangan')->where(['uuid_keuangan' => $uuid])->update($Data);
-        return redirect('/administrator/keuangan/detail/'.$uuid)->with('update_ok','Anda '.$status);
-    }
+    //     $Database = DB::table('keuangan')->where(['uuid_keuangan' => $uuid])->update($Data);
+    //     return redirect('/administrator/keuangan/detail/'.$uuid)->with('update_ok','Anda '.$status);
+    // }
     function bendahara_approved($status, $uuid){
         if($status == "setuju"){
             $code  = 1;
@@ -313,7 +313,7 @@ class Asset_keuangan extends Controller{
         );
 
         $Database = DB::table('keuangan')->where(['uuid_keuangan' => $uuid])->update($Data);
-        return redirect('/administrator/keuangan/detail/'.$uuid)->with('update_ok','Anda '.$status);
+        return redirect('/administrator/laporan-keuangan/')->with('update_ok','Anda '.$status);
 
     }
     function direktur_approved($status, $uuid){
@@ -328,7 +328,7 @@ class Asset_keuangan extends Controller{
         );
 
         $Database = DB::table('keuangan')->where(['uuid_keuangan' => $uuid])->update($Data);
-        return redirect('/administrator/keuangan/detail/'.$uuid)->with('update_ok','Anda '.$status);
+        return redirect('/administrator/laporan-keuangan/')->with('update_ok','Anda '.$status);
 
     }
 }

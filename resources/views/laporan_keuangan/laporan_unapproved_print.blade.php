@@ -349,6 +349,7 @@
                     <td colspan="2"><b>Gaji Pegawai 25%</b></td>
                     <td>: Rp. {{ number_format($total_saldo*25/100)}}</td>
                  </tr>
+        </table>
         <!-- endnewtab -->
 
         <br/>

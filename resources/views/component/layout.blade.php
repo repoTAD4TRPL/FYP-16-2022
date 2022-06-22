@@ -11,13 +11,13 @@
 		<link href="{{ URL::asset('assets/css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
         <link rel="shortcut icon" href="<?php echo asset('assets/images/logo.png'); ?>">
 
-        <title>BUMDESTA</title>
+        <title>BUM Desa Marsingati</title>
     </head>
     <body>
     <?php
         $sign_check = DB::table('administrator')->where(['status' => 1, 'id' => Session::get('id')])->first();
         $jabatan    = DB::table('jabatan')->where(['status' => 1, 'id_jabatan' => $sign_check->id_jabatan])->first();
-        $website_component    = DB::table('website')->where(['id' => 1])->first(); 
+        $website_component    = DB::table('website')->where(['id' => 1])->first();
     ?>
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light  navbar_custom" >
@@ -39,7 +39,7 @@
                             @if(Session::get('jabatan') == '1')
                             <a class="dropdown-item text-dark" href="{{ url('administrator/pengaturan') }}">Pengaturan</a>
                             @endif
-                            
+
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ url('signout') }}">Keluar</a>
                         </div>
@@ -50,7 +50,7 @@
     </nav>
     <nav class="navbar navbar-expand-lg navbar-dark bg-white text-dark" >
         <div class="container">
-           
+
             <div class="navbar-collapse collapse text-dark" id="navbar10">
                 <ul class="navbar-nav nav-fill w-100">
                     <li class="nav-item {{ $master == 'dashboard' ? 'active_navtrue' : '' }}">
@@ -65,7 +65,7 @@
                     <li class="nav-item {{ $master == 'barang_jasa' ? 'active_navtrue' : '' }}">
                         <a class="nav-link text-dark font-weight-bold" href="{{ url('administrator/barang-jasa') }}">Transaksi</a>
                     </li>
-               
+
                     <li class="nav-item dropdown {{ $master == 'bagi_hasil_usaha' ? 'active_navtrue' : '' }}">
                         <a class="nav-link dropdown-toggle text-dark font-weight-bold" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Subsidi Mitra</a>
                         <div class="dropdown-menu">
@@ -99,7 +99,7 @@
     </nav>
 
     @yield('content')
-    
+
     <footer class="">
         <p class="copyright pt-3">COPYRIGHT Bumdesta 2022</p>
     </footer>
@@ -151,12 +151,12 @@
                 sisa     = split[0].length % 3,
                 rupiah     = split[0].substr(0, sisa),
                 ribuan     = split[0].substr(sisa).match(/\d{3}/gi);
-                
+
             if (ribuan) {
                 separator = sisa ? '.' : '';
                 rupiah += separator + ribuan.join('.');
             }
-            
+
             rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
             return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
         }
@@ -168,17 +168,17 @@
                 sisa     = split[0].length % 3,
                 rupiah     = split[0].substr(0, sisa),
                 ribuan     = split[0].substr(sisa).match(/\d{3}/gi);
-                
+
             if (ribuan) {
                 separator = sisa ? '.' : '';
                 rupiah += separator + ribuan.join('.');
             }
-            
+
             rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
             return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
         }
 
-            
+
     </script>
 
 

@@ -9,7 +9,7 @@
         <div class="col-lg-6">
         </div>
     </div>
- 
+
     <div class="card p-4" style="width:100%;">
         <div class="card-body">
             <form action="{{ url('administrator/laporan-kegiatan/update-data/'.$value->uuid_kegiatan) }}"  method="POST" >
@@ -26,7 +26,7 @@
                         {{ $unit->nama_unit }}
                     </div>
                 </div>
-               
+
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Lokasi</label>
                     <div class="col-sm-10">
@@ -50,16 +50,16 @@
                     @if($value->approve_sekretaris == 0)
                     <a href="{{ url('administrator/laporan-kegiatan/sekretaris/setuju/'.$value->uuid_kegiatan) }}" class="btn btn-info float-right mr-2">Setuju</a>
                     <a href="{{ url('administrator/laporan-kegiatan/sekretaris/tolak/'.$value->uuid_kegiatan) }}" class="btn btn-danger float-right mr-2">Tolak</a>
-                    @endif    
+                    @endif
                 @elseif(Session::get('jabatan') == '3')
                 <!-- BENDAHARA -->
                     @if($value->approve_sekretaris == 1)
-                       
+
                     @endif
                 @elseif(Session::get('jabatan') == '4')
                 <!-- DIREKTUR -->
-                    @if($value->approve_sekretaris == 1) 
-                        @if($value->approve_direktur == 0) 
+                    @if($value->approve_sekretaris == 1)
+                        @if($value->approve_direktur == 0)
                         <a href="{{ url('administrator/laporan-kegiatan/direktur/setuju/'.$value->uuid_kegiatan) }}" class="btn btn-info float-right mr-2">Setuju</a>
                         <a href="{{ url('administrator/laporan-kegiatan/direktur/tolak/'.$value->uuid_kegiatan) }}" class="btn btn-danger float-right mr-2">Tolak</a>
                         @endif
@@ -71,6 +71,6 @@
            </form>
         </div>
     </div>
-    
+
 </div>
 @endsection

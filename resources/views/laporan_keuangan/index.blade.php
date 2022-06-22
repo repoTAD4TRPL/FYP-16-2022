@@ -95,11 +95,11 @@
                         <td>Rp. {{ number_format($value->nilai) }}</td>
                         <td>
                             <!-- Sekretaris, Bendahara, Direktur  -->
-                            @if($value->approve_sekretaris == 0 && $value->approve_bendahara == 0 && $value->approve_direktur == 0)
+                            @if($value->approve_bendahara == 0 && $value->approve_direktur == 0)
                                 Menunggu
-                            @elseif($value->approve_sekretaris == 2 || $value->approve_bendahara == 2 || $value->approve_direktur == 2)
+                            @elseif($value->approve_bendahara == 2 || $value->approve_direktur == 2)
                                 Ditolak
-                            @elseif($value->approve_sekretaris == 1 && $value->approve_bendahara == 1 && $value->approve_direktur == 1)
+                            @elseif($value->approve_bendahara == 1 && $value->approve_direktur == 1)
                                 Disetujui
                             @else
                                 Menunggu
@@ -107,7 +107,7 @@
                         </td>
                         <td>
                             @if(Session::get('jabatan') == '1' || Session::get('jabatan') == '' || Session::get('jabatan') == '' || Session::get('jabatan') == '')
-                                @if($value->approve_sekretaris == 0 && $value->approve_bendahara == 0)
+                                @if($$value->approve_bendahara == 0)
 
                                 @else
                                 @endif
@@ -116,7 +116,7 @@
                             <a href="#" data-id="{{ $value->uuid_keuangan }}" class="btn btn-danger delete" >Hapus</a> -->
                             @endif
                             <a href="{{ url('administrator/keuangan/detail/'.$value->uuid_keuangan); }}" class="btn btn-secondary text-white">Detail</a>
-                            @if($value->approve_sekretaris == 1 && $value->approve_bendahara == 1 && $value->approve_direktur == 1)
+                            @if( $value->approve_bendahara == 1 && $value->approve_direktur == 1)
                                 @if(Session::get('jabatan') == '1' || Session::get('jabatan') == '' || Session::get('jabatan') == '')
                                 @else
                                 <a href="{{ url('administrator/keuangan/print/'.$value->uuid_keuangan); }}" class="btn btn-info text-white">Cetak</a>
@@ -214,12 +214,12 @@
         var token = $("meta[name='csrf-token']").attr("content");
 
         swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Apakah Kamu Yakin?',
+            text: "Kamu tidak bisa mengubah kembali!",
             type: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, Delete it!',
-            cancelButtonText: 'No, cancel!',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Tidak, Batal!',
             reverseButtons: true
         }).then(function(result){
             if (result.value) {
@@ -227,7 +227,7 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: '<?php echo  url("/administrator/keuangan/delete"); ?>',
+                    url: '<?php echo  url("/administrator/laporan-keuangan/delete"); ?>',
                     type: "POST",
                     data: { "uuid" : uuid},
                     success: function() {
@@ -235,18 +235,19 @@
                         window.location.reload();
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
-                        swal.fire("Error Delete!", "Please try again", "error");
+                        swal.fire("Error!", "Silahkan coba lagi", "error");
                     }
                 });
 
             } else if (result.dismiss === 'cancel') {
                 swal.fire(
-                    'Cancelled',
-                    'Your Data is safe :)',
+                    'Dibatalkan!',
+                    'Data kamu aman :)',
                     'error'
                 )
             }
         });
     });
+
 </script>
 @endsection

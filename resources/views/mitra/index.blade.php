@@ -129,12 +129,12 @@
         var token = $("meta[name='csrf-token']").attr("content");
 
         swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Apakah Kamu Yakin?',
+            text: "Kamu tidak bisa mengubah kembali!",
             type: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, Delete it!',
-            cancelButtonText: 'No, cancel!',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Tidak, Batal!',
             reverseButtons: true
         }).then(function(result){
             if (result.value) {
@@ -150,18 +150,19 @@
                         window.location.reload();
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
-                        swal.fire("Error Delete!", "Please try again", "error");
+                        swal.fire("Error!", "Silahkan coba lagi", "error");
                     }
                 });
 
             } else if (result.dismiss === 'cancel') {
                 swal.fire(
-                    'Cancelled',
-                    'Your Data is safe :)',
+                    'Dibatalkan!',
+                    'Data kamu aman :)',
                     'error'
                 )
             }
         });
     });
+
 </script>
 @endsection
