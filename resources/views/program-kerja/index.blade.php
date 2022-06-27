@@ -4,7 +4,7 @@
 <div class="container p-4">
     <div class="row mt-4">
         <div class="col-lg-6">
-            <h5 class="mb-2">Transaksi Jasa Traktor</h5>
+            <h5 class="mb-2">Rencana Program Kerja</h5>
             <div class="row">
                 <div class="col-lg-4">
                     <div class="form-grop">
@@ -21,74 +21,67 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-lg-6 text-right">
-            <h5 class="mb-2">Total Transaksi Traktor</h5>
-            <h5 class="bg-white float-right p-4" id="total_logistik" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($total_pemasukan) }}</h5>
-        </div>
     </div>
-
     <div class="card mt-4">
         <div class="card-header bg-white">
-            <h5>Informasi Transaksi Traktor</h5>
+            <h5>Rencana Program Kerja</h5>
         </div>
         <div class="card-body">
-            @if(Session::get('jabatan') == '1' )
+            @if(Session::get('jabatan') == '1' || Session::get('jabatan') == '5' || Session::get('jabatan') == '3' || Session::get('jabatan') == '2')
 
             @else
-            <a href="{{ url('administrator/barang-jasa/tambah') }}" data-id="" class="btn btn-primary float-right" >Tambah</a>
+            <a href="{{ url('administrator/program-kerja/tambah') }}" data-id="" class="btn btn-primary float-right" >Tambah</a>
             <br/>
             <br/>
             @endif
 
 
-            <table class="table table-striped" id="logistik">
+            <table class="table table-striped" id="dashboard">
                 <thead>
                     <tr class="font-weight-bold" style="text-align:center">
-                        <td>ID Transaksi</td>
-                        {{-- <td>Unit</td> --}}
-                        <td>Keterangan</td>
-                        <td>Jumlah</td>
-                        <td>Tanggal</td>
-                        <td>Harga</td>
-                        <td>Diunggah Oleh</td>
-                        <td>Aksi</td>
-                        <td style="display:none;">total_penyewaan</td>
-                        <td style="display:none;">total_pembelian</td>
-                        <td style="display:none;">total_pemasukan</td>
-
+                        <td>NO</td>
+                        <td>Program</td>
+                        <td>Kegiatan</td>
+                        <td>Anggaran</td>
+                        <td>Sumber</td>
+                        <td>Output</td>
+                        <td>Indikator Success</td>
+                        <td>Waktu Pelaksanaan</td>
+                        <td>AKSI</td>
+                        <td style="display:none;">Anggaran</td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($content as $index => $value)
                     <tr>
-                        <td>TRAK{{ $value->tanggal }}{{ $index+1 }}</td>
-                        {{-- <td>{{ $value->nama_unit }}</td> --}}
-                        <td>{{ $value->nama }}</td>
-                        <td>{{ $value->jumlah }}</td>
-                        <td>{{ $value->tanggal }}</td>
-                        <td>Rp.{{ number_format($value->harga) }}</td>
-                        <td>{{ $value->upload_by }}</td>
+                        <td>{{ $index+1 }}</td>
+                        <td>{{ $value->program }}</td>
+                        <td style="text-align:justify">{!! nl2br(e($value->kegiatan)) !!}</td>
+                        <td>Rp. {{ number_format($value->anggaran) }}</td>
+                        <td>{{ $value->sumber}}</td>
+                        <td>{{ $value->output }}</td>
+                        <td style="text-align:justify">{!! nl2br(e($value->indikator)) !!}</td>
+                        <td>{{ $value->waktu }}</td>
+
                         <td>
-                            @if(Session::get('jabatan') == '1' )
+                            @if(Session::get('jabatan') == '1' || Session::get('jabatan') == '5'  || Session::get('jabatan') == '3' || Session::get('jabatan') == '2')
 
                             @else
-                            <a href="{{ url('administrator/barang-jasa/ubah/'.$value->uuid_barang_jasa); }}" class="btn btn-warning text-white">Ubah</a>
+                            <a href="{{ url('administrator/program-kerja/ubah/'.$value->uuid_pk); }}" class="btn btn-warning text-white">Ubah</a>
+                            <a href="#" data-id="{{ $value->uuid_pk }}" class="btn btn-danger delete" >Hapus</a>
                             @endif
-                            @if(Session::get('jabatan') == '4' )
-                            <a href="#" data-id="{{ $value->uuid_barang_jasa }}" class="btn btn-danger delete" >Hapus</a>
-                            @else
 
-                            @endif
                         </td>
-                        <td style="display:none;">{{ $value->harga }}</td>
+                        <td style="display:none;">{{ $value->anggaran }}</td>
 
                     </tr>
                     @endforeach
+
                 </tbody>
             </table>
         </div>
     </div>
+
 
 
 </div>
@@ -96,18 +89,21 @@
 
 
 @section('javascript')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="//cdn.datatables.net/plug-ins/1.11.4/api/sum().js"></script>
 <script>
 
-$(document).ready(function() {
-        var table = $('#logistik').DataTable();
+  $(document).ready(function() {
+        var table = $('#dashboard').DataTable({
+
+        });
 
 
         $.fn.dataTable.ext.search.push(
             function(settings, data, dataIndex) {
                 var min = $('#min-date').val();
                 var max = $('#max-date').val();
-                var createdAt = data[3] || 0; // Our date column in the table
+                var createdAt = data[7] || 0; // Our date column in the table
                 if (
                 (min == "" || max == "") ||
                 (moment(createdAt).isSameOrAfter(min) && moment(createdAt).isSameOrBefore(max))
@@ -126,8 +122,8 @@ $(document).ready(function() {
 
 
 
-
     });
+
 
     $(".delete").click(function(){
         var uuid = $(this).data('id');
@@ -139,7 +135,7 @@ $(document).ready(function() {
             type: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Ya, Hapus!',
-            cancelButtonText: 'Tidak, Batal!',
+            cancelButtonText: 'Tidak, Cancel!',
             reverseButtons: true
         }).then(function(result){
             if (result.value) {
@@ -147,7 +143,7 @@ $(document).ready(function() {
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: '<?php echo  url("/administrator/barang-jasa/delete"); ?>',
+                    url: '<?php echo  url("/administrator/program-kerja/delete"); ?>',
                     type: "POST",
                     data: { "uuid" : uuid},
                     success: function() {
@@ -161,7 +157,7 @@ $(document).ready(function() {
 
             } else if (result.dismiss === 'cancel') {
                 swal.fire(
-                    'Dibatalkan!',
+                    'Cancelled',
                     'Data kamu aman :)',
                     'error'
                 )
@@ -169,5 +165,7 @@ $(document).ready(function() {
         });
     });
 
+
 </script>
+
 @endsection

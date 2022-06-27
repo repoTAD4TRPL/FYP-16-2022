@@ -30,6 +30,8 @@ class Laporan extends Controller{
         $Data['master']     = "laporan";
         $Data['content']    = DB::table('keuangan')->rightJoin('unit_usaha','unit_usaha.id_unit','=','keuangan.id_unit')->orderBy('keuangan.date_created','desc')->where(['keuangan.status' => 1])->get();
         $Data['pemasukan']    = DB::table('barang_jasa')->orderBy('date_created','desc')->where(['status' => 1])->sum('harga');
+        $Data['pemasukantoko']    = DB::table('toko')->orderBy('date_created','desc')->where(['status' => 1])->sum('harga');
+        $Data['pemasukanhomestay']    = DB::table('homestay')->orderBy('date_created','desc')->where(['status' => 1])->sum('harga');
         $Data['pengeluaran']  = DB::table('logistik')->orderBy('date_created','desc')->where(['status' => 1])->sum('harga');
         $Data['pemasukan_keuangan']    = DB::table('keuangan')->orderBy('date_created','desc')->where(['status' => 1, 'jenis' => 1])->sum('nilai');
         $Data['pengeluaran_keuangan']  = DB::table('keuangan')->orderBy('date_created','desc')->where(['status' => 1 , 'jenis' => 2])->sum('nilai');
@@ -124,9 +126,17 @@ class Laporan extends Controller{
         //BARANG JASA
         $Data['content_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->rightJoin('unit_usaha','unit_usaha.id_unit','=','barang_jasa.id_unit')->orderBy('barang_jasa.date_created','desc')->where(['barang_jasa.status' => 1])->get();
         $Data['total_pemasukan_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
-        $Data['total_pembelian_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2])->sum('harga');
-        $Data['total_penyewaan_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1])->sum('harga');
+        $Data['total_pembelian_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
+        $Data['total_penyewaan_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
 
+        // TOKO
+         $Data['content_toko']    = DB::table('toko')->whereBetween('toko.tanggal',[$from, $to])->rightJoin('unit_usaha','unit_usaha.id_unit','=','toko.id_unit')->orderBy('toko.date_created','desc')->where(['toko.status' => 1])->get();
+         $Data['total_pemasukan_toko']    = DB::table('toko')->whereBetween('toko.tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
+        //HOMESTAY
+         $Data['content_homestay']    = DB::table('homestay')->whereBetween('homestay.tanggal_masuk',[$from, $to])->rightJoin('unit_usaha','unit_usaha.id_unit','=','homestay.id_unit')->orderBy('homestay.date_created','desc')->where(['homestay.status' => 1])->get();
+         $Data['total_homestay']    = DB::table('homestay')->whereBetween('homestay.tanggal_masuk',[$from, $to])->where(['status' => 1])->sum('harga');
+         $Data['pemasukantoko']    = DB::table('toko')->orderBy('date_created','desc')->where(['status' => 1])->sum('harga');
+        $Data['pemasukanhomestay']    = DB::table('homestay')->orderBy('date_created','desc')->where(['status' => 1])->sum('harga');
         //BAGI HASIL USAHA
         $Data['content_bagihasil']    = DB::table('bagi_hasil_usaha')->rightJoin('mitra','mitra.id_mitra','=','bagi_hasil_usaha.id_mitra')->whereBetween('bagi_hasil_usaha.tanggal',[$from, $to])->orderBy('bagi_hasil_usaha.date_created','desc')->where(['bagi_hasil_usaha.status' => 1, 'bagi_hasil_usaha.status_hasil' => 1])->get();
         $Data['total_pemasukan_bagihasil']    = DB::table('bagi_hasil_usaha')->whereBetween('bagi_hasil_usaha.tanggal',[$from, $to])->where(['status' => 1, 'status_hasil' => 1])->sum('nilai');
@@ -194,13 +204,22 @@ class Laporan extends Controller{
         //BARANG JASA
         $Data['content_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->rightJoin('unit_usaha','unit_usaha.id_unit','=','barang_jasa.id_unit')->orderBy('barang_jasa.date_created','desc')->where(['barang_jasa.status' => 1])->get();
         $Data['total_pemasukan_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
-        $Data['total_pembelian_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2])->sum('harga');
-        $Data['total_penyewaan_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1])->sum('harga');
+        $Data['total_pembelian_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
+        $Data['total_penyewaan_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
 
         //BAGI HASIL USAHA
         $Data['content_bagihasil']          = DB::table('bagi_hasil_usaha')->rightJoin('mitra','mitra.id_mitra','=','bagi_hasil_usaha.id_mitra')->whereBetween('bagi_hasil_usaha.tanggal',[$from, $to])->orderBy('bagi_hasil_usaha.date_created','desc')->where(['bagi_hasil_usaha.status' => 1, 'bagi_hasil_usaha.status_hasil' => 1])->get();
         $Data['total_pemasukan_bagihasil']  = DB::table('bagi_hasil_usaha')->whereBetween('bagi_hasil_usaha.tanggal',[$from, $to])->where(['status' => 1, 'status_hasil' => 1])->sum('nilai');
 
+        // TOKO
+         $Data['content_toko']    = DB::table('toko')->whereBetween('toko.tanggal',[$from, $to])->rightJoin('unit_usaha','unit_usaha.id_unit','=','toko.id_unit')->orderBy('toko.date_created','desc')->where(['toko.status' => 1])->get();
+         $Data['total_pemasukan_toko']    = DB::table('toko')->whereBetween('toko.tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
+        //HOMESTAY
+        $Data['content_homestay']    = DB::table('homestay')->whereBetween('homestay.tanggal_masuk',[$from, $to])->rightJoin('unit_usaha','unit_usaha.id_unit','=','homestay.id_unit')->orderBy('homestay.date_created','desc')->where(['homestay.status' => 1])->get();
+        $Data['total_homestay']    = DB::table('homestay')->whereBetween('homestay.tanggal_masuk',[$from, $to])->where(['status' => 1])->sum('harga');
+
+        $Data['pemasukantoko']    = DB::table('toko')->orderBy('date_created','desc')->where(['status' => 1])->sum('harga');
+        $Data['pemasukanhomestay']    = DB::table('homestay')->orderBy('date_created','desc')->where(['status' => 1])->sum('harga');
         //ASSET
         $Data['content_asset']          = DB::table('asset')->whereBetween('tanggal_terdaftar',[$from, $to])->orderBy('date_created','desc')->where(['status' => 1])->get();
         $Data['keuangan_pengeluaran']   = DB::table('keuangan')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->sum('nilai');
@@ -269,8 +288,19 @@ class Laporan extends Controller{
         //BARANG JASA
         $Data['content_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->rightJoin('unit_usaha','unit_usaha.id_unit','=','barang_jasa.id_unit')->orderBy('barang_jasa.date_created','desc')->where(['barang_jasa.status' => 1])->get();
         $Data['total_pemasukan_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
-        $Data['total_pembelian_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2])->sum('harga');
-        $Data['total_penyewaan_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1])->sum('harga');
+        $Data['total_pembelian_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
+        $Data['total_penyewaan_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
+
+
+        // TOKO
+        $Data['content_toko']    = DB::table('toko')->whereBetween('toko.tanggal',[$from, $to])->rightJoin('unit_usaha','unit_usaha.id_unit','=','toko.id_unit')->orderBy('toko.date_created','desc')->where(['toko.status' => 1])->get();
+        $Data['total_pemasukan_toko']    = DB::table('toko')->whereBetween('toko.tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
+       //HOMESTAY
+       $Data['content_homestay']    = DB::table('homestay')->whereBetween('homestay.tanggal_masuk',[$from, $to])->rightJoin('unit_usaha','unit_usaha.id_unit','=','homestay.id_unit')->orderBy('homestay.date_created','desc')->where(['homestay.status' => 1])->get();
+       $Data['total_homestay']    = DB::table('homestay')->whereBetween('homestay.tanggal_masuk',[$from, $to])->where(['status' => 1])->sum('harga');
+
+       $Data['pemasukantoko']    = DB::table('toko')->orderBy('date_created','desc')->where(['status' => 1])->sum('harga');
+       $Data['pemasukanhomestay']    = DB::table('homestay')->orderBy('date_created','desc')->where(['status' => 1])->sum('harga');
 
         //BAGI HASIL USAHA
         $Data['content_bagihasil']    = DB::table('bagi_hasil_usaha')->rightJoin('mitra','mitra.id_mitra','=','bagi_hasil_usaha.id_mitra')->whereBetween('bagi_hasil_usaha.tanggal',[$from, $to])->orderBy('bagi_hasil_usaha.date_created','desc')->where(['bagi_hasil_usaha.status' => 1, 'bagi_hasil_usaha.status_hasil' => 1])->get();

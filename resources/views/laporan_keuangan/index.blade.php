@@ -3,16 +3,16 @@
 @section('content')
 <div class="p-4">
     <div class="row mt-4">
-        <div class="col-lg-4">
+        <div class="col-lg-2">
             <?php
-                $pemasukan_all  = $pemasukan+$pemasukan_keuangan;
+                $pemasukan_all  = $pemasukan+$pemasukantoko+$pemasukanhomestay+$pemasukan_keuangan;
                 $pengeluaran_all= $pengeluaran+$pengeluaran_keuangan;
                 $total_saldo    = $pemasukan_all-$pengeluaran_all;
             ?>
             <h5 class="mb-2">Saldo Bumdes</h5>
             <h5 class="bg-white p-4" id="total_saldo" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($total_saldo) }}</h5>
         </div>
-        <div class="col-lg-8">
+        <div class="col-lg-10">
             @if(Session::get('jabatan') == '1')
 
             @else
@@ -20,30 +20,39 @@
             <div class="container">
                 <h5 class="mb-2">Laporan Keuangan</h5>
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-5">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-grop">
                                     <label>Dari Tanggal</label>
                                     <input type="date" class="form-control" name="filter_from" id="min-date" required> </br>
-                                    <a type="submit" href="/administrator/laporan-keuangan/mingguan" class="btn btn-info">Cetak Laporan Mingguan</a>
+
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-grop">
                                     <label>Ke Tanggal</label>
                                     <input type="date" class="form-control" name="filter_to" id="max-date" required> </br>
-                                    <a type="submit" href="/administrator/laporan-keuangan/bulanan" class="btn btn-info"> Cetak Laporan Bulanan </a>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-2">
-                        <label>Cetak</label>
+                        <label class="font-weight-bold">Cetak Laporan</label>
                         <input type="submit" class="btn btn-info" value="Cetak Laporan Keuangan">
-
-
+                    </div> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="col-lg-2">
+                        <label class="font-weight-bold">Laporan Mingguan</label>
+                        <a type="submit" href="/administrator/laporan-keuangan/mingguan" class="btn btn-info">Cetak Laporan Mingguan</a>
+                    </div> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="col-lg-2">
+                        <label class="font-weight-bold">Laporan Bulanan</label>
+                        <a type="submit" href="/administrator/laporan-keuangan/bulanan" class="btn btn-info"> Cetak Laporan Bulanan </a>
                     </div>
+
+
+
                 </div>
             </div>
             </form>
@@ -58,7 +67,7 @@
             <h5>Informasi Laporan Keuangan</h5>
         </div>
         <div class="card-body">
-            @if(Session::get('jabatan') == '1')
+            {{-- @if(Session::get('jabatan') == '1')
 
             @elseif(Session::get('jabatan') == '3' || Session::get('jabatan') == '2' || Session::get('jabatan') == '4')
             <a href="#import" data-toggle="modal" class="btn btn-success mr-2 float-right" >Import</a>
@@ -66,7 +75,7 @@
             <a href="#import" data-toggle="modal" class="btn btn-success mr-2 float-right" >Import</a>
             <br/>
             <br/>
-            @endif
+            @endif --}}
 
             <table class="table table-striped" id="logistik">
                 <thead>

@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Concerns\WithStartRow;
 use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 use Uuid;
 use Carbon\Carbon;
+use Session;
 
 class Laporan_keuangan_import implements ToModel, WithStartRow, WithCustomCsvSettings
 {
@@ -36,7 +37,9 @@ class Laporan_keuangan_import implements ToModel, WithStartRow, WithCustomCsvSet
             'jenis'         => $row[2],
             'keterangan'    => $row[3],
             'nilai'         => str_replace(array(',','.'), '', $row[4]),
-            'id_unit'       => $row[5]
+            'id_unit'       => $row[5],
+            'upload_by'         => Session::get('username')
+
         ]);
     }
 

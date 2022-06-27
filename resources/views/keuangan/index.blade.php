@@ -21,7 +21,7 @@
             </div>
         </div>
         <?php
-            $pemasukan_all  = $pemasukan+$pemasukan_keuangan;
+            $pemasukan_all  = $pemasukan+$pemasukantoko+$pemasukanhomestay+$pemasukan_keuangan;
             $pengeluaran_all= $pengeluaran+$pengeluaran_keuangan;
             $total_saldo    = $pemasukan_all-$pengeluaran_all;
         ?>

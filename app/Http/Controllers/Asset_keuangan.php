@@ -37,11 +37,14 @@ class Asset_keuangan extends Controller{
         $Data['content']    = DB::table('keuangan')->rightJoin('unit_usaha','unit_usaha.id_unit','=','keuangan.id_unit')->orderBy('keuangan.date_created','desc')->where(['keuangan.status' => 1])->get();
 
         $Data['pemasukan']    = DB::table('barang_jasa')->orderBy('date_created','desc')->where(['status' => 1])->sum('harga');
+        $Data['pemasukantoko']    = DB::table('toko')->orderBy('date_created','desc')->where(['status' => 1])->sum('harga');
+        $Data['pemasukanhomestay']    = DB::table('homestay')->orderBy('date_created','desc')->where(['status' => 1])->sum('harga');
         $Data['pengeluaran']  = DB::table('logistik')->orderBy('date_created','desc')->where(['status' => 1])->sum('harga');
 
         $Data['pemasukan_keuangan']    = DB::table('keuangan')->orderBy('date_created','desc')->where(['status' => 1, 'jenis' => 1])->sum('nilai');
         $Data['pengeluaran_keuangan']  = DB::table('keuangan')->orderBy('date_created','desc')->where(['status' => 1 , 'jenis' => 2])->sum('nilai');
 
+        // dd($Data);
 
 
         return view('keuangan.index', $Data);

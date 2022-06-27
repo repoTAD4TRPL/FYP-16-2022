@@ -94,6 +94,15 @@
 
         </table>
         <br/>
+        <table class="table" id="mytable" style="text-align:justify">
+            <tr>
+                <td>Demikian Laporan Keuangan ini kami sampaikan untuk digunakan dengan sebaik-baiknya. Atas perhatiannya kami sampaikan Terimakasih
+                    <br />
+                </td>
+            </tr>
+
+        </table>
+        <br/>
         <br/>
         <br/>
         <br/>

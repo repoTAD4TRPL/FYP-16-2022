@@ -1,11 +1,12 @@
 @extends('component.layout')
 
 @section('content')
+
 <div class="container p-4">
     <div class="row">
         <div class="col-lg-4 text-right">
             <h6 class="mb-2">Total Pemasukan Barang & Jasa {{ $year }}</h6>
-            <h5 class="bg-white float-right p-4" id="total_pemasukan" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($barang_jasa) }}</h5>
+            <h5 class="bg-white float-right p-4" id="total_pemasukan" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($barang_jasa+$toko+$homestay) }}</h5>
         </div>
         <div class="col-lg-4 text-right">
             <h6 class="mb-2">Total Sumber Daya {{ $year }}</h6>
@@ -16,63 +17,7 @@
             <h5 class="bg-white float-right p-4" id="total_saldo" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($hasil_usaha) }}</h5>
         </div>
     </div>
-    <div class="card mt-4">
-        <div class="card-header bg-white">
-            <h5>Rencana Program Kerja</h5>
-        </div>
-        <div class="card-body">
-            @if(Session::get('jabatan') == '1' || Session::get('jabatan') == '5' || Session::get('jabatan') == '3' || Session::get('jabatan') == '2')
 
-            @else
-            <a href="{{ url('administrator/programkerja/tambah') }}" data-id="" class="btn btn-primary float-right" >Tambah</a>
-            <br/>
-            <br/>
-            @endif
-
-
-            <table class="table table-striped" id="dashboard">
-                <thead>
-                    <tr>
-                        <td>NO</td>
-                        <td>Program/Kegiatan</td>
-                        <td>Anggaran</td>
-                        <td>Sumber</td>
-                        <td>Output</td>
-                        <td>Indikator Success</td>
-                        <td>Waktu Pelaksanaan</td>
-                        <td>AKSI</td>
-                        <td style="display:none;">Anggaran</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($content as $index => $value)
-                    <tr>
-                        <td>{{ $index+1 }}</td>
-                        <td>{{ $value->program }}</td>
-                        <td>Rp. {{ number_format($value->anggaran) }}</td>
-                        <td>{{ $value->sumber}}</td>
-                        <td>{{ $value->output }}</td>
-                        <td style="text-align:justify">{!! nl2br(e($value->indikator)) !!}</td>
-                        <td>{{ $value->waktu }}</td>
-
-                        <td>
-                            @if(Session::get('jabatan') == '1' || Session::get('jabatan') == '5'  || Session::get('jabatan') == '3' || Session::get('jabatan') == '2')
-
-                            @else
-                            <a href="{{ url('administrator/programkerja/ubah/'.$value->uuid_pk); }}" class="btn btn-warning text-white">Ubah</a>
-                            <a href="#" data-id="{{ $value->uuid_pk }}" class="btn btn-danger delete" >Hapus</a>
-                            @endif
-
-                        </td>
-                        <td style="display:none;">{{ $value->anggaran }}</td>
-
-                    </tr>
-                    @endforeach
-
-                </tbody>
-            </table>
-        </div>
-    </div>
     <div class="card mt-4">
         <div class="card-header bg-white">
             <h5>Grafik Keuangan</h5>

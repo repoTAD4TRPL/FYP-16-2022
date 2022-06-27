@@ -12,7 +12,7 @@
 
     <div class="card p-4" style="width:100%;">
         <div class="card-body">
-            <form action="{{ url('administrator/programkerja/create') }}"  method="POST" >
+            <form action="{{ url('administrator/program-kerja/create') }}"  method="POST" >
                 @csrf
 
                 <div class="form-group row">
@@ -60,7 +60,7 @@
 
                 <br/>
                 <input type="submit" value="Tambah" class="btn btn-primary float-right">
-                <a class="btn btn-secondary float-right mr-2" href="{{ url('administrator/dashboard') }}">Cancel</a>
+                <a class="btn btn-secondary float-right mr-2" href="{{ url('administrator/program-kerja') }}">Cancel</a>
 
            </form>
         </div>

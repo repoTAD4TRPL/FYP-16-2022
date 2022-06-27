@@ -4,7 +4,7 @@
 <div class="container p-4">
     <div class="row mt-4">
         <div class="col-lg-6">
-            <h5 class="mb-2">Transaksi Jasa Traktor</h5>
+            <h5 class="mb-2">Transaksi Penjualan Toko</h5>
             <div class="row">
                 <div class="col-lg-4">
                     <div class="form-grop">
@@ -23,20 +23,20 @@
         </div>
 
         <div class="col-lg-6 text-right">
-            <h5 class="mb-2">Total Transaksi Traktor</h5>
+            <h5 class="mb-2">Total Transaksi Toko</h5>
             <h5 class="bg-white float-right p-4" id="total_logistik" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($total_pemasukan) }}</h5>
         </div>
     </div>
 
     <div class="card mt-4">
         <div class="card-header bg-white">
-            <h5>Informasi Transaksi Traktor</h5>
+            <h5>Informasi Transaksi Penjualan Toko</h5>
         </div>
         <div class="card-body">
             @if(Session::get('jabatan') == '1' )
 
             @else
-            <a href="{{ url('administrator/barang-jasa/tambah') }}" data-id="" class="btn btn-primary float-right" >Tambah</a>
+            <a href="{{ url('administrator/toko/tambah') }}" data-id="" class="btn btn-primary float-right" >Tambah</a>
             <br/>
             <br/>
             @endif
@@ -46,15 +46,12 @@
                 <thead>
                     <tr class="font-weight-bold" style="text-align:center">
                         <td>ID Transaksi</td>
-                        {{-- <td>Unit</td> --}}
                         <td>Keterangan</td>
-                        <td>Jumlah</td>
-                        <td>Tanggal</td>
                         <td>Harga</td>
+                        <td>Tanggal</td>
+                        <td>Pembeli</td>
                         <td>Diunggah Oleh</td>
                         <td>Aksi</td>
-                        <td style="display:none;">total_penyewaan</td>
-                        <td style="display:none;">total_pembelian</td>
                         <td style="display:none;">total_pemasukan</td>
 
                     </tr>
@@ -62,21 +59,20 @@
                 <tbody>
                     @foreach($content as $index => $value)
                     <tr>
-                        <td>TRAK{{ $value->tanggal }}{{ $index+1 }}</td>
-                        {{-- <td>{{ $value->nama_unit }}</td> --}}
-                        <td>{{ $value->nama }}</td>
-                        <td>{{ $value->jumlah }}</td>
-                        <td>{{ $value->tanggal }}</td>
+                        <td>TOKO{{ $value->tanggal }}{{ $index+1 }}</td>
+                        <td>{{ $value->keterangan }}</td>
                         <td>Rp.{{ number_format($value->harga) }}</td>
+                        <td>{{ $value->tanggal }}</td>
+                        <td>{{ $value->pembeli }}</td>
                         <td>{{ $value->upload_by }}</td>
                         <td>
                             @if(Session::get('jabatan') == '1' )
 
                             @else
-                            <a href="{{ url('administrator/barang-jasa/ubah/'.$value->uuid_barang_jasa); }}" class="btn btn-warning text-white">Ubah</a>
+                            <a href="{{ url('administrator/toko/ubah/'.$value->uuid_toko); }}" class="btn btn-warning text-white">Ubah</a>
                             @endif
                             @if(Session::get('jabatan') == '4' )
-                            <a href="#" data-id="{{ $value->uuid_barang_jasa }}" class="btn btn-danger delete" >Hapus</a>
+                            <a href="#" data-id="{{ $value->uuid_toko }}" class="btn btn-danger delete" >Hapus</a>
                             @else
 
                             @endif
@@ -99,7 +95,7 @@
 <script src="//cdn.datatables.net/plug-ins/1.11.4/api/sum().js"></script>
 <script>
 
-$(document).ready(function() {
+    $(document).ready(function() {
         var table = $('#logistik').DataTable();
 
 
@@ -126,6 +122,19 @@ $(document).ready(function() {
 
 
 
+            table.on('draw', function () {
+
+                var total_penyewaan = table.column(8,{"filter": "applied"} ).data().sum();
+                var total_pembelian =  table.column(9,{"filter": "applied"} ).data().sum();
+
+
+                $("#total_pemasukan").text("Rp. "+rupiahformat(parseInt(total_penyewaan)+parseInt(total_pembelian)))
+                $("#total_penyewaan").text("Rp. "+rupiahformat(total_penyewaan))
+                $("#total_pembelian").text("Rp. "+rupiahformat(total_pembelian))
+            })
+
+
+
 
     });
 
@@ -147,7 +156,7 @@ $(document).ready(function() {
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: '<?php echo  url("/administrator/barang-jasa/delete"); ?>',
+                    url: '<?php echo  url("/administrator/toko/delete"); ?>',
                     type: "POST",
                     data: { "uuid" : uuid},
                     success: function() {

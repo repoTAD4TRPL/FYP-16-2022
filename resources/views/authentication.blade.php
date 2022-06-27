@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link href="{{ URL::asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ URL::asset('assets/css/style-sign.css') }}" rel="stylesheet">
-        <link rel="shortcut icon" href="<?php echo asset('assets/images/logo.png'); ?>">
+        <link rel="shortcut icon" href="<?php echo asset('assets/images/logo2.png'); ?>">
 
     </head>
     <body>

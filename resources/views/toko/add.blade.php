@@ -12,28 +12,23 @@
 
     <div class="card p-4" style="width:100%;">
         <div class="card-body">
-            <form action="{{ url('administrator/barang-jasa/create') }}"  method="POST" >
+            <form action="{{ url('administrator/toko/create') }}"  method="POST" >
                 @csrf
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Nama Unit</label>
                     <div class="col-sm-10">
-                        <input type="hidden" value="5" name="id_unit">
-                        <input type="text" value="Traktor" class="form-control" disabled>
+                        <input type="hidden" value="6" name="id_unit">
+                        <input type="text" value="Toko" class="form-control" disabled>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Keterangan</label>
                     <div class="col-sm-10">
-                        <textarea type="text" cols="30" rows="10" class="form-control" name="nama" required></textarea>
+                        <textarea type="text" cols="30" rows="10" class="form-control" name="keterangan" required></textarea>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Jumlah</label>
-                    <div class="col-sm-10">
-                        <input type="text"  class="form-control" name="jumlah" required>
-                    </div>
-                </div>
+
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Tanggal</label>
                     <div class="col-sm-10">
@@ -46,10 +41,15 @@
                         <input type="text"  class="form-control" name="harga" id="formatrupiah" required>
                     </div>
                 </div>
-
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Pembeli</label>
+                    <div class="col-sm-10">
+                        <input type="text"  class="form-control" name="pembeli" required>
+                    </div>
+                </div>
                 <br/>
                 <input type="submit" value="Tambah" class="btn btn-primary float-right">
-                <a class="btn btn-secondary float-right mr-2" href="{{ url('administrator/barang-jasa') }}">Cancel</a>
+                <a class="btn btn-secondary float-right mr-2" href="{{ url('administrator/toko') }}">Cancel</a>
 
            </form>
         </div>

@@ -9,7 +9,7 @@
         <div class="col-lg-6">
         </div>
     </div>
- 
+
     <div class="card p-4" style="width:100%;">
         <div class="card-body">
             <form action="{{ url('administrator/unit-usaha/create') }}" enctype="multipart/form-data" method="POST" >
@@ -45,13 +45,13 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Laporan Keuangan</label>
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Link Detail Transaksi</label>
                     <div class="col-sm-10">
                         <input type="text"  class="form-control" name="lapkeu">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Laporan Kegiatan</label>
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Link Tambah Transaksi</label>
                     <div class="col-sm-10">
                         <input type="text"  class="form-control" name="lapkeg">
                     </div>
@@ -63,6 +63,6 @@
            </form>
         </div>
     </div>
-    
+
 </div>
 @endsection

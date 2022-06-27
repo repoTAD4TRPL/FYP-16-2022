@@ -9,16 +9,22 @@
         <div class="col-lg-6">
         </div>
     </div>
- 
+
     <div class="card p-4" style="width:100%;">
         <div class="card-body">
             <form action="{{ url('administrator/programkerja/update-data/'.$value->uuid_pk) }}"  method="POST" >
                 @csrf
-               
+
                 <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Program/Kegiatan</label>
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Program</label>
                     <div class="col-sm-10">
                         <input type="text" value="{{ $value->program }}" class="form-control" name="program" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Kegiatan</label>
+                    <div class="col-sm-10">
+                        <textarea name="kegiatan" class="form-control" id="" cols="30" rows="10" required>{{ $value->kegiatan }}</textarea>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -48,7 +54,7 @@
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Waktu pelaksanaan</label>
                     <div class="col-sm-10">
-                    <input type="date" value="{{ $value->waktu }}" class="form-control" name="waktu" required> 
+                    <input type="date" value="{{ $value->waktu }}" class="form-control" name="waktu" required>
                     </div>
                 </div>
                 @if(Session::has('update_ok'))
@@ -63,6 +69,6 @@
            </form>
         </div>
     </div>
-    
+
 </div>
 @endsection

@@ -12,6 +12,7 @@ use App\Http\Controllers\Asset_keuangan;
 use App\Http\Controllers\Laporan;
 use App\Http\Controllers\Pegawai;
 use App\Http\Controllers\Artefak;
+use App\Http\Controllers\Program_kerja;
 
 
 /*
@@ -30,11 +31,12 @@ Route::middleware(['CheckSign'])->group(function () {
     Route::post('/administrator/pengaturan/update',[Dashboard::class, 'pengaturan_update'])->name('administrator/pengaturan/update');
 
     //PROGRAM KERJA
-    Route::get('administrator/programkerja/tambah',[Dashboard::class, 'add_programkerja'])->name('administrator/programkerja/tambah');
-    Route::get('/administrator/programkerja/ubah/{uuid}',[Dashboard::class, 'update_programkerja'])->name('administrator/programkerja/ubah/{uuid}');
-    Route::post('/administrator/programkerja/create',[Dashboard::class, 'create_programkerja'])->name('administrator/programkerja/create');
-    Route::post('/administrator/programkerja/update-data/{uuid}',[Dashboard::class, 'update_data_programkerja'])->name('administrator/programkerja/update-data/{uuid}');
-    Route::post('/administrator/programkerja/delete',[Dashboard::class, 'delete_data_programkerja'])->name('administrator/programkerja/delete');
+    Route::get('/administrator/program-kerja',[Program_kerja::class, 'index_programkerja'])->name('administrator/program-kerja');
+    Route::get('administrator/program-kerja/tambah',[Program_kerja::class, 'add_programkerja'])->name('administrator/program-kerja/tambah');
+    Route::get('/administrator/program-kerja/ubah/{uuid}',[Program_kerja::class, 'update_programkerja'])->name('administrator/program-kerja/ubah/{uuid}');
+    Route::post('/administrator/program-kerja/create',[Program_kerja::class, 'create_programkerja'])->name('administrator/program-kerja/create');
+    Route::post('/administrator/program-kerja/update-data/{uuid}',[Program_kerja::class, 'update_data_programkerja'])->name('administrator/program-kerja/update-data/{uuid}');
+    Route::post('/administrator/program-kerja/delete',[Program_kerja::class, 'delete_data_programkerja'])->name('administrator/program-kerja/delete');
 
     //SIGNOUT AUTH
     Route::get('/signout',[Pegawai::class, 'signout'])->name('signout');
@@ -63,13 +65,28 @@ Route::middleware(['CheckSign'])->group(function () {
     Route::post('/administrator/logistik/update-data/{uuid}',[Logistik::class, 'update_data_logistik'])->name('administrator/logistik/update-data/{uuid}');
     Route::post('/administrator/logistik/delete',[Logistik::class, 'delete_data_logistik'])->name('administrator/logistik/delete');
 
-    //BARANG & JASA
+    //TRAKTOR
     Route::get('/administrator/barang-jasa',[Barang_jasa::class, 'index'])->name('administrator/barang-jasa');
     Route::get('/administrator/barang-jasa/tambah',[Barang_jasa::class, 'add_barangjasa'])->name('administrator/barang-jasa/tambah');
     Route::get('/administrator/barang-jasa/ubah/{uuid}',[Barang_jasa::class, 'update_barangjasa'])->name('administrator/barang-jasa/ubah/{uuid}');
     Route::post('/administrator/barang-jasa/create',[Barang_jasa::class, 'create_barangjasa'])->name('administrator/barang-jasa/create');
     Route::post('/administrator/barang-jasa/update-data/{uuid}',[Barang_jasa::class, 'update_data_barangjasa'])->name('administrator/barang-jasa/update-data/{uuid}');
     Route::post('/administrator/barang-jasa/delete',[Barang_jasa::class, 'delete_data_barangjasa'])->name('administrator/barang-jasa/delete');
+    //TOKO
+    Route::get('/administrator/toko',[Barang_jasa::class, 'index_toko'])->name('administrator/toko');
+    Route::get('/administrator/toko/tambah',[Barang_jasa::class, 'add_toko'])->name('administrator/toko/tambah');
+    Route::get('/administrator/toko/ubah/{uuid}',[Barang_jasa::class, 'update_toko'])->name('administrator/toko/ubah/{uuid}');
+    Route::post('/administrator/toko/create',[Barang_jasa::class, 'create_toko'])->name('administrator/toko/create');
+    Route::post('/administrator/toko/update-data/{uuid}',[Barang_jasa::class, 'update_data_toko'])->name('administrator/toko/update-data/{uuid}');
+    Route::post('/administrator/toko/delete',[Barang_jasa::class, 'delete_data_toko'])->name('administrator/toko/delete');
+    //HOMESTAY
+    Route::get('/administrator/homestay',[Barang_jasa::class, 'index_homestay'])->name('administrator/homestay');
+    Route::get('/administrator/homestay/tambah',[Barang_jasa::class, 'add_homestay'])->name('administrator/homestay/tambah');
+    Route::get('/administrator/homestay/ubah/{uuid}',[Barang_jasa::class, 'update_homestay'])->name('administrator/homestay/ubah/{uuid}');
+    Route::post('/administrator/homestay/create',[Barang_jasa::class, 'create_homestay'])->name('administrator/homestay/create');
+    Route::post('/administrator/homestay/update-data/{uuid}',[Barang_jasa::class, 'update_data_homestay'])->name('administrator/homestay/update-data/{uuid}');
+    Route::post('/administrator/homestay/delete',[Barang_jasa::class, 'delete_data_homestay'])->name('administrator/homestay/delete');
+
 
     //BAGI HASIL USAHA
     Route::get('/administrator/bagi-hasil-usaha',[Bagi_hasil_usaha::class, 'index_bagi_hasil_usaha'])->name('administrator/bagi-hasil-usaha');

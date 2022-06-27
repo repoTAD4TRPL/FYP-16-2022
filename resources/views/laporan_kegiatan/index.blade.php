@@ -54,10 +54,10 @@
             @if(Session::get('jabatan') == '1' )
 
             @elseif(Session::get('jabatan') == '1' || Session::get('jabatan') == '' || Session::get('jabatan') == '')
-            <a href="#import" data-toggle="modal" class="btn btn-success mr-2 float-right" >Import</a>
+            {{-- <a href="#import" data-toggle="modal" class="btn btn-success mr-2 float-right" >Import</a> --}}
             @else
             <a href="{{ url('administrator/laporan-kegiatan/tambah') }}" data-id="" class="btn btn-primary float-right" >Tambah</a>
-            <a href="#import" data-toggle="modal" class="btn btn-success mr-2 float-right" >Import</a>
+            {{-- <a href="#import" data-toggle="modal" class="btn btn-success mr-2 float-right" >Import</a> --}}
             <br/>
             <br/>
             @endif

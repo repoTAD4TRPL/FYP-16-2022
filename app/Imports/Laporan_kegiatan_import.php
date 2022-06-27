@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Concerns\WithStartRow;
 use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 use Uuid;
 use Carbon\Carbon;
+use Session;
 
 class Laporan_kegiatan_import implements ToModel, WithStartRow, WithCustomCsvSettings
 {
@@ -35,7 +36,8 @@ class Laporan_kegiatan_import implements ToModel, WithStartRow, WithCustomCsvSet
             'tanggal'       => Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date:: excelToDateTimeObject($row[1]))->toDateString(),
             'id_unit'       => $row[2],
             'keterangan'    => $row[3],
-            'lokasi'        => $row[4]
+            'lokasi'        => $row[4],
+            'upload_by'         => Session::get('username')
         ]);
     }
 }

@@ -9,7 +9,7 @@
         <div class="col-lg-6">
         </div>
     </div>
- 
+
     <div class="card p-4" style="width:100%;">
         <div class="card-body">
             <form action="{{ url('administrator/barang-jasa/update-data/'.$value->uuid_barang_jasa) }}"  method="POST" >
@@ -17,34 +17,20 @@
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Nama Unit</label>
                     <div class="col-sm-10">
-                        <select name="id_unit" class="form-control" id="" required>
-                            <option value="">Select Unit</option>
-                            @foreach($unit as $v_unit)
-                                <option {{ $v_unit->id_unit == $value->id_unit ? 'selected' : '' }} value="{{ $v_unit->id_unit }}">{{ $v_unit->nama_unit }}</option>
-                            @endforeach
-                        </select>
+                        <input type="hidden" value="5" name="id_unit">
+                        <input type="text" value="Traktor" class="form-control" disabled>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Jenis</label>
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Keterangan</label>
                     <div class="col-sm-10">
-                        <select name="jenis" class="form-control" id="" required>
-                            <option value="">Select Jenis</option>
-                            <option {{ $value->jenis == '1' ? 'selected' : '' }} value="1">Sewa</option>
-                            <option {{ $value->jenis == '2' ? 'selected' : '' }} value="2">Beli</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Nama</label>
-                    <div class="col-sm-10">
-                        <input type="text" value="{{ $value->nama }}" class="form-control" name="nama" required> 
+                        <textarea name="nama" class="form-control" id="" cols="30" rows="10" required>{{ $value->nama }}</textarea>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Jumlah</label>
                     <div class="col-sm-10">
-                        <input type="text" value="{{ $value->jumlah }}" class="form-control" name="jumlah" required> 
+                        <input type="text" value="{{ $value->jumlah }}" class="form-control" name="jumlah" required>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -56,7 +42,7 @@
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Harga</label>
                     <div class="col-sm-10">
-                        <input type="text"  value="{{ number_format($value->harga) }}" class="form-control" name="harga" id="formatrupiah" required> 
+                        <input type="text"  value="{{ number_format($value->harga) }}" class="form-control" name="harga" id="formatrupiah" required>
                     </div>
                 </div>
                 @if(Session::has('update_ok'))
@@ -71,6 +57,6 @@
            </form>
         </div>
     </div>
-    
+
 </div>
 @endsection

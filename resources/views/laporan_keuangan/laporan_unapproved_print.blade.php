@@ -140,43 +140,99 @@
         </table>
         <br/>
 
-        <h4>Total Keuangan Barang Jasa</h4>
+        <h4>Total Transaksi Penyewaan Traktor</h4>
         <table class="table">
             <thead>
-                <tr>
-                    <td>NO</td>
-                    <td>Unit</td>
-                    <td>Jenis</td>
-                    <td>Nama</td>
-                    <td>Jumlah</td>
-                    <td>Tanggal</td>
-                    <td>Harga</td>
+                <tr class="font-weight-bold" style="text-align:center">
+                    <td><b>ID Transaksi<b></td>
+                    <td><b>Keterangan<b></td>
+                    <td><b>Jumlah<b></td>
+                    <td><b>Tanggal<b></td>
+                    <td><b>Harga<b></td>
                 </tr>
             </thead>
             <tbody>
                 @foreach($content_barangjasa as $index => $value)
                 <tr>
-                    <td>{{ $index+1 }}</td>
-                    <td>{{ $value->nama_unit }}</td>
-                    <td>{{ $value->jenis == 1 ? 'Sewa' : 'Beli' }}</td>
-                    <td>{{ $value->nama }}</td>
-                    <td>{{ $value->jumlah }}</td>
-                    <td>{{ $value->tanggal }}</td>
-                    <td>Rp. {{ number_format($value->harga) }}</td>
+                    <td>TRAK{{ $value->tanggal }}{{ $index+1 }}</td>
+                        <td>{{ $value->nama }}</td>
+                        <td>{{ $value->jumlah }}</td>
+                        <td>{{ $value->tanggal }}</td>
+                        <td style="text-align:right">Rp.{{ number_format($value->harga) }}</td>
                 </tr>
                 @endforeach
 
                 <tr>
-                   <td colspan="6">Total Penyewaan</td>
-                   <td>: Rp. {{ number_format($total_penyewaan_barangjasa) }}</td>
+                   <td colspan="4"><b>Total Pemasukan</b></td>
+                   <td style="text-align:right"> Rp. {{ number_format($total_pemasukan_barangjasa) }}</td>
                 </tr>
-                <tr>
-                   <td colspan="6">Total Pembelian</td>
-                   <td>: Rp. {{ number_format($total_pembelian_barangjasa) }}</td>
+
+            </tbody>
+        </table>
+
+        <h4>Total Transaksi Pembelian Toko</h4>
+        <table class="table">
+            <thead>
+                <tr class="font-weight-bold" style="text-align:center">
+                    <td><b>ID Transaksi</b></td>
+                    <td><b>Keterangan</b></td>
+                    <td><b>Tanggal</b></td>
+                    <td><b>Pembeli</b></td>
+                    <td ><b>Harga</b></td>
                 </tr>
+            </thead>
+            <tbody>
+                @foreach($content_toko as $index => $value)
                 <tr>
-                   <td colspan="6">Total Pemasukan</td>
-                   <td>: Rp. {{ number_format($total_pemasukan_barangjasa) }}</td>
+                    <td>TOKO{{ $value->tanggal }}{{ $index+1 }}</td>
+                    <td>{{ $value->keterangan }}</td>
+                    <td>{{ $value->tanggal }}</td>
+                    <td>{{ $value->pembeli }}</td>
+                    <td style="text-align:right">Rp.{{ number_format($value->harga) }}</td>
+                </tr>
+                @endforeach
+
+                <tr>
+                   <td colspan="4"><b>Total Pemasukan Toko</b></td>
+                   <td style="text-align:right"> Rp. {{ number_format($total_pemasukan_toko) }}</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <h4>Total Transaksi Penyewaan Homestay</h4>
+        <table class="table">
+            <thead>
+                <tr class="font-weight-bold" style="text-align:center">
+                    <td><b>ID Transaksi</b></td>
+                    <td><b>Nama Homestay</b></td>
+                    <td><b>Tipe Kamar</b></td>
+                    <td><b>Tanggal Masuk</b></td>
+                    <td><b>Tanggal Keluar</b></td>
+                    <td><b>Pembeli</b></td>
+                    <td><b>Harga</b></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($content_homestay as $index => $value)
+                <tr>
+                    <td>HMSTY{{ $value->tanggal_masuk }}{{ $index+1 }}</td>
+                        <td>{{ $value->nama }}</td>
+                        <td> @if($value->tipe_kamar == 1)
+                            Standard
+                        @else
+                            Family Room
+                        @endif</td>
+                        <td>{{ $value->tanggal_masuk }}</td>
+                        <td>{{ $value->tanggal_keluar }}</td>
+                        <td>{{ $value->pembeli }}</td>
+                        <td style="text-align:right">Rp.{{ number_format($value->harga) }}</td>
+                </tr>
+                @endforeach
+
+                <tr>
+                   <td colspan="6"><b>Total Penyewaan Homestay</b></td>
+                   <td style="text-align:right"> Rp. {{ number_format($total_homestay) }}</td>
                 </tr>
 
             </tbody>
@@ -208,7 +264,7 @@
                 @endforeach
 
                 <tr>
-                   <td colspan="5">Total Pemasukan Bumdes</td>
+                   <td colspan="4">Total Pemasukan Penyewaan Traktor</td>
                    <td>: Rp. {{ number_format($total_pemasukan_bagihasil) }}</td>
                 </tr>
 
@@ -349,6 +405,15 @@
                     <td colspan="2"><b>Gaji Pegawai 25%</b></td>
                     <td>: Rp. {{ number_format($total_saldo*25/100)}}</td>
                  </tr>
+        </table>
+        <br/>
+        <table class="table" id="mytable" style="text-align:justify">
+            <tr>
+                <td>Demikian Laporan Keuangan ini kami sampaikan untuk digunakan dengan sebaik-baiknya. Atas perhatiannya kami sampaikan Terimakasih
+                    <br />
+                </td>
+            </tr>
+
         </table>
         <!-- endnewtab -->
 

@@ -17,7 +17,7 @@ use Illuminate\Support\Str;
 class Bagi_hasil_usaha extends Controller{
     //BAGI HASIL USAHA
     public function index_bagi_hasil_usaha(){
-        $Data['title']      = "Bagi hasil usaha";
+        $Data['title']      = "Subsidi Mitra";
         $Data['page']       = "bagi_hasil_usaha";
         $Data['master']     = "bagi_hasil_usaha";
         $Data['content']    = DB::table('bagi_hasil_usaha')->rightJoin('mitra','mitra.id_mitra','=','bagi_hasil_usaha.id_mitra')->orderBy('bagi_hasil_usaha.date_created','desc')->where(['bagi_hasil_usaha.status' => 1])->get();
@@ -28,7 +28,7 @@ class Bagi_hasil_usaha extends Controller{
     }
 
     public function add_bagi_hasil_usaha(){
-        $Data['title']      = "Tambah Bagi hasil usaha";
+        $Data['title']      = "Tambah Subsidi Mitra";
         $Data['page']       = "bagi_hasil_usaha";
         $Data['master']     = "bagi_hasil_usaha";
         $Data['mitra']      = DB::table('mitra')->orderBy('date_created','desc')->where(['status' => 1, 'status_mitra' => 1])->get();
@@ -39,7 +39,7 @@ class Bagi_hasil_usaha extends Controller{
     public function update_bagi_hasil_usaha($uuid){
         $check  = DB::table('bagi_hasil_usaha')->where(['status' => 1, 'uuid_bagi_hasil' => $uuid])->first();
         if($check){
-            $Data['title']      = "Ubah Bagi hasil usaha";
+            $Data['title']      = "Ubah Subsidi Mitravvvvv";
             $Data['page']       = "bagi_hasil_usaha";
             $Data['master']     = "bagi_hasil_usaha";
             $Data['value']      = $check;

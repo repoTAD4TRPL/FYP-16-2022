@@ -58,7 +58,7 @@
                 <tbody>
                     @foreach($content as $index => $value)
                     <tr>
-                        <td>{{ $index+1 }}</td>
+                        <td>LOG-{{ $value->tanggal }}-{{ $index+1 }}</td>
                         <td>{{ $value->nama_unit }}</td>
                         <td>{{ $value->tanggal }}</td>
                         <td>{{ $value->jumlah }}</td>
@@ -70,8 +70,12 @@
 
                             @else
                             <a href="{{ url('administrator/logistik/ubah/'.$value->uuid_logistik); }}" class="btn btn-warning text-white">Ubah</a>
-                            <a href="#" data-id="{{ $value->uuid_logistik }}" class="btn btn-danger delete" >Hapus</a>
                             @endif
+                            @if(Session::get('jabatan') == '4' )
+                            <a href="#" data-id="{{ $value->uuid_logistik }}" class="btn btn-danger delete" >Hapus</a>
+                            @else
+                            @endif
+
 
                         </td>
                         <td style="display:none;">{{ $value->harga }}</td>

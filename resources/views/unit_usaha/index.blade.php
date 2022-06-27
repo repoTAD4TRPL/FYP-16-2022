@@ -28,24 +28,18 @@
                         <p class="card-text">{!! nl2br(e($value->aset)) !!}</p>
                     </div>
                     <br />
-                    <div><b>Laporan Keuangan</b>
-                    <p>
-                        <a href = "{!! nl2br(e($value->lapkeu)) !!}" class="card-text">Lihat Laporan Keuangan</a>
-                    </p>
-                    </div>
-                    <div><b>Laporan Kegiatan</b>
-                    <p>
-                        <a href = "{!! nl2br(e($value->lapkeg)) !!}" class="card-text">Lihat Laporan Kegiatan</a>
-                    </p>
-                    </div>
-                    <br/>
+                    {{-- <div><b>Transaksi</b>
+
+                    <br/> --}}
+                    <a href= "{!! nl2br(e($value->lapkeu)) !!}" class="btn btn-secondary text-white">Lihat Transaksi</a>
+                    <a href= "{!! nl2br(e($value->lapkeg)) !!}" class="btn btn-primary float-">Tambah Transaksi</a>
                     @if(Session::get('jabatan') == '4' )
                         <a href="{{ url('administrator/unit-usaha/ubah/'.$value->unit_uuid); }}" class="btn btn-warning text-white">Ubah</a>
                         <a href="#" data-id="{{ $value->unit_uuid }}" class="btn btn-danger delete" >Hapus</a>
                     @else
 
                     @endif
-
+                        {{-- </div> --}}
                 </div>
             </div>
         </div>

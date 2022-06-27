@@ -9,7 +9,7 @@
         <link href="{{ URL::asset('assets/css/style.css') }}" rel="stylesheet">
         <link href="{{ URL::asset('assets/css/datatables.min.css') }}" rel="stylesheet">
 		<link href="{{ URL::asset('assets/css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
-        <link rel="shortcut icon" href="<?php echo asset('assets/images/logo.png'); ?>">
+        <link rel="shortcut icon" href="<?php echo asset('assets/images/logo2.png'); ?>">
 
         <title>BUM Desa Marsingati</title>
     </head>
@@ -56,23 +56,25 @@
                     <li class="nav-item {{ $master == 'dashboard' ? 'active_navtrue' : '' }}">
                         <a class="nav-link text-dark font-weight-bold" href="{{ url('administrator/dashboard') }}">Dashboard</a>
                     </li>
+                    <li class="nav-item {{ $master == 'program-kerja' ? 'active_navtrue' : '' }}">
+                        <a class="nav-link text-dark font-weight-bold" href="{{ url('administrator/program-kerja') }}">Rencana Program</a>
+                    </li>
                     <li class="nav-item {{ $master == 'unit_usaha' ? 'active_navtrue' : '' }}">
                         <a class="nav-link text-dark font-weight-bold" href="{{ url('administrator/unit-usaha') }}">Unit Usaha</a>
                     </li>
                     <li class="nav-item {{ $master == 'logistik' ? 'active_navtrue' : '' }}">
                         <a class="nav-link text-dark font-weight-bold" href="{{ url('administrator/logistik') }}">Logistik</a>
                     </li>
-                    <li class="nav-item {{ $master == 'barang_jasa' ? 'active_navtrue' : '' }}">
-                        <a class="nav-link text-dark font-weight-bold" href="{{ url('administrator/barang-jasa') }}">Transaksi</a>
-                    </li>
-
-                    <li class="nav-item dropdown {{ $master == 'bagi_hasil_usaha' ? 'active_navtrue' : '' }}">
-                        <a class="nav-link dropdown-toggle text-dark font-weight-bold" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Subsidi Mitra</a>
+                    <li class="nav-item dropdown {{ $master == 'barang_jasa' ? 'active_navtrue' : '' }}">
+                        <a class="nav-link dropdown-toggle text-dark font-weight-bold" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Transaksi</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item {{ $page == 'bagi_hasil_usaha' ? 'active_navtrue' : '' }}" href="{{ url('administrator/bagi-hasil-usaha') }}">Informasi Subsidi</a>
-                            <a class="dropdown-item {{ $page == 'bagi_hasil_usaha_mitra' ? 'active_navtrue' : '' }}" href="{{ url('administrator/mitra') }}">Mitra</a>
+                            <a class="dropdown-item {{ $page == 'barang_jasa' ? 'active_navtrue' : '' }}" href="{{ url('administrator/barang-jasa') }}">Traktor</a>
+                            <a class="dropdown-item {{ $page == 'toko' ? 'active_navtrue' : '' }}" href="{{ url('administrator/toko') }}">Toko</a>
+                            <a class="dropdown-item {{ $page == 'homestay' ? 'active_navtrue' : '' }}" href="{{ url('administrator/homestay') }}">Homestay</a>
                         </div>
                     </li>
+
+
                     <li class="nav-item dropdown {{ $master == 'asset_keuangan' ? 'active_navtrue' : '' }}">
                         <a class="nav-link dropdown-toggle text-dark font-weight-bold" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sumber Daya & Keuangan</a>
                         <div class="dropdown-menu">
@@ -91,6 +93,13 @@
                             <a class="dropdown-item {{ $page == 'laporan_keuangan' ? 'active_navtrue' : '' }}" href="{{ url('administrator/laporan-keuangan') }}">Keuangan</a>
                             <a class="dropdown-item {{ $page == 'laporan_kegiatan' ? 'active_navtrue' : '' }}" href="{{ url('administrator/laporan-kegiatan') }}">Kegiatan</a>
                             <a class="dropdown-item {{ $page == 'artefak' ? 'active_navtrue' : '' }}" href="{{ url('administrator/artefak') }}">Artefak</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown {{ $master == 'bagi_hasil_usaha' ? 'active_navtrue' : '' }}">
+                        <a class="nav-link dropdown-toggle text-dark font-weight-bold" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Subsidi Mitra</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item {{ $page == 'bagi_hasil_usaha' ? 'active_navtrue' : '' }}" href="{{ url('administrator/bagi-hasil-usaha') }}">Informasi Subsidi</a>
+                            <a class="dropdown-item {{ $page == 'bagi_hasil_usaha_mitra' ? 'active_navtrue' : '' }}" href="{{ url('administrator/mitra') }}">Mitra</a>
                         </div>
                     </li>
                 </ul>
