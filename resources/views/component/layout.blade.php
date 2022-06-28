@@ -65,7 +65,7 @@
                     <li class="nav-item {{ $master == 'logistik' ? 'active_navtrue' : '' }}">
                         <a class="nav-link text-dark font-weight-bold" href="{{ url('administrator/logistik') }}">Logistik</a>
                     </li>
-                    <li class="nav-item dropdown {{ $master == 'barang_jasa' ? 'active_navtrue' : '' }}">
+                    <li class="nav-item dropdown {{ $master == 'transaksi' ? 'active_navtrue' : '' }}">
                         <a class="nav-link dropdown-toggle text-dark font-weight-bold" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Transaksi</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item {{ $page == 'barang_jasa' ? 'active_navtrue' : '' }}" href="{{ url('administrator/barang-jasa') }}">Traktor</a>

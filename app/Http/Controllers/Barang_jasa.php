@@ -17,7 +17,7 @@ class Barang_jasa extends Controller{
     public function index(){
         $Data['title']      = "Barang & Jasa";
         $Data['page']       = "barang_jasa";
-        $Data['master']     = "barang_jasa";
+        $Data['master']     = "transaksi";
         $Data['content']    = DB::table('barang_jasa')->rightJoin('unit_usaha','unit_usaha.id_unit','=','barang_jasa.id_unit')->orderBy('barang_jasa.date_created','desc')->where(['barang_jasa.status' => 1])->get();
         $Data['total_pemasukan']    = DB::table('barang_jasa')->where(['status' => 1])->sum('harga');
 
@@ -27,7 +27,7 @@ class Barang_jasa extends Controller{
     public function add_barangjasa(){
         $Data['title']      = "Tambah Transaksi Traktor";
         $Data['page']       = "barang_jasa";
-        $Data['master']     = "barang_jasa";
+        $Data['master']     = "transaksi";
         $Data['unit']       = DB::table('unit_usaha')->where(['status' => 1])->get();
 
         return view('barang_jasa.add', $Data);
@@ -38,7 +38,7 @@ class Barang_jasa extends Controller{
         if($check){
             $Data['title']      = "Ubah Transaksi Traktor";
             $Data['page']       = "barang_jasa";
-            $Data['master']     = "barang_jasa";
+            $Data['master']     = "transaksi";
             $Data['value']      = $check;
             $Data['unit']       = DB::table('unit_usaha')->where(['status' => 1])->get();
 
@@ -51,7 +51,7 @@ class Barang_jasa extends Controller{
     public function index_toko(){
         $Data['title']      = "Toko";
         $Data['page']       = "toko";
-        $Data['master']     = "toko";
+        $Data['master']     = "transaksi";
         $Data['content']    = DB::table('toko')->rightJoin('unit_usaha','unit_usaha.id_unit','=','toko.id_unit')->orderBy('toko.date_created','desc')->where(['toko.status' => 1])->get();
         $Data['total_pemasukan']    = DB::table('toko')->where(['status' => 1])->sum('harga');
 
@@ -61,7 +61,7 @@ class Barang_jasa extends Controller{
     public function add_toko(){
         $Data['title']      = "Tambah Transaksi Toko";
         $Data['page']       = "toko";
-        $Data['master']     = "toko";
+        $Data['master']     = "transaksi";
         $Data['unit']       = DB::table('unit_usaha')->where(['status' => 1])->get();
 
         return view('toko.add', $Data);
@@ -72,7 +72,7 @@ class Barang_jasa extends Controller{
         if($check){
             $Data['title']      = "Ubah Transaksi Toko";
             $Data['page']       = "toko";
-            $Data['master']     = "toko";
+            $Data['master']     = "transaksi";
             $Data['value']      = $check;
             $Data['unit']       = DB::table('unit_usaha')->where(['status' => 1])->get();
 
@@ -86,7 +86,7 @@ class Barang_jasa extends Controller{
     public function index_homestay(){
         $Data['title']      = "Homestay";
         $Data['page']       = "homestay";
-        $Data['master']     = "homestay";
+        $Data['master']     = "transaksi";
         $Data['content']    = DB::table('homestay')->rightJoin('unit_usaha','unit_usaha.id_unit','=','homestay.id_unit')->orderBy('homestay.date_created','desc')->where(['homestay.status' => 1])->get();
         $Data['total_pemasukan']    = DB::table('homestay')->where(['status' => 1])->sum('harga');
 
@@ -96,7 +96,7 @@ class Barang_jasa extends Controller{
     public function add_homestay(){
         $Data['title']      = "Tambah Transaksi Homestay";
         $Data['page']       = "homestay";
-        $Data['master']     = "homestay";
+        $Data['master']     = "transaksi";
         $Data['unit']       = DB::table('unit_usaha')->where(['status' => 1])->get();
 
         return view('homestay.add', $Data);
@@ -107,7 +107,7 @@ class Barang_jasa extends Controller{
         if($check){
             $Data['title']      = "Ubah Transaksi Homestay";
             $Data['page']       = "homestay";
-            $Data['master']     = "homestay";
+            $Data['master']     = "transaksi";
             $Data['value']      = $check;
             $Data['unit']       = DB::table('unit_usaha')->where(['status' => 1])->get();
 

@@ -9,18 +9,13 @@
         <div class="col-lg-6">
         </div>
     </div>
- 
+
     <div class="card p-4" style="width:100%;">
         <div class="card-body">
             <form action="{{ url('administrator/manusia/create') }}"  method="POST" >
                 @csrf
-               
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Nama</label>
-                    <div class="col-sm-10">
-                        <input type="text"  class="form-control" name="nama" required>
-                    </div>
-                </div>
+
+                ccc
                 <div class="form-group row">
                             <label for="staticEmail" class="col-sm-2 col-form-label">Jenis Kelamin</label>
                             <div class="col-sm-10">
@@ -29,6 +24,12 @@
                                     <option value="1">Laki Laki</option>
                                     <option value="2">Perempuan</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Jabatan</label>
+                            <div class="col-sm-10">
+                                <input type="text"  class="form-control" name="jabatan" required>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -47,7 +48,7 @@
                                 </select>
                             </div>
                         </div>
-               
+
                 <br/>
                 <input type="submit" value="Tambah" class="btn btn-primary float-right">
                 <a class="btn btn-secondary float-right mr-2" href="{{ url('administrator/manusia') }}">Cancel</a>
@@ -55,6 +56,6 @@
            </form>
         </div>
     </div>
-    
+
 </div>
 @endsection

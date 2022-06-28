@@ -258,6 +258,7 @@ class Asset_keuangan extends Controller{
             'uuid_manusia'          => Uuid::generate(),
             'nama'                  => $req->input('nama'),
             'kelamin'               => $req->input('kelamin'),
+            'jabatan'               => $req->input('jabatan'),
             'tugas'                 => $req->input('tugas'),
             'is_active'             => $req->input('is_active'),
             'upload_by'         => Session::get('username')
@@ -271,6 +272,7 @@ class Asset_keuangan extends Controller{
         $Data = array(
             'nama'               => $req->input('nama'),
             'kelamin'            => $req->input('kelamin'),
+            'jabatan'               => $req->input('jabatan'),
             'tugas'              => $req->input('tugas'),
             'is_active'          => $req->input('is_active'),
             'upload_by'         => Session::get('username')

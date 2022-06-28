@@ -58,7 +58,7 @@
                 <tbody>
                     @foreach($content as $index => $value)
                     <tr>
-                        <td>LOG-{{ $value->tanggal }}-{{ $index+1 }}</td>
+                        <td>LOG{{ $value->tanggal }}-{{ $index+1 }}</td>
                         <td>{{ $value->nama_unit }}</td>
                         <td>{{ $value->tanggal }}</td>
                         <td>{{ $value->jumlah }}</td>
@@ -122,7 +122,7 @@
                 table.draw();
             });
             table.on( 'draw', function () {
-                var total_all = table.column(7,{"filter": "applied"} ).data().sum();
+                var total_all = table.column(8,{"filter": "applied"} ).data().sum();
                 $("#total_logistik").text("Rp. "+rupiahformat(total_all))
             })
 

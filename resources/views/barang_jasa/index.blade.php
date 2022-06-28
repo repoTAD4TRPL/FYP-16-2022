@@ -24,7 +24,7 @@
 
         <div class="col-lg-6 text-right">
             <h5 class="mb-2">Total Transaksi Traktor</h5>
-            <h5 class="bg-white float-right p-4" id="total_logistik" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($total_pemasukan) }}</h5>
+            <h5 class="bg-white float-right p-4" id="total_pembelian" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($total_pemasukan) }}</h5>
         </div>
     </div>
 
@@ -46,15 +46,12 @@
                 <thead>
                     <tr class="font-weight-bold" style="text-align:center">
                         <td>ID Transaksi</td>
-                        {{-- <td>Unit</td> --}}
                         <td>Keterangan</td>
                         <td>Jumlah</td>
                         <td>Tanggal</td>
                         <td>Harga</td>
                         <td>Diunggah Oleh</td>
                         <td>Aksi</td>
-                        <td style="display:none;">total_penyewaan</td>
-                        <td style="display:none;">total_pembelian</td>
                         <td style="display:none;">total_pemasukan</td>
 
                     </tr>
@@ -62,8 +59,7 @@
                 <tbody>
                     @foreach($content as $index => $value)
                     <tr>
-                        <td>TRAK{{ $value->tanggal }}{{ $index+1 }}</td>
-                        {{-- <td>{{ $value->nama_unit }}</td> --}}
+                        <td>TRAK{{ $value->tanggal }}-{{ $index+1 }}</td>
                         <td>{{ $value->nama }}</td>
                         <td>{{ $value->jumlah }}</td>
                         <td>{{ $value->tanggal }}</td>
@@ -124,10 +120,22 @@ $(document).ready(function() {
             });
 
 
+            table.on('draw', function () {
+
+                var total_penyewaan = table.column(8,{"filter": "applied"} ).data().sum();
+                var total_pembelian =  table.column(7,{"filter": "applied"} ).data().sum();
+
+
+                $("#total_pemasukan").text("Rp. "+rupiahformat(parseInt(total_penyewaan)+parseInt(total_pembelian)))
+                $("#total_penyewaan").text("Rp. "+rupiahformat(total_penyewaan))
+                $("#total_pembelian").text("Rp. "+rupiahformat(total_pembelian))
+            })
+
 
 
 
     });
+
 
     $(".delete").click(function(){
         var uuid = $(this).data('id');

@@ -24,7 +24,7 @@
 
         <div class="col-lg-6 text-right">
             <h5 class="mb-2">Total Transaksi Homestay</h5>
-            <h5 class="bg-white float-right p-4" id="total_logistik" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($total_pemasukan) }}</h5>
+            <h5 class="bg-white float-right p-4" id="total_pembelian" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($total_pemasukan) }}</h5>
         </div>
     </div>
 
@@ -61,7 +61,7 @@
                 <tbody>
                     @foreach($content as $index => $value)
                     <tr>
-                        <td>HMSTY{{ $value->tanggal_masuk }}{{ $index+1 }}</td>
+                        <td>HMSTY{{ $value->tanggal_masuk }}-{{ $index+1 }}</td>
                         <td>{{ $value->nama }}</td>
                         <td> @if($value->tipe_kamar == 1)
                             Standard

@@ -50,6 +50,7 @@
                         <td>No</td>
                         <td>Nama</td>
                         <td>Jenis Kelamin</td>
+                        <td>Jabatan</td>
                         <td>Tugas</td>
                         <td>Status</td>
                         {{-- <td>Diunggah Oleh</td> --}}
@@ -63,6 +64,7 @@
                         <td>{{ $index+1 }}</td>
                         <td>{{ $value->nama }}</td>
                         <td>{{  $value->kelamin == 1 ? 'Laki-laki' : 'Perempuan' }}</td>
+                        <td>{{ $value->jabatan }}</td>
                         <td style="text-align:justify">{!! nl2br(e($value->tugas)) !!}</td>
                         <td>{{ $value->is_active == 1 ? 'Active' : 'inactive' }}</td>
                         {{-- <td>{{ $value->upload_by }}</td> --}}

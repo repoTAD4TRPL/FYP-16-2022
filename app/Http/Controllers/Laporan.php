@@ -111,8 +111,8 @@ class Laporan extends Controller{
 
         //KEUANGAN
         $Data['content']      = DB::table('keuangan')->rightJoin('unit_usaha','unit_usaha.id_unit','=','keuangan.id_unit')->orderBy('keuangan.date_created','desc')->whereBetween('keuangan.tanggal',[$from, $to])->where(['keuangan.status' => 1])->get();
-        $Data['pemasukan']    = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->sum('nilai');
-        $Data['pengeluaran']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->sum('nilai');
+        $Data['pemasukan']    = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1])->sum('nilai');
+        $Data['pengeluaran']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2])->sum('nilai');
         $Data['pengeluaran_list']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->get();
 
         //$Data['pemasukan']    = DB::table('barang_jasa')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
@@ -155,6 +155,8 @@ class Laporan extends Controller{
         $Data['logistik_pengeluaran']           = DB::table('logistik')->whereBetween('tanggal',[$from, $to])->orderBy('date_created','desc')->where(['status' => 1])->get();
 
         $Data['barang_jasa_pemasukan_total']    = DB::table('barang_jasa')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
+        $Data['toko_pemasukan_total']    = DB::table('toko')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
+        $Data['homestay_pemasukan_total']    = DB::table('homestay')->whereBetween('tanggal_masuk',[$from, $to])->where(['status' => 1])->sum('harga');
         $Data['logistik_pengeluaran_total']    = DB::table('logistik')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
 
         $temp = 0;
@@ -190,8 +192,8 @@ class Laporan extends Controller{
 
         //KEUANGAN
         $Data['content']      = DB::table('keuangan')->rightJoin('unit_usaha','unit_usaha.id_unit','=','keuangan.id_unit')->orderBy('keuangan.date_created','desc')->whereBetween('keuangan.tanggal',[$from, $to])->where(['keuangan.status' => 1])->get();
-        $Data['pemasukan']    = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->sum('nilai');
-        $Data['pengeluaran']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->sum('nilai');
+        $Data['pemasukan']    = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1])->sum('nilai');
+        $Data['pengeluaran']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2])->sum('nilai');
         $Data['pengeluaran_list']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->get();
 
         //$Data['pemasukan']    = DB::table('barang_jasa')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
@@ -232,6 +234,8 @@ class Laporan extends Controller{
         $Data['logistik_pengeluaran']           = DB::table('logistik')->whereBetween('tanggal',[$from, $to])->orderBy('date_created','desc')->where(['status' => 1])->get();
 
         $Data['barang_jasa_pemasukan_total']    = DB::table('barang_jasa')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
+        $Data['toko_pemasukan_total']    = DB::table('toko')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
+        $Data['homestay_pemasukan_total']    = DB::table('homestay')->whereBetween('tanggal_masuk',[$from, $to])->where(['status' => 1])->sum('harga');
         $Data['logistik_pengeluaran_total']    = DB::table('logistik')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
         // // //Mencari laba rugi
         // if(($Data['content'] == [] && $Data['content_logistik'] == [] && $Data['content_barangjasa'] == [] && $Data['content_bagihasil'] == [] && $Data['content_asset'] == []) || ($Data['content'] != [])) {
@@ -253,6 +257,7 @@ class Laporan extends Controller{
             $pdf = PDF::loadView('laporan_keuangan.laporan_print', $Data);
             }
         return $pdf->download('Laporan_Keuangan_Mingguan.pdf');
+        // return $pdf->download('Laporan_Keuangan_Mingguan-' . uniqid() . '.pdf');
         //return view('laporan_keuangan.laporan_print', $Data);
 
         ini_restore('max_execution_time');
@@ -273,8 +278,8 @@ class Laporan extends Controller{
 
         //KEUANGAN
         $Data['content']      = DB::table('keuangan')->rightJoin('unit_usaha','unit_usaha.id_unit','=','keuangan.id_unit')->orderBy('keuangan.date_created','desc')->whereBetween('keuangan.tanggal',[$from, $to])->where(['keuangan.status' => 1])->get();
-        $Data['pemasukan']    = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->sum('nilai');
-        $Data['pengeluaran']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->sum('nilai');
+        $Data['pemasukan']    = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 1 ])->sum('nilai');
+        $Data['pengeluaran']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 ])->sum('nilai');
         $Data['pengeluaran_list']  = DB::table('keuangan')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1, 'jenis' => 2 , 'keuangan.approve_direktur' => 1,'approve_bendahara' => 1])->get();
 
         //$Data['pemasukan']    = DB::table('barang_jasa')->orderBy('date_created','desc')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
@@ -320,6 +325,8 @@ class Laporan extends Controller{
         $Data['logistik_pengeluaran']           = DB::table('logistik')->whereBetween('tanggal',[$from, $to])->orderBy('date_created','desc')->where(['status' => 1])->get();
 
         $Data['barang_jasa_pemasukan_total']    = DB::table('barang_jasa')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
+        $Data['toko_pemasukan_total']    = DB::table('toko')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
+        $Data['homestay_pemasukan_total']    = DB::table('homestay')->whereBetween('tanggal_masuk',[$from, $to])->where(['status' => 1])->sum('harga');
         $Data['logistik_pengeluaran_total']    = DB::table('logistik')->whereBetween('tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
 
 
@@ -358,6 +365,7 @@ class Laporan extends Controller{
         $Data['pengeluaran_keuangan']  = DB::table('keuangan')->orderBy('date_created','desc')->where(['status' => 1 , 'jenis' => 2])->sum('nilai');
 
         $pdf = PDF::loadView('laporan_keuangan.laporan_keuangan_section', $Data);
+
         return $pdf->download('Laporan_Keuangan.pdf');
         //return view('laporan_keuangan.laporan_keuangan_section', $Data);
 
@@ -384,6 +392,7 @@ class Laporan extends Controller{
 
         ini_restore('max_execution_time');
     }
+
 
 
     function import_laporan_keuangan(request $request){

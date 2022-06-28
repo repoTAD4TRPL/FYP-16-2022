@@ -24,7 +24,7 @@
 
         <div class="col-lg-6 text-right">
             <h5 class="mb-2">Total Transaksi Toko</h5>
-            <h5 class="bg-white float-right p-4" id="total_logistik" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($total_pemasukan) }}</h5>
+            <h5 class="bg-white float-right p-4" id="total_pembelian" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($total_pemasukan) }}</h5>
         </div>
     </div>
 
@@ -59,7 +59,7 @@
                 <tbody>
                     @foreach($content as $index => $value)
                     <tr>
-                        <td>TOKO{{ $value->tanggal }}{{ $index+1 }}</td>
+                        <td>TOKO{{ $value->tanggal }}-{{ $index+1 }}</td>
                         <td>{{ $value->keterangan }}</td>
                         <td>Rp.{{ number_format($value->harga) }}</td>
                         <td>{{ $value->tanggal }}</td>
@@ -118,7 +118,16 @@
             $('#min-date,#max-date').change(function() {
                 table.draw();
             });
+            table.on('draw', function () {
 
+            var total_penyewaan = table.column(8,{"filter": "applied"} ).data().sum();
+            var total_pembelian =  table.column(7,{"filter": "applied"} ).data().sum();
+
+
+            $("#total_pemasukan").text("Rp. "+rupiahformat(parseInt(total_penyewaan)+parseInt(total_pembelian)))
+            $("#total_penyewaan").text("Rp. "+rupiahformat(total_penyewaan))
+            $("#total_pembelian").text("Rp. "+rupiahformat(total_pembelian))
+            })
 
 
 

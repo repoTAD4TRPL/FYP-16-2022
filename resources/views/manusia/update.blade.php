@@ -9,12 +9,12 @@
         <div class="col-lg-6">
         </div>
     </div>
- 
+
     <div class="card p-4" style="width:100%;">
         <div class="card-body">
             <form action="{{ url('administrator/manusia/update-data/'.$value->uuid_manusia) }}"  method="POST" >
                 @csrf
-               
+
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
@@ -29,6 +29,12 @@
                                     <option {{ $value->kelamin == 1 ? 'selected' : '' }} value="1">Laki Laki</option>
                                     <option {{ $value->kelamin == 2 ? 'selected' : '' }} value="2">Perempuan</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Jabatan</label>
+                            <div class="col-sm-10">
+                                <input type="text" value="{{ $value->jabatan }}" class="form-control" name="jabatan" required>
                             </div>
                         </div>
                 <div class="form-group row">
@@ -47,7 +53,7 @@
                                 </select>
                             </div>
                 </div>
-                
+
                 @if(Session::has('update_ok'))
                 <div class="alert alert-primary mt-4" role="alert">
                     {{  Session::get('update_ok') }}
@@ -60,6 +66,6 @@
            </form>
         </div>
     </div>
-    
+
 </div>
 @endsection

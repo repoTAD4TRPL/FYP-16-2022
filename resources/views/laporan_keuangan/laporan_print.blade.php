@@ -245,15 +245,15 @@
                </tr>
                 <tr>
                    <td colspan="2"><b>Transaksi Toko</b></td>
-                   <td style="text-align:right">Rp. {{ number_format($pemasukantoko) }}</td>
+                   <td style="text-align:right">Rp. {{ number_format($total_pemasukan_toko) }}</td>
                 </tr>
                 <tr>
                    <td colspan="2"><b>Transaksi Homestay</b></td>
-                   <td style="text-align:right">Rp. {{ number_format($pemasukanhomestay) }}</td>
+                   <td style="text-align:right">Rp. {{ number_format($total_homestay) }}</td>
                 </tr>
                 <tr>
-                    <td colspan="2"><b>Total Transaksi</b></td>
-                    <td style="text-align:right">Rp. {{ number_format($barang_jasa_pemasukan_total+$pemasukantoko+$pemasukanhomestay) }}</td>
+                    <td colspan="2"><h4>Total Transaksi</h4></td>
+                    <td style="text-align:right">Rp. {{ number_format($barang_jasa_pemasukan_total+$toko_pemasukan_total+$homestay_pemasukan_total) }}</td>
                  </tr>
 
 
@@ -343,7 +343,7 @@
             </thead>
             <tbody>
                 <?php
-                    $pemasukan_all  = $pemasukan+$barang_jasa_pemasukan_total+$pemasukantoko+$pemasukanhomestay;
+                    $pemasukan_all  = $pemasukan+$barang_jasa_pemasukan_total+$toko_pemasukan_total+$homestay_pemasukan_total;
                     $pengeluaran_all= $pengeluaran+$logistik_pengeluaran_total;
                     $total_saldo    = $pemasukan_all-$pengeluaran_all;
 
@@ -388,19 +388,7 @@
                    <td colspan="2"><b>Total Laba</b></td>
                    <td style="text-align:right"> Rp. {{ number_format($total_saldo); }}</td>
                 </tr>
-                <!--
-                <tr>
-                   <td colspan="5">Pemasukan</td>
-                   <td>: Rp. {{ number_format($pemasukan) }}</td>
-               </tr>
-               <tr>
-                   <td colspan="5">Pengeluaran</td>
-                   <td>: Rp. {{ number_format($pengeluaran) }}</td>
-               </tr>
-               <tr>
-                   <td colspan="5">Saldo Bumdes</td>
-                   <td>: Rp. {{ number_format($pemasukan-$pengeluaran) }}</td>
-               </tr> -->
+
 
             </tbody>
         </table>
@@ -425,19 +413,7 @@
                     <td colspan="2"><b>Gaji Pegawai (25%)</b></td>
                     <td style="text-align:right">Rp. {{ number_format($total_saldo*25/100)}}</td>
                  </tr>
-                <!--
-                <tr>
-                   <td colspan="5">Pemasukan</td>
-                   <td>: Rp. {{ number_format($pemasukan) }}</td>
-               </tr>
-               <tr>
-                   <td colspan="5">Pengeluaran</td>
-                   <td>: Rp. {{ number_format($pengeluaran) }}</td>
-               </tr>
-               <tr>
-                   <td colspan="5">Saldo Bumdes</td>
-                   <td>: Rp. {{ number_format($pemasukan-$pengeluaran) }}</td>
-               </tr> -->
+
 
             </tbody>
         </table>

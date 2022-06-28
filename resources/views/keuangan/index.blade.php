@@ -27,15 +27,15 @@
         ?>
         <div class="col-lg-2 text-right">
             <h6 class="mb-2">Total Pemasukan</h6>
-            <h5 class="bg-white float-right p-4" id="" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($pemasukan_all) }}</h5>
+            <h5 class="bg-white float-right p-4" id="total_pemasukan" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($pemasukan_all) }}</h5>
         </div>
         <div class="col-lg-2 text-right">
             <h6 class="mb-2">Total Pengeluaran</h6>
-            <h5 class="bg-white float-right p-4" id="" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($pengeluaran_all) }}</h5>
+            <h5 class="bg-white float-right p-4" id="total_pengeluaran" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($pengeluaran_all) }}</h5>
         </div>
         <div class="col-lg-2 text-right">
             <h6 class="mb-2"><?= $pemasukan_all > $pengeluaran_all ? 'Total Laba' : 'Total Rugi'; ?></h6>
-            <h5 class="bg-white float-right p-4" id="" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($total_saldo) }}</h5>
+            <h5 class="bg-white float-right p-4" id="total_saldo" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($total_saldo) }}</h5>
         </div>
     </div>
 
