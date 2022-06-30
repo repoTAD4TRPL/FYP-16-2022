@@ -17,7 +17,7 @@
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Nama Unit</label>
                     <div class="col-sm-10">
-                        <input type="hidden" value="7" name="id_unit">
+                        <input type="hidden" value="8" name="id_unit">
                         <input type="text" value="Homestay" class="form-control" disabled>
                     </div>
                 </div>
@@ -42,13 +42,13 @@
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Tanggal Masuk</label>
                     <div class="col-sm-10">
-                        <input type="date"  class="form-control" name="tanggal_masuk" required>
+                        <input type="date"  class="form-control" name="tanggal_masuk" id="tanggal_masuk" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Tanggal Keluar</label>
                     <div class="col-sm-10">
-                        <input type="date"  class="form-control" name="tanggal_keluar" required>
+                        <input type="date"  class="form-control" name="tanggal_keluar" id="tanggal_keluar" required>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -73,3 +73,4 @@
 
 </div>
 @endsection
+

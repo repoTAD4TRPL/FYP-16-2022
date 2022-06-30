@@ -9,13 +9,13 @@
                 <div class="col-lg-4">
                     <div class="form-grop">
                         <label>Dari Tanggal</label>
-                        <input type="date" class="form-control" name="filter_to" id="min-date">
+                        <input type="date" id="tanggal_masuk" class="form-control" name="filter_to" id="min-date">
                     </div>
                 </div>
                 <div class="col-lg-5">
                     <div class="form-grop">
                         <label>Ke Tanggal</label>
-                        <input type="date" class="form-control" name="filter_from" id="max-date">
+                        <input type="date" id="tanggal_keluar" class="form-control" name="filter_from" id="max-date">
 
                     </div>
                 </div>

@@ -116,10 +116,7 @@
                         </td>
                         <td>
                             @if(Session::get('jabatan') == '1' || Session::get('jabatan') == '' || Session::get('jabatan') == '' || Session::get('jabatan') == '')
-                                @if($$value->approve_bendahara == 0)
 
-                                @else
-                                @endif
                             @else
                             <!-- <a href="{{ url('administrator/keuangan/ubah/'.$value->uuid_keuangan); }}" class="btn btn-warning text-white">Ubah</a>
                             <a href="#" data-id="{{ $value->uuid_keuangan }}" class="btn btn-danger delete" >Hapus</a> -->

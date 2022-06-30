@@ -21,7 +21,7 @@
         <div class="col-lg-6 mb-2">
             <div class="card p-2" style="width:100%;">
                 <center><h5 class="p-2">{{ $value->nama_unit }}</h5></center>
-                <img class="card-img-top" src="{{ $value->image !='' ? URL::to('assets/images/unit-usaha/'.$value->image) : 'http://placehold.it/150' }}" alt="Card image cap">
+                <img class="card-img-top" width="100" height="500" src="{{ $value->image !='' ? URL::to('assets/images/unit-usaha/'.$value->image) : 'http://placehold.it/150' }}" alt="Card image cap">
                 <div class="card-body">
                     <p class="card-text" style="text-align:justify">{!! nl2br(e($value->deskripsi)) !!}</p>
                     <div><b>Asset</b>
@@ -31,8 +31,11 @@
                     {{-- <div><b>Transaksi</b>
 
                     <br/> --}}
-                    <a href= "{!! nl2br(e($value->lapkeu)) !!}" class="btn btn-secondary text-white">Lihat Transaksi</a>
+                    @if(Session::get('jabatan') == '1' )
+                    @else
                     <a href= "{!! nl2br(e($value->lapkeg)) !!}" class="btn btn-primary float-">Tambah Transaksi</a>
+                    @endif
+                    <a href= "{!! nl2br(e($value->lapkeu)) !!}" class="btn btn-secondary text-white">Lihat Transaksi</a>
                     @if(Session::get('jabatan') == '4' )
                         <a href="{{ url('administrator/unit-usaha/ubah/'.$value->unit_uuid); }}" class="btn btn-warning text-white">Ubah</a>
                         <a href="#" data-id="{{ $value->unit_uuid }}" class="btn btn-danger delete" >Hapus</a>

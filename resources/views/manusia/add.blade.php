@@ -15,7 +15,6 @@
             <form action="{{ url('administrator/manusia/create') }}"  method="POST" >
                 @csrf
 
-                ccc
                 <div class="form-group row">
                             <label for="staticEmail" class="col-sm-2 col-form-label">Jenis Kelamin</label>
                             <div class="col-sm-10">

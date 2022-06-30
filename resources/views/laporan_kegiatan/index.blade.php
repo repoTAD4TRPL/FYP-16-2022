@@ -28,7 +28,7 @@
                     <div class="col-lg-6">
                         <div class="row">
                             <div class ="col-lg-4">
-                                <label>Cetak</label>
+                                <label class="font-weight-bold">Cetak Laporan</label>
                                 <input type="submit" class="btn btn-info" value="Cetak Laporan Kegiatan">
                             </div>
                             <div class ="col-lg-4 align-self-end">
@@ -101,11 +101,16 @@
 
                         </td>
                         <td>
-                            @if(Session::get('jabatan') == '1' || Session::get('jabatan') == '' || Session::get('jabatan') == '')
-
+                            @if(Session::get('jabatan') == '2' || Session::get('jabatan') == '3' || Session::get('jabatan') == '5')
+                            <a href="{{ url('administrator/laporan-kegiatan/ubah/'.$value->uuid_kegiatan); }}" class="btn btn-warning text-white">Ubah</a>
                             @else
+
+                            @endif
+                            @if(Session::get('jabatan') == '4' || Session::get('jabatan') == '' || Session::get('jabatan') == '')
                             <a href="{{ url('administrator/laporan-kegiatan/ubah/'.$value->uuid_kegiatan); }}" class="btn btn-warning text-white">Ubah</a>
                             <a href="#" data-id="{{ $value->uuid_kegiatan }}" class="btn btn-danger delete" >Hapus</a>
+                            @else
+
                             @endif
                             <a href="{{ url('administrator/laporan-kegiatan/detail/'.$value->uuid_kegiatan); }}" class="btn btn-secondary text-white">Detail</a>
                             @if(Session::get('jabatan') == '1' || Session::get('jabatan') == '5' || Session::get('jabatan') == '3' || Session::get('jabatan') == '2' || Session::get('jabatan') == '4')

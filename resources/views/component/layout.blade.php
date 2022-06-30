@@ -110,7 +110,7 @@
     @yield('content')
 
     <footer class="">
-        <p class="copyright pt-3">COPYRIGHT Bumdesta 2022</p>
+        <p class="copyright pt-3">COPYRIGHT &copy Badan Usaha Milik Desa 2022</p>
     </footer>
     <script src="{{ URL::asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ URL::asset('assets/js/bootstrap.min.js') }}"></script>
@@ -190,6 +190,16 @@
 
     </script>
 
+    <script>
+        $("#tanggal_masuk").on("change", function(){
+            console.log($(this).val());
+            $("#tanggal_keluar").attr("min", $(this).val());
+        });
+        $("#min-date").on("change", function(){
+            console.log($(this).val());
+            $("#max-date").attr("min", $(this).val());
+        });
+    </script>
 
     @yield('javascript')
     </body>

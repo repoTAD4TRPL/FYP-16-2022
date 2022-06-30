@@ -143,7 +143,7 @@ class Asset_keuangan extends Controller{
         }
 
         public function add_manusia(){
-            $Data['title']      = "Tambah Manusia";
+            $Data['title']      = "Tambah Sumber Daya Manusia";
             $Data['page']       = "manusia";
             $Data['master']     = "asset_keuangan";
 
@@ -153,7 +153,7 @@ class Asset_keuangan extends Controller{
         public function update_manusia($uuid){
             $check  = DB::table('manusia')->where(['status' => 1, 'uuid_manusia' => $uuid])->first();
             if($check){
-                $Data['title']      = "Ubah Manusia";
+                $Data['title']      = "Ubah Sumber Daya Manusia";
                 $Data['page']       = "manusia";
                 $Data['master']     = "asset_keuangan";
                 $Data['value']      = $check;

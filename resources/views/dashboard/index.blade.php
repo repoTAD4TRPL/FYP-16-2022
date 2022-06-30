@@ -5,7 +5,7 @@
 <div class="container p-4">
     <div class="row">
         <div class="col-lg-4 text-right">
-            <h6 class="mb-2">Total Pemasukan Barang & Jasa {{ $year }}</h6>
+            <h6 class="mb-2">Total Pemasukan Transaksi {{ $year }}</h6>
             <h5 class="bg-white float-right p-4" id="total_pemasukan" style="border-top:4px solid #f1f1f1;">Rp. {{ number_format($barang_jasa+$toko+$homestay) }}</h5>
         </div>
         <div class="col-lg-4 text-right">
@@ -133,14 +133,22 @@
 				labels: ["Januari" ,"Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"],
 				datasets: [
                 {
-					label: "Total Pemasukan Barang & Jasa {{ $year }}",
+					label: "Total Pemasukan Transaksi {{ $year }}",
 					data: [
                         <?php
                             for ($month = 1; $month <= 12; $month++) {
                                 $barangjasa = DB::table('barang_jasa')->whereYear('tanggal','=',$year)->whereMonth('tanggal','=',$month)->where(['status' => 1])->get();
+                                $toko = DB::table('toko')->whereYear('tanggal','=',$year)->whereMonth('tanggal','=',$month)->where(['status' => 1])->get();
+                                $homestay = DB::table('homestay')->whereYear('tanggal_masuk','=',$year)->whereMonth('tanggal_masuk','=',$month)->where(['status' => 1])->get();
                                 $ttl_data = 0;
                                 foreach($barangjasa as $v_barangjasa){
                                     $ttl_data+= $v_barangjasa->harga;
+                                }
+                                foreach($toko as $v_toko){
+                                    $ttl_data+= $v_toko->harga;
+                                }
+                                foreach($homestay as $v_homestay){
+                                    $ttl_data+= $v_homestay->harga;
                                 }
                                 echo $ttl_data.',';
                             }

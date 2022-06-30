@@ -47,7 +47,7 @@
                     <tr class="font-weight-bold" style="text-align:center">
                         <td>ID Transaksi</td>
                         <td>Keterangan</td>
-                        <td>Jumlah</td>
+                        <td>Luas</td>
                         <td>Tanggal</td>
                         <td>Harga</td>
                         <td>Diunggah Oleh</td>
@@ -61,7 +61,7 @@
                     <tr>
                         <td>TRAK{{ $value->tanggal }}-{{ $index+1 }}</td>
                         <td>{{ $value->nama }}</td>
-                        <td>{{ $value->jumlah }}</td>
+                        <td>{{ $value->jumlah }} Rantai</td>
                         <td>{{ $value->tanggal }}</td>
                         <td>Rp.{{ number_format($value->harga) }}</td>
                         <td>{{ $value->upload_by }}</td>

@@ -9,7 +9,7 @@
                 <div class="col-lg-4">
                     <div class="form-grop">
                         <label>Dari Tanggal</label>
-                        <input type="date" class="form-control" name="filter_to" id="min-date">
+                        <input type="date"  class="form-control" name="filter_to" id="min-date">
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -44,7 +44,7 @@
             <table class="table table-striped" id="logistik">
                 <thead>
                     <tr style="text-align:center" class="font-weight-bold">
-                        <td>No</td>
+                        <td>ID Logistik</td>
                         <td>Unit</td>
                         <td>Tanggal</td>
                         <td>Jumlah</td>
@@ -59,7 +59,11 @@
                     @foreach($content as $index => $value)
                     <tr>
                         <td>LOG{{ $value->tanggal }}-{{ $index+1 }}</td>
+                        @if (isset($value->nama_unit))
                         <td>{{ $value->nama_unit }}</td>
+                        @elseif (! (isset($value->nama_unit)))
+                        <td>Pusat</td>
+                        @endif
                         <td>{{ $value->tanggal }}</td>
                         <td>{{ $value->jumlah }}</td>
                         <td>{{ $value->keterangan }}</td>

@@ -21,17 +21,6 @@
                         <input type="text" value="Toko" class="form-control" disabled>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Nama Unit</label>
-                    <div class="col-sm-10">
-                        <select name="id_unit" class="form-control" id="" required>
-                            <option value="">Select Unit</option>
-                            @foreach($unit as $v_unit)
-                                <option value="{{ $v_unit->id_unit }}">{{ $v_unit->nama_unit }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
 
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Keterangan</label>

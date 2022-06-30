@@ -81,8 +81,14 @@
                         <td>{{ $value->upload_by }}</td>
 
                         <td>
-                            @if(Session::get('jabatan') == '5' || Session::get('jabatan') == '4' || Session::get('jabatan') == '3' || Session::get('jabatan') == '2')
+                            @if(Session::get('jabatan') == '5' || Session::get('jabatan') == '' || Session::get('jabatan') == '3' || Session::get('jabatan') == '2')
                                 <a href="{{ url('administrator/keuangan/ubah/'.$value->uuid_keuangan); }}" class="btn btn-warning text-white">Ubah</a>
+
+                            @else
+
+                            @endif
+                            @if(Session::get('jabatan') == '' || Session::get('jabatan') == '4' || Session::get('jabatan') == '' || Session::get('jabatan') == '')
+                            <a href="{{ url('administrator/keuangan/ubah/'.$value->uuid_keuangan); }}" class="btn btn-warning text-white">Ubah</a>
                                 <a href="#" data-id="{{ $value->uuid_keuangan }}" class="btn btn-danger delete" >Hapus</a>
                             @else
 

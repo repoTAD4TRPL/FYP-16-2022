@@ -18,9 +18,17 @@ class Logistik extends Controller{
         $Data['title']      = "Logistik";
         $Data['page']       = "logistik";
         $Data['master']     = "logistik";
-        $Data['content']    = DB::table('logistik')->rightJoin('unit_usaha','unit_usaha.id_unit','=','logistik.id_unit')->orderBy('logistik.date_created','desc')->where(['logistik.status' => 1])->get();
-        $Data['total_logistik']    = DB::table('logistik')->where(['logistik.status' => 1])->sum('harga');
-
+        $Data['content']    = DB::table('logistik')
+        ->rightJoin('unit_usaha','unit_usaha.id_unit','=','logistik.id_unit')
+        ->orderBy('logistik.date_created','desc')->where(['logistik.status' => 1])->get();
+        $Data_tabel_logistik = DB::table('logistik')->where('id_unit', 1)->where(['logistik.status' => 1])->get();
+        $Data_table_toArray = $Data_tabel_logistik->toArray();
+        foreach($Data_table_toArray as $data){
+            $Data['content']->push($data);
+        }
+        // $Data['content']->push($Data_table_toArray);
+        $Data['total_logistik'] = DB::table('logistik')->where(['logistik.status' => 1])->sum('harga');
+        // dd($Data);
         return view('logistik.index', $Data);
     }
 

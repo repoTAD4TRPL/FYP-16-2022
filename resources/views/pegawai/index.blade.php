@@ -6,7 +6,7 @@
 
     <div class="card mt-4">
         <div class="card-header bg-white">
-            <h5>Daftar Pengurus Bumdes</h5>
+            <h5>Daftar Pegawai Bumdes</h5>
         </div>
         <div class="card-body">
             @if(Session::get('jabatan') == '1')
@@ -36,7 +36,7 @@
                         <td>{{ $value->nip }}</td>
                         <td>{{ $value->nama_jabatan }}</td>
                         <td>{{ $value->email }}</td>
-                        <td>{{ $value->is_active == 1 ? 'Active' : 'inactive' }}</td>
+                        <td>{{ $value->is_active == 1 ? 'Active' : 'Inactive' }}</td>
                         <td>
                             @if(Session::get('jabatan') == '1')
                             <a href="{{ url('administrator/pegawai/ubah/'.$value->uuid); }}" class="btn btn-warning text-white">Ubah</a>
