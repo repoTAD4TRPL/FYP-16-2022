@@ -121,9 +121,13 @@
                 @foreach($content_logistik as $index => $value)
                 <tr>
                     <td>{{ $index+1 }}</td>
-                    <td>{{ $value->nama_unit }}</td>
+                    @if (isset($value->nama_unit))
+                        <td>{{ $value->nama_unit }}</td>
+                        @elseif (! (isset($value->nama_unit)))
+                        <td>Pusat</td>
+                        @endif
                     <td>{{ $value->tanggal }}</td>
-                    <td>{{ $value->jumlah }}</td>
+                    <td>{{ $value->jumlah }} Buah</td>
                     <td>{{ $value->keterangan }}</td>
                     <td style="text-align:right">Rp. {{ number_format($value->harga) }}</td>
                 </tr>
@@ -143,7 +147,7 @@
                 <tr class="font-weight-bold" style="text-align:center">
                     <td><b>ID Transaksi<b></td>
                     <td><b>Keterangan<b></td>
-                    <td><b>Jumlah<b></td>
+                    <td><b>Luas<b></td>
                     <td><b>Tanggal<b></td>
                     <td><b>Harga<b></td>
                 </tr>
@@ -153,7 +157,7 @@
                 <tr>
                     <td>TRAK{{ $value->tanggal }}{{ $index+1 }}</td>
                         <td>{{ $value->nama }}</td>
-                        <td>{{ $value->jumlah }}</td>
+                        <td>{{ $value->jumlah }} Rantai</td>
                         <td>{{ $value->tanggal }}</td>
                         <td style="text-align:right">Rp.{{ number_format($value->harga) }}</td>
                 </tr>

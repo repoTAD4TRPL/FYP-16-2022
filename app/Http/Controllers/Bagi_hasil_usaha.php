@@ -98,7 +98,8 @@ class Bagi_hasil_usaha extends Controller{
             'jumlah'                => $req->input('jumlah'),
             'tanggal'               => $req->input('tanggal'),
             'nilai'                 => str_replace(array('.',','), '', $req->input('nilai')),
-            'status_hasil'          => $req->input('status_hasil')
+            'status_hasil'          => $req->input('status_hasil'),
+            'upload_by'         => Session::get('username')
         );
 
         $Database = DB::table('bagi_hasil_usaha')->insert($Data);
@@ -113,7 +114,8 @@ class Bagi_hasil_usaha extends Controller{
             'jumlah'                => $req->input('jumlah'),
             'tanggal'               => $req->input('tanggal'),
             'nilai'                 => str_replace(array('.',','), '', $req->input('nilai')),
-            'status_hasil'          => $req->input('status_hasil')
+            'status_hasil'          => $req->input('status_hasil'),
+            'upload_by'         => Session::get('username')
         );
 
         $Database = DB::table('bagi_hasil_usaha')->where(['uuid_bagi_hasil' => $uuid])->update($Data);

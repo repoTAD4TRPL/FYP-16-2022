@@ -122,7 +122,11 @@ class Laporan extends Controller{
         //LOGISTIK
         $Data['content_logistik']  = DB::table('logistik')->whereBetween('logistik.tanggal',[$from, $to])->rightJoin('unit_usaha','unit_usaha.id_unit','=','logistik.id_unit')->orderBy('logistik.date_created','desc')->where(['logistik.status' => 1])->get();
         $Data['total_logistik']    = DB::table('logistik')->whereBetween('tanggal',[$from, $to])->where(['logistik.status' => 1])->sum('harga');
-
+        $Data_tabel_logistik = DB::table('logistik')->whereBetween('logistik.tanggal',[$from, $to])->where('id_unit', 1)->where(['logistik.status' => 1])->get();
+        $Data_table_toArray = $Data_tabel_logistik->toArray();
+        foreach($Data_table_toArray as $data){
+            $Data['content_logistik']->push($data);
+        }
         //BARANG JASA
         $Data['content_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->rightJoin('unit_usaha','unit_usaha.id_unit','=','barang_jasa.id_unit')->orderBy('barang_jasa.date_created','desc')->where(['barang_jasa.status' => 1])->get();
         $Data['total_pemasukan_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
@@ -202,7 +206,11 @@ class Laporan extends Controller{
         //LOGISTIK
         $Data['content_logistik']  = DB::table('logistik')->whereBetween('logistik.tanggal',[$from, $to])->rightJoin('unit_usaha','unit_usaha.id_unit','=','logistik.id_unit')->orderBy('logistik.date_created','desc')->where(['logistik.status' => 1])->get();
         $Data['total_logistik']    = DB::table('logistik')->whereBetween('tanggal',[$from, $to])->where(['logistik.status' => 1])->sum('harga');
-
+        $Data_tabel_logistik = DB::table('logistik')->whereBetween('logistik.tanggal',[$from, $to])->where('id_unit', 1)->where(['logistik.status' => 1])->get();
+        $Data_table_toArray = $Data_tabel_logistik->toArray();
+        foreach($Data_table_toArray as $data){
+            $Data['content_logistik']->push($data);
+        }
         //BARANG JASA
         $Data['content_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->rightJoin('unit_usaha','unit_usaha.id_unit','=','barang_jasa.id_unit')->orderBy('barang_jasa.date_created','desc')->where(['barang_jasa.status' => 1])->get();
         $Data['total_pemasukan_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->where(['status' => 1])->sum('harga');
@@ -289,7 +297,11 @@ class Laporan extends Controller{
         //LOGISTIK
         $Data['content_logistik']  = DB::table('logistik')->whereBetween('logistik.tanggal',[$from, $to])->rightJoin('unit_usaha','unit_usaha.id_unit','=','logistik.id_unit')->orderBy('logistik.date_created','desc')->where(['logistik.status' => 1])->get();
         $Data['total_logistik']    = DB::table('logistik')->whereBetween('tanggal',[$from, $to])->where(['logistik.status' => 1])->sum('harga');
-
+        $Data_tabel_logistik = DB::table('logistik')->whereBetween('logistik.tanggal',[$from, $to])->where('id_unit', 1)->where(['logistik.status' => 1])->get();
+        $Data_table_toArray = $Data_tabel_logistik->toArray();
+        foreach($Data_table_toArray as $data){
+            $Data['content_logistik']->push($data);
+        }
         //BARANG JASA
         $Data['content_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->rightJoin('unit_usaha','unit_usaha.id_unit','=','barang_jasa.id_unit')->orderBy('barang_jasa.date_created','desc')->where(['barang_jasa.status' => 1])->get();
         $Data['total_pemasukan_barangjasa']    = DB::table('barang_jasa')->whereBetween('barang_jasa.tanggal',[$from, $to])->where(['status' => 1])->sum('harga');

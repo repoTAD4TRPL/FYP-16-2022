@@ -65,7 +65,7 @@
                         <td>Pusat</td>
                         @endif
                         <td>{{ $value->tanggal }}</td>
-                        <td>{{ $value->jumlah }}</td>
+                        <td>{{ $value->jumlah }} Buah</td>
                         <td>{{ $value->keterangan }}</td>
                         <td>Rp.{{ number_format($value->harga) }}</td>
                         <td>{{ $value->upload_by }}</td>
