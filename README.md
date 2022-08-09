@@ -48,7 +48,7 @@
 6.  Silahkan klik new dan isi database name dengan bumdesta3 kemudian klik create
     ![image](https://user-images.githubusercontent.com/68834482/183600810-2f76a815-ffd6-4c14-a330-6b659c8ff65a.png)
  
-7.	Kemudian silahkan import database yang berada dalam folder project FYP-16-2022 ke php my admin dan pastikan nama database tersebut adalah bumdesta3
+7.	Kemudian silahkan import database yang berada dalam folder project FYP-16-2022 ke database yang bernama bumdesta3 di php my admin dan pastikan nama database tersebut adalah bumdesta3
     ![image](https://user-images.githubusercontent.com/68834482/183573841-167d997c-a085-44b5-b34a-9ec8b52ab444.png)
     ![image](https://user-images.githubusercontent.com/68834482/183573857-390ef0b0-8315-4554-a409-8dac84749972.png)
     ![image](https://user-images.githubusercontent.com/68834482/183573866-bd710aad-5425-4ffe-834f-31cf6708055a.png)
