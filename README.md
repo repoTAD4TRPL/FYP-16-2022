@@ -54,7 +54,7 @@
 7.	Setelah selesai melakukan import database kedalam php my admin silahkan buka CMD pada folder project FYP-16-2022 yang telah di clone sebelumnya pada folder htdocs di XAMPP
     ![image](https://user-images.githubusercontent.com/68834482/183574561-94141034-3344-44d4-afb7-8ab6fd52c57f.png)
 
-8.  Sebelum menjalankan aplikasi silahkan sesuaikan composer device anda dengan aplikasi dengan mengetik **composer update atau composer install. Jika terdapat error anda dapat mencoba composer install --ignore-platform-reqs. **
+8.  Sebelum menjalankan aplikasi silahkan sesuaikan composer device anda dengan aplikasi dengan mengetik **composer update atau composer install. Jika terdapat error anda dapat mencoba composer install --ignore-platform-reqs.**
     ![image](https://user-images.githubusercontent.com/68834482/183573895-71afd964-4556-4b4e-a580-08a70b8a1639.png)
  
 9.	Setelah terinstall pastikan terdapat **folder vendor** didalam Project tersebut
