@@ -17,28 +17,23 @@
     - Web browser (Google Chrome is Recommended)
     
 3.	Daftar User Type dan Default Account
-    - Penasihat
-        Penasihat memiliki fungsi utama untuk mengelola nama dan logo website kemudian dapat mengelola account dari masing masing user
+    - Penasihat: memiliki fungsi utama untuk mengelola nama dan logo website kemudian dapat mengelola account dari masing masing user
         - Username	: edward
         - Password	: admin
         ![image](https://user-images.githubusercontent.com/68834482/183817759-83903eef-8e02-4bd9-8429-c6184c9494f4.png)
-    - Direktur
-        Direktur memiliki fungsi utama untuk mengelola dan approval dari laporan keuangan, mengelola tanda tangan dan juga direktur dapat mengelola seluruh menu manajemen laporan
+    - Direktur: memiliki fungsi utama untuk mengelola dan approval dari laporan keuangan, mengelola tanda tangan dan juga direktur dapat mengelola seluruh menu manajemen laporan
         - Username	: lisbeth
         - Password	: admin
         ![image](https://user-images.githubusercontent.com/68834482/183818339-55667144-10a6-42d4-8050-5d8196175b01.png)
-    - Bendahara
-        Bendahara memiliki fungsi utama untuk mengelola dan approval dari laporan keuangan dan juga direktur dapat mengelola seluruh menu manajemen laporan keuangan
+    - Bendahara: memiliki fungsi utama untuk mengelola dan approval dari laporan keuangan dan juga direktur dapat mengelola seluruh menu manajemen laporan keuangan
         - Username	: mey
         - Password	: admin
         ![image](https://user-images.githubusercontent.com/68834482/183818501-b1cf16bb-608a-4634-9c1e-63c93197e903.png)
-    - Sekretaris
+    - Sekretaris: memiliki fungsi utama untuk mengelola dan approval dari laporan kegiatan dan juga direktur dapat mengelola seluruh menu manajemen laporan kegiatan
         - Username	: tere
         - Password	: admin
-        Sekretaris memiliki fungsi utama untuk mengelola dan approval dari laporan kegiatan dan juga direktur dapat mengelola seluruh menu manajemen laporan kegiatan
        ![image](https://user-images.githubusercontent.com/68834482/183818745-37333bab-9e94-43fc-bda5-60019205badf.png)
-    - Manajer Unit
-         Manajer memiliki fungsi utama untuk mencetak laporan kuangan dan kegiatan yang ditelah ditambahkan dan telah di approve oleh Bendahara, Skretaris dan Direktur dan Manajer Unit dapat mengelola seluruh menu manajemen laporan keuangan dan kegiatan
+    - Manajer Unit: memiliki fungsi utama untuk mencetak laporan kuangan dan kegiatan yang ditelah ditambahkan dan telah di approve oleh Bendahara, Skretaris dan Direktur dan Manajer Unit dapat mengelola seluruh menu manajemen laporan keuangan dan kegiatan
         - Username	: milo
         - Password	: admin
         ![image](https://user-images.githubusercontent.com/68834482/183819049-9f974abd-7778-49c0-b088-1fdfc6d343ad.png)
