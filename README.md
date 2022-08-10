@@ -22,10 +22,10 @@
         - Username	: edward
         - Password	: admin
         ![image](https://user-images.githubusercontent.com/68834482/183817759-83903eef-8e02-4bd9-8429-c6184c9494f4.png)
-    - Direktur: memiliki fungsi utama untuk mengelola dan approval dari laporan keuangan, mengelola tanda tangan dan juga direktur dapat mengelola seluruh menu manajemen laporan
+    - Direktur: memiliki fungsi utama untuk mengelola unit usaha, mengelola dan approval dari laporan keuangan, mengelola tanda tangan dan juga direktur dapat mengelola seluruh menu manajemen laporan
         - Username	: lisbeth
         - Password	: admin
-        ![image](https://user-images.githubusercontent.com/68834482/183818339-55667144-10a6-42d4-8050-5d8196175b01.png)
+        ![image](https://user-images.githubusercontent.com/68834482/183821575-4b09fa8d-c96d-4366-b4f2-e94f506c3dda.png)
     - Bendahara: memiliki fungsi utama untuk mengelola dan approval dari laporan keuangan dan juga direktur dapat mengelola seluruh menu manajemen laporan keuangan
         - Username	: mey
         - Password	: admin
