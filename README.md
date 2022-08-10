@@ -1,4 +1,4 @@
-- **Topik 		    : Manajemen Badan Usaha Milik Desa Marsingati Lumban Gaol Berbasis Web**
+- **Topik 		    : Manajemen Badan Usaha Milik Desa (BUM Desa) Marsingati Lumban Gaol Berbasis Web**
 - **Nama Aplikasi   : BUM Desa Marsingati Lumban Gaol**
 - **Jenis Sistem	: Website**
 
