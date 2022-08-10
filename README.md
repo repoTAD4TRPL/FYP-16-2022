@@ -11,27 +11,38 @@
     - SSD	Optional
 
 2.	Tools yang diperlukan:
-    - XAMPP
+    - XAMPP dengan PHP **minimal version 7.4.10**
+    - Database MYSQL
     - Visual Studio Code
-    - Web rowser (Google Chrome is Recommended)
+    - Web browser (Google Chrome is Recommended)
     
 3.	Daftar User Type dan Default Account
     - Penasihat
+        Penasihat memiliki fungsi utama untuk mengelola nama dan logo website kemudian dapat mengelola account dari masing masing user
         - Username	: edward
         - Password	: admin
+        ![image](https://user-images.githubusercontent.com/68834482/183817759-83903eef-8e02-4bd9-8429-c6184c9494f4.png)
     - Direktur
+        Direktur memiliki fungsi utama untuk mengelola dan approval dari laporan keuangan, mengelola tanda tangan dan juga direktur dapat mengelola seluruh menu manajemen laporan
         - Username	: lisbeth
         - Password	: admin
+        ![image](https://user-images.githubusercontent.com/68834482/183818339-55667144-10a6-42d4-8050-5d8196175b01.png)
     - Bendahara
+        Bendahara memiliki fungsi utama untuk mengelola dan approval dari laporan keuangan dan juga direktur dapat mengelola seluruh menu manajemen laporan keuangan
         - Username	: mey
         - Password	: admin
+        ![image](https://user-images.githubusercontent.com/68834482/183818501-b1cf16bb-608a-4634-9c1e-63c93197e903.png)
     - Sekretaris
         - Username	: tere
         - Password	: admin
+        Sekretaris memiliki fungsi utama untuk mengelola dan approval dari laporan kegiatan dan juga direktur dapat mengelola seluruh menu manajemen laporan kegiatan
+       ![image](https://user-images.githubusercontent.com/68834482/183818745-37333bab-9e94-43fc-bda5-60019205badf.png)
     - Manajer Unit
+         Manajer memiliki fungsi utama untuk mencetak laporan kuangan dan kegiatan yang ditelah ditambahkan dan telah di approve oleh Bendahara, Skretaris dan Direktur dan Manajer Unit dapat mengelola seluruh menu manajemen laporan keuangan dan kegiatan
         - Username	: milo
         - Password	: admin
-
+        ![image](https://user-images.githubusercontent.com/68834482/183819049-9f974abd-7778-49c0-b088-1fdfc6d343ad.png)
+    
 **Panduan Menajalankan atau me run Aplikasi**
 
 1.	Akses link https://github.com/repoTAD4TRPL/FYP-16-2022 dan salin URL git dari project tersebut
@@ -39,7 +50,11 @@
     ![image](https://user-images.githubusercontent.com/68834482/183574049-3da704fa-404e-40a1-b5d4-c9a158a95900.png)
  
 3.	Lakukan clone project dengan mengetik git clone https://github.com/repoTAD4TRPL/FYP-16-2022.git
-4.  Setelah selesai silahkan membuka aplikasi XAMPP dengan menekan button start pada appache dan mysql
+    Selain dengan cara clone Anda juga dapat mendownload file project pada github dalam bentuk zip kemudian melakukan ekstrak file
+    ![image](https://user-images.githubusercontent.com/68834482/183816949-c1d94068-10a3-4421-bce2-b4c56b9e7e35.png)
+    ![image](https://user-images.githubusercontent.com/68834482/183817457-0128f659-dc95-451f-981f-e554cb82bae9.png)
+    
+5.  Setelah selesai silahkan membuka aplikasi XAMPP dengan menekan button start pada appache dan mysql
     ![image](https://user-images.githubusercontent.com/68834482/183574083-d5d83625-ee31-4e6a-a33f-f1bde71bf4a6.png)
 
 5.	Kemudian silahkan membuka php my admin pada browser dengan mengetik http://localhost:8080/phpmyadmin/ atau http://localhost/phpmyadmin/
