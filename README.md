@@ -13,7 +13,7 @@
 2.	Tools yang diperlukan:
     - XAMPP dengan PHP **minimal version 7.4.10**
     - Database MYSQL
-    - Laravel 8
+    - Framework Laravel 8
     - Visual Studio Code
     - Web browser (Google Chrome is Recommended)
     
